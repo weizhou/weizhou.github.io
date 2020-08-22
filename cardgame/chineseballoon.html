@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+  <title>Hanzi Kids - Chinese Balloons</title>
+  <meta http-equiv="Content-Language" content="en-us" />
+  
+  <meta http-equiv="imagetoolbar" content="no" />
+  <meta name="MSSmartTagsPreventParsing" content="true" />
+  
+  <meta name="description" content="Description" />
+  <meta name="keywords" content="Keywords" />
+  
+  <meta name="author" content="Dish Planner" />
+ 
+  <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"> -->
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+  <script src="js/hanzi.js"></script>
+  <script src="js/chineseballoon.js"></script>
+  <script src="js/chineseballoongame.js"></script>
+
+  <style type="text/css" media="all">@import "css/master.css";@import "css/chineseballoon.css";@import "css/button.css";@import "css/font/iconic_stroke.css";</style>
+
+  <script type="text/javascript">
+
+
+    function adjustCardboard(){
+
+      var cardboardHeight = $('#page-container').height()-$('.header').height()-$('#footer').height()-26-1;
+      $('.cardboard').height(cardboardHeight);
+      var cardboardWidth = $('#page-container').width();
+      if(parseInt(cardboardWidth) < 960){
+          cardboardWidth = 960;
+      }
+      $('.cardboard').width(cardboardWidth);
+      $('#chineseballoonfooter').width(cardboardWidth);
+      $('.header').width(cardboardWidth);
+      var pinyinInputLeft = (cardboardWidth - $("#pinyinInput").width()) / 2
+      $('#pinyinInput').css("left", pinyinInputLeft);
+
+    }
+
+    $(window).load(function(){
+      adjustCardboard();
+    });
+
+    $(window).resize(function(){
+      adjustCardboard();
+    });
+
+    $(document).ready(function(){
+
+      adjustCardboard();
+      numberOfBalloons = 20;
+      level = 1;
+
+      game = new chineseballoongame(numberOfBalloons,parseInt($('#grade').val()),level);
+      game.start();
+      $('#pyinput').val("");
+      $('#pyinput').focus();
+      
+      $('.home').click(function(){
+        window.location.href='index.html';
+      });
+
+
+
+      $('#restart_button').click(function(){
+        restartGame();
+      });
+      
+      $('#grade').change(function(){
+        restartGame();
+      });
+
+      $('#pyinput').change(function(){
+        game.matchPinyin($('#pyinput').val());
+        $('#label_points').html("Score: " + game.score);
+        $('#pyinput').val("");
+        $('#pyinput').focus();
+      });
+
+      $(window).focus(function() {
+
+        if(animateStopped == 'YES'){
+          game.resume();
+          animateStopped = 'NO';
+        }  
+      });
+
+      $(window).blur(function() {
+          animateStopped = 'YES';
+          game.stop();
+      });
+
+    });
+
+    function restartGame(){
+        game.restart(numberOfBalloons,parseInt($('#grade').val()),level);
+        $('#pyinput').val("");
+        $('#pyinput').focus();
+        $('#label_points').html("Score: " + game.score);
+    }
+
+    </script>
+
+</head>
+
+<body>
+
+  <div id='page-container'>
+
+  <div class="header">
+    <div class="header-left-icon home"></div>
+    <div class="header-three-dee"> Chinese Balloons </div>
+  </div>
+
+  <div class="cardboard">
+  
+  </div>
+
+
+
+  <div id="chineseballoonfooter" style="font-size:20px; text-align:center">
+
+    <div style="float:left; margin: 5px 100px"><label id="label_points"> Score: 0</label></div>
+    <div style="float:left; margin: 5px 100px"><label id="label_level"> Level: 1</label></div>
+    <div id = "pinyinInput"style = "position:absolute; width: 400px;">
+      <div style="float: left; width: 150px; margin: 5px 0px 5px 60px"> Enter Pinyin: </div>
+      <div style="float: left; width: 100px; margin: 5px 0px 5px 0px"><input type="text" id="pyinput" name="pinyin" value=""></div>
+    </div>
+
+
+
+    <div id="restart_button" style="float:right; margin: 4px 10px 0px 0px" class="button blue">restart game</div>
+
+
+    <div style="float:right; margin: 5px 60px 5px 75px">
+      <select id="grade" style="font-size:15px; width:130px; text-align:left">
+        <option value="1">first grade</option>
+        <option value="2">second grade</option>
+        <option value="3">third grade</option>
+        <option value="4">fourth grade</option>
+      </select>
+    </div>
+<!--     <div id="altnav">
+      <a href="#">About</a> - 
+      <a href="#">Services</a> - 
+      <a href="#">Portfolio</a> - 
+      <a href="#">Contact Us</a> - 
+      <a href="#">Terms of Trade</a>
+    </div>
+    <div>Copyright © Dish Planner</div>
+    <div>Powered by <a href="http://www.dishplanner.com/">Dish Planner</a></div> -->
+
+  </div>
+</div>
+
+</body>
+</html>

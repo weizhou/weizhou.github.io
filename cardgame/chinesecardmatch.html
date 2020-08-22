@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+  <title>Dishplanner - cardgame</title>
+  <meta http-equiv="Content-Language" content="en-us" />
+  
+<!--   <meta http-equiv="imagetoolbar" content="no" />
+  <meta name="MSSmartTagsPreventParsing" content="true" />
+  
+  <meta name="description" content="Description" />
+  <meta name="keywords" content="Keywords" />
+   -->
+
+  <!-- <meta http-equiv="refresh" content="5">  -->
+  <meta name="author" content="Dish Planner" />
+ 
+  <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"> -->
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/chinesecard.js"></script>
+  <script src="js/chinesecarddeck.js"></script>
+  <script src="js/hanzi.js"></script>
+  <style type="text/css" media="all">@import "css/master.css";@import "css/chinesecard.css";@import "css/button.css";@import "css/cardboard.css";@import "css/font/iconic_stroke.css";</style>
+
+    <script type="text/javascript">
+    // adjust the height of the card board
+    $(window).load(function(){
+      var cardboardHeight = $('body').height()-$('.header').height()-$('#footer').height()-26-1; // 26 is the footer's padding; 1 is footer's border
+      $('.cardboard').height(cardboardHeight);
+    });
+
+    $(window).resize(function(){
+      var cardboardHeight = $('body').height()-$('.header').height()-$('#footer').height()-26-1;
+      $('.cardboard').height(cardboardHeight);
+    });
+
+    $(document).ready(function(){
+
+      var cardboardHeight = $('body').height()-$('.header').height()-$('#footer').height()-26-1; // 26 is the footer's padding; 1 is footer's border
+      $('.cardboard').height(cardboardHeight);
+      var cardboardWidth = $('.cardboard').width();
+      var grade = 1;
+      var numCards = 12;
+      deck = new chinesecarddeck(grade, numCards);
+      var rows = 4;
+      var marginX = 20;
+      var marginY = 20;
+      deck.drawToGrid(rows, marginX, marginY, cardboardWidth, cardboardHeight);
+
+      $('.home').click(function(){
+        window.location.href='index.html';
+      });
+
+      $('#restart_button').click(function(){
+        deck.shuffle1();
+        // deck.moveTwoCards();
+      });
+      // $('#restart_button').click(function(){
+      //   deck1.clearFromBoard();
+      //   pairs = $('#pairs').val();
+      //   // deck1 = new deck();
+      //   deck1.createCardMatchDeck(pairs);
+      //   var boardWidth = $('.cardboard').width();
+      //   var boardHeight = $('.cardboard').height();
+      //   deck1.drawToBoard(4, 20, 20, boardWidth, boardHeight);
+      //   deck1.registeClickToFlip();
+      //   deck1.shuffle();
+      //   flipCounter = 0;
+      //   $('#label_flips').html("Flips: " + flipCounter);
+      //   matchCounter = 0;
+      //   matchIndexOne  = 0;
+      //   matchIndexTwo = 0;
+      // });
+    });
+  </script>
+
+</head>
+
+<body>
+
+  <div id="page-container">
+
+  <div class="header">
+    <div class="header-left-icon home"></div>
+    <div class="header-three-dee"> Chinese Card Matching </div>
+  </div>
+
+  <div id="cardmatchboard" class="cardboard">
+
+  </div>
+  <div id="footer" style="font-size:20px; text-align:center">
+
+    <div style="float:left; margin: 5px 20px 5px 70px"><label> Matching pairs:  </label></div>
+    <div style="float:left; margin: 5px 50px 5px 0px">
+      <!-- <input id="pairs" type="text" style="font-size:15px; width:50px; text-align:center" /> -->
+      <select id="pairs" style="font-size:15px; width:50px; text-align:center">
+        <option value="6">6</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+
+    <div style="float:left; margin: 5px 25px"><label id="label_flips"> Flips: 0</label></div>
+    <div id="restart_button" style="float:right; margin: 0px 90px" class="button blue">restart game</div>
+<!--     <div id="altnav">
+      <a href="#">About</a> - 
+      <a href="#">Services</a> - 
+      <a href="#">Portfolio</a> - 
+      <a href="#">Contact Us</a> - 
+      <a href="#">Terms of Trade</a>
+    </div>
+    <div>Copyright © Dish Planner</div>
+    <div>Powered by <a href="http://www.dishplanner.com/">Dish Planner</a></div> -->
+
+  </div>
+
+  </div>
+
+</body>
+</html>

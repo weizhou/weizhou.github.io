@@ -1,0 +1,115 @@
+/**
+ * Styles for CSS Chinese Cards
+ *
+ */
+
+/* card itself
+********************************************************************/
+
+div.clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 1px;
+    visibility: hidden;
+}
+
+.flipcardcontainer{
+    position: absolute;
+    top:1px;
+    left:1px;
+    /*position: relative;*/
+    /*background-color: white;*/
+    width: 6.1em; /* 5 + .25*2 + .5 + .05*2  */
+    height: 7.1em; /* 6 + .25*2 + .5 + .05*2 */
+    padding: 0px;
+}
+
+.chinesecard {
+    position:absolute;
+    cursor:pointer;
+    display: inline-block;
+    width: 1em;
+    height: 1.2em;
+    border: 0.05em solid #666;
+    border-radius: .3em;
+    -moz-border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -khtml-border-radius: .3em;
+    padding: .25em;
+    margin: 0 .5em .5em 0;
+    text-align: center;
+    font-size: 3em; /* @change: adjust this value to make bigger or smaller cards */
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    -moz-box-shadow: .2em .2em .5em #333;
+    -webkit-box-shadow: .2em .2em .5em #333;
+    box-shadow: .2em .2em .5em #333;
+}
+
+.flip {
+    backface-visibility:             hidden;
+        -moz-backface-visibility:    hidden;
+        -ms-backface-visibility:     hidden;
+        -o-backface-visibility:      hidden;
+        -webkit-backface-visibility: hidden;
+
+/*        backface-visibility:         visible;
+        -moz-backface-visibility:    visible;
+        -ms-backface-visibility:     visible;
+        -o-backface-visibility:      visible;
+        -webkit-backface-visibility: visible;*/
+/*    border: 1px solid black;
+    height: 105px;
+    font: normal 14px helvetica, arial, san serif;
+    padding: 10px;
+    position: absolute;*/
+    transform-origin:             50% 50% 0px;
+        -moz-transform-origin:    50% 50% 0px;
+        -ms-transform-origin:     50% 50% 0px;
+        -o-transform-origin:      50% 50% 0px;
+        -webkit-transform-origin: 50% 50% 0px;
+    transition: all 1s;
+        -moz-transition:    all 1s;
+        -ms-transition:     all 1s;
+        -o-transition:      all 1s;
+        -webkit-transition: all 1s;
+    /*width: 300px;    */
+}
+
+.side-1 {
+    background-image: url("../images/chinesecard/cardback.png");
+    background-size: 100%;
+    transform:             rotateY( 0deg );
+        -moz-transform:    rotateY( 0deg );
+        -ms-transform:     rotateY( 0deg );
+        -o-transform:      rotateY( 0deg );
+        -webkit-transform: rotateY( 0deg );
+}
+
+.side-2 {
+
+    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    transform:             rotateY( 180deg );
+        -moz-transform:    rotateY( 180deg );
+        -ms-transform:     rotateY( 180deg );
+        -o-transform:      rotateY( 180deg );
+        -webkit-transform: rotateY( 180deg );
+}
+
+.flip-to-front {    
+    transform:             rotateY( 0deg ) !important;
+        -moz-transform:    rotateY( 0deg ) !important;
+        -ms-transform:     rotateY( 0deg ) !important;
+        -o-transform:      rotateY( 0deg ) !important;
+        -webkit-transform: rotateY( 0deg ) !important;
+}
+
+.flip-to-back {
+    transform:             rotateY( 180deg ) !important;
+        -moz-transform:    rotateY( 180deg ) !important;
+        -ms-transform:     rotateY( 180deg ) !important;
+        -o-transform:      rotateY( 180deg ) !important;
+        -webkit-transform: rotateY( 180deg ) !important;
+}

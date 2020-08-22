@@ -1,0 +1,22 @@
+#canvas-container {
+  text-align: center;
+  justify-content: center;
+  background-color: lightcoral;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+canvas {
+  /* width: 1000px;
+  height: 500px; */
+
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(135, 191, 209);
+  margin-top: 20px;
+}
+
+#buttonDiv {
+  text-align: center;
+  justify-content: center;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>a flying bird with svg</title>
+  </head>
+
+  <link rel="stylesheet" href="./css/default.css" />
+  <link rel="stylesheet" href="./css/flyingbird.css" />
+
+  <body>
+    <div class="container-fluid">
+      <div display="block" style="height: 70px;">
+        <nav class="nav">
+          <div class="logo">
+            <a href="./index.html"><img src="./imgs/logo.png" /></a>
+          </div>
+          <div id="mainListDiv" class="main_list">
+            <ul class="navlinks">
+              <li class="mav"><a href="./index.html">About</a></li>
+              <li><a href="./drawing.html">My Drawing</a></li>
+              <li><a href="./video.html">My Video</a></li>
+              <li><a href="#" class="active">My Game</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <svg width="1000" height="500" viewBox="150 0 1500 650">
+        <!-- <path
+          id="headbody"
+          style="fill: none; stroke: #000; stroke-width: 3px; opacity: 1;"
+          d="M295 190 q40 -45 100 -45 l-20 15 25 10 -25 5 30 10 -25 3 25 10 -30 5 20 15 q-65 -15 -85 -5 l8 -15 z  M290 195 l20 7 -5 10 q-20 -5 -35 15 q5 -30 20 -32 z M400 215 q80 50 120 30 l-5 -3 q30 10 60 -10 l20 10 q-3 -15 -15 -18 l10 -5 q-30 -5 -50 -40 q-75 30 -132 10 l15 15 z M598 223 q80 30 100 10 -20 40 -105 -5 z M575 243 q100 30 125 5 -15 45 -130 0 z M530 250 q80 50 120 30 c-20 -15 -40 5 -105 -30 z M515 255 q80 35 90 43 -10 10 -95 -42 z M500 258 c-30 10 -120 -50 -150 -40 20 -5 100 55 150 40 z "
+        >
+          <animate
+            attributeName="fill"
+            values="#000;#fff"
+            dur="10s"
+            begin="13s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          id="wing"
+          style="fill: none; stroke: #000; stroke-width: 3px; opacity: 1;"
+          d="M405 178 q70 20 130 -10 -70 15 -130 10 M405 165 q120 10 140 -20 c-20 20 -100 0 -140 20 z M395 155 c50 -20 120 10 170 -40 -50 30 -100 0 -170 40 z M400 140 c80 -30 140 5 180 -50 -60 40 -140 10 -180 50 z M415 115 c30 -20 80 10 190 -50 -60 30 -160 20 -190 50 M420 105 c80 -60  100 10 220 -80 -140 70 -170 10 -220 80 M395 135 q15 -20 0 -40 h-7 q15 20 7 40 z M387 137 q0 -60 -20 -70   10 20 15 70 z M375 135 l-25 -90 -15 -5 q15 30 37 95 z M365 137 q-35 -110 -60 -120 l-10 -5 q20 20 70 125 z M355 140 q-50 -130 -100 -140 10 -10 100 140 z M345 140 q-60 -120 -160 -160 110 80 160 160 "
+        >
+          <animate
+            attributeName="fill"
+            values="#000;#fff"
+            dur="10s"
+            begin="13s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <ellipse id="eye" cx="340" cy="185" rx="8" ry="5" fill="#fff">
+          <animate
+            attributeName="fill"
+            values="#fff;#000"
+            dur="10s"
+            begin="13s"
+            repeatCount="indefinite"
+          />
+        </ellipse> -->
+
+        <ellipse id="eye" cx="540" cy="300" rx="80" ry="50" fill="#000">
+          <animate
+            attributeName="cx"
+            values="100;800"
+            dur="2s"
+            begin="1s"
+            repeatCount="indefinite"
+          />
+        </ellipse>
+        <ellipse id="eye" cx="540" cy="300" rx="80" ry="50" fill="#000">
+          <animate
+            attributeName="rx"
+            values="20;80"
+            dur="2s"
+            begin="1s"
+            repeatCount="indefinite"
+          />
+        </ellipse>
+      </svg>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kate's video</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- video js css -->
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+    <link rel="stylesheet" href="./css/default.css" />
+    <link rel="stylesheet" href="./css/video.css" />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div display="block" style="height: 70px;">
+        <nav class="nav">
+          <div class="logo">
+            <a href="./index.html"><img src="./imgs/logo.png" /></a>
+          </div>
+          <div id="mainListDiv" class="main_list">
+            <ul class="navlinks">
+              <li><a href="./drawing.html">My Drawing</a></li>
+              <li><a class="active" href="#">My Video</a></li>
+              <li><a href="./game.html">My Game</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div
+        class="video-container"
+        style="text-align: center; margin-top: 30px;"
+      >
+        <video
+          controls
+          preload="auto"
+          width="60%"
+          style="
+            border-style: solid;
+            border-color: lightblue;
+            border-width: 5px;
+          "
+        >
+          <source
+            src="https://firebasestorage.googleapis.com/v0/b/kate-website-70fda.appspot.com/o/kevin-piano1.mp4?alt=media&token=1e7d84de-5743-471f-a8c2-a60eb7b805c3"
+            type="video/mp4"
+          />
+
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+      </div>
+
+      <div class="video-container" style="text-align: center;">
+        <video
+          controls
+          preload="auto"
+          width="60%"
+          style="
+            border-style: solid;
+            border-color: lightblue;
+            border-width: 5px;
+          "
+        >
+          <!-- <source
+            src="https://app.nihaocloud.com/f/a2d6a1a3d75646f3956d/?dl=1"
+            type="video/mp4"
+          /> -->
+          <source
+            src="https://firebasestorage.googleapis.com/v0/b/kate-website-70fda.appspot.com/o/kate-skate1.mp4?alt=media&token=3176501b-c922-4b82-8897-d257cb1a7bd4"
+            type="video/mp4"
+          />
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+      </div>
+    </div>
+
+    <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+  </body>
+</html>

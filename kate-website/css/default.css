@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700");
+
+.nav {
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  line-height: 65px;
+  text-align: center;
+  z-index: 2;
+  display: block;
+  background-color: rgba(46, 11, 243, 0.2);
+}
+
+.nav div.logo {
+  float: left;
+  width: auto;
+  height: auto;
+  padding-left: 3rem;
+}
+
+.nav div.logo a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.nav div.logo a:hover {
+  color: lightcoral;
+}
+
+.nav div.main_list {
+  float: right;
+  height: 65px;
+  padding-left: 20px;
+}
+
+.nav div.main_list ul {
+  width: 100%;
+  height: 65px;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav div.main_list ul li {
+  width: auto;
+  height: 65px;
+  padding: 0;
+  padding-right: 3rem;
+}
+
+.nav div.main_list ul li a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  line-height: 65px;
+  font-size: 1.4rem;
+}
+
+.nav div.main_list ul li a.active {
+  color: lightcoral;
+}
+
+.nav div.main_list ul li a:hover {
+  color: lightcoral;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.jumbotron {
+  position: relative;
+  overflow: hidden;
+  background-color: skyblue;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.jumbotron-background {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.jumbotron-background img {
+  position: absolute;
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+@keyframes backgroundFadeInOut {
+  0% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.jumbotron-background img.top {
+  animation-name: backgroundFadeInOut;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 8s;
+  animation-direction: alternate;
+}
+
+.jumbotron .container {
+  z-index: 2;
+  position: relative;
+  top: 40vh;
+  text-align: center;
+}
+
+img.blur {
+  -webkit-filter: blur(3px);
+  filter: blur(2px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+}

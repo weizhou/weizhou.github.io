@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kate's game board</title>
+  </head>
+
+  <!-- Latest compiled and minified CSS -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+  />
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="./css/default.css" />
+  <link rel="stylesheet" href="./css/logo.css" />
+
+  <body>
+    <div class="container-fluid">
+      <div display="block" style="height: 70px;">
+        <nav class="nav">
+          <div class="logo">
+            <a href="./index.html"><img src="./imgs/logo.png" /></a>
+          </div>
+          <div id="mainListDiv" class="main_list">
+            <ul class="navlinks">
+              <li><a href="./drawing.html">My Drawing</a></li>
+              <li><a href="./video.html">My Video</a></li>
+              <li><a href="#" class="active">My Game</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div id="canvas-container">
+        <canvas id="myCanvas"> </canvas>
+      </div>
+
+      <div id="buttonDiv">
+        <a href="#" id="transformButton" class="btn btn-primary">
+          transform image
+        </a>
+      </div>
+    </div>
+
+    <script src="./js/logo.js"></script>
+  </body>
+</html>

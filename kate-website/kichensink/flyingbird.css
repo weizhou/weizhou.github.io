@@ -1,0 +1,38 @@
+body {
+  animation: colorchange 10s;
+  animation-iteration-count: infinite;
+  -webkit-animation: colorchange 10s;
+  -webkit-animation-iteration-count: infinite;
+  animation-delay: 13s;
+}
+
+@keyframes colorchange {
+  0% {
+    background: #fff;
+  }
+  100% {
+    background: #000;
+  }
+}
+
+@-webkit-keyframes colorchange {
+  0% {
+    background: #fff;
+  }
+  100% {
+    background: #000;
+  }
+}
+
+path {
+  stroke-dasharray: 2000;
+  animation: dash 50s linear;
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 2000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

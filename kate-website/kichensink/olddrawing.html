@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kate's drawing</title>
+  </head>
+
+  <!-- Latest compiled and minified CSS -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+  />
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <script src="./js/default.js"></script>
+
+  <link rel="stylesheet" href="./css/default.css" />
+  <link rel="stylesheet" href="./css/drawing.css" />
+
+  <body>
+    <div class="container-fluid">
+
+      <div display="block" style="height:70px">
+        <nav class="nav">
+            <div class="logo">
+              <a href="./index.html"><img src="./imgs/logo.png" /></a>
+            </div>
+            <div id="mainListDiv" class="main_list">
+              <ul class="navlinks">
+                <li class="mav"><a href="./index.html">About</a></li>
+                <li><a class="active" href="#">My Drawing</a></li>
+                <li><a href="./video.html">My Video</a></li>
+                <li><a href="./flyingbird.html">My Game</a></li>
+              </ul>
+            </div>
+          </nav>
+      </div>
+
+			<div id="drawing-container" class="pt-2">
+				<!-- <div id="kate-drawings" class="carousel slide" data-ride="carousel">
+
+					<ul class="carousel-indicators">
+						<li data-target="#kate-drawings" data-slide-to="0" class="active"></li>
+						<li data-target="#kate-drawings" data-slide-to="1"></li>
+						<li data-target="#kate-drawings" data-slide-to="2"></li>
+						<li data-target="#kate-drawings" data-slide-to="3"></li>
+						<li data-target="#kate-drawings" data-slide-to="4"></li>
+						<li data-target="#kate-drawings" data-slide-to="5"></li>
+						<li data-target="#kate-drawings" data-slide-to="6"></li>
+						<li data-target="#kate-drawings" data-slide-to="7"></li>
+            <li data-target="#kate-drawings" data-slide-to="8"></li>
+						<li data-target="#kate-drawings" data-slide-to="9"></li>
+						<li data-target="#kate-drawings" data-slide-to="10"></li>
+
+					</ul>
+
+
+					<div class="carousel-inner center">
+						<div class="carousel-item active">
+							<img class="rounded p-4 w-100" src='https://www.4shared.com/img/5tUY_i91iq/s25/173cfaaff48/kate-pic1'></img>
+						</div>
+						<div class="carousel-item">
+							<img class="rounded p-4 w-100" src='https://www.4shared.com/img/NtFspf15iq/s25/173cfab0b00/kate-pic2'></img>
+						</div>					 
+						<div class="carousel-item">
+							<img class="rounded p-4 w-100" src='https://www.4shared.com/img//kate-pic3'></img>
+						
+							
+						</div>
+						<div class="carousel-item">
+								<img class="rounded p-4 w-100" src='https://www.4shared.com/img/BegV7s8uea/s25/173cfab1e88/kate-pic4'></img>
+						</div>
+
+            <div class="carousel-item">
+								<img class="rounded p-4 w-100" src='https://www.4shared.com/img/s1QMhi6Niq/s25/173cfab2658/kate-pic5'></img>
+						</div>
+						<div class=" carousel-item">
+								<img class="rounded p-4 w-100" src='https://www.4shared.com/img/EiJwmkgjiq/s25/173cfab2658/kate-pic6'></img>
+								
+            </div>
+            <div class=" carousel-item">
+              <img class="rounded p-4 w-100" src='https://www.4shared.com/img//kate-pic7'></img>
+            </div>
+            <div class=" carousel-item">
+              <img class="rounded p-4 w-100" src='https://www.4shared.com/img/mHVdrzr6iq/s25/173cfab3210/kate-pic8'></img>
+            </div>
+            <div class=" carousel-item">
+              <img class="rounded p-4 w-100" src='https://www.4shared.com/img/HeSOAOQSea/s25/173cfab39e/kate-pic9'></img>
+            </div>
+            <div class=" carousel-item">
+              <img class="rounded p-4 w-100" src='https://www.4shared.com/img/cxYa-TGfea/s25/173cfab41b0/kate-pic10'></img>
+            </div>
+            <div class="carousel-item">
+              <img class="rounded p-4 w-100" src='https://www.4shared.com/img/gGlbrWqQea/s25/173cfab4598/kate-pic11'></img>
+            </div>
+
+            <a class="carousel-control-prev" href="#kate-drawings" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#kate-drawings" data-slide="next">
+              <span class="carousel-control-next-icon"></span>            
+            </a>				
+          
+
+
+  
+  				</div>
+	  		</div> -->
+
+        <!-- <div class="gallery" id="gallery">
+
+        </div> -->
+
+        <div class="gallery" id="gallery">
+          <div class="mb-3 pics animation" id="pic1">
+             <img class="img-fluid" src='https://app.nihaocloud.com/f/91097548bb57484cab9a/?dl=1'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic2">
+              <img class="img-fluid" src='https://app.nihaocloud.com/f/974e60d3cd39445983e2/?dl=1'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic3">
+              <img class="img-fluid" src='https://app.nihaocloud.com/f/50639edc0b4842c78219/?dl=1'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic4">
+              <img class="img-fluid" src='https://app.nihaocloud.com/f/a7a09d4f1b1845d9bf1d/?dl=1'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic5">
+              <img class="img-fluid" src='https://app.nihaocloud.com/f/24f7bf9eb71e4c8daa1e/?dl=1'></img>
+          </div>
+          
+          <div class="mb-3 pics animation" id="pic6">
+              <img class="img-fluid" src='https://app.nihaocloud.com/f/5413ecd501ff4f21a9c7/?dl=1'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic7">
+            <img class="img-fluid" src='https://app.nihaocloud.com/f/1f966f410c01468ba9e3/?dl=1'></img>
+         </div>
+          
+          <div class="mb-3 pics animation" id="pic8">
+              <img class="img-fluid" src='https://app.nihaocloud.com/f/28ec8b3438a943729e6a/?dl=1'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic9">
+              <img class="img-fluid" src='https://app.nihaocloud.com/f/70aa439470a7488f8d08/?dl=1'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic10">
+              <img class="img-fluid" src='https://app.nihaocloud.com/f/422abff15a224c679bb4/?dl=1'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic11">
+              <img class="img-fluid" src='https://app.nihaocloud.com/f/4d897b604cd542beb608/?dl=1'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic12">
+              <img class="img-fluid" src='./imgs/kate-pic12.jpg'></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic13">
+            <img class="img-fluid" src="https://app.nihaocloud.com/f/62ddddc574af4ca0aca8/?dl=1"></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic14">
+              <img class="img-fluid" src="https://app.nihaocloud.com/f/c83046ef59a74057bc05/?dl=1"></img>
+          </div>
+
+          <div class="mb-3 pics animation" id="pic15">
+            <img class="img-fluid" src="https://app.nihaocloud.com/f/47a5c714c94c4bfc819f/?dl=1"></img>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>

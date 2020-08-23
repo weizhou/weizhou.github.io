@@ -185,7 +185,7 @@ img.blur {
     position: fixed;
     top: 70px;
     left: 100%;
-    width: 50%;
+    width: 70%;
     height: 100vh;
     background: rgba(3, 101, 182, 0.8);
     text-align: center;
@@ -208,7 +208,7 @@ img.blur {
   }
 
   #check:checked ~ div.main_list {
-    left: 50%;
+    left: 30%;
   }
   
 }

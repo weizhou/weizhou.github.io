@@ -4,7 +4,8 @@
   width: 100%;
   height: 70px;
   position: fixed;
-  line-height: 65px;
+  top: 0px;
+  line-height: 70px;
   text-align: center;
   z-index: 2;
   display: block;
@@ -16,16 +17,6 @@
   width: auto;
   height: auto;
   padding-left: 3rem;
-}
-
-.nav div.logo a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.4rem;
-}
-
-.nav div.logo a:hover {
-  color: lightcoral;
 }
 
 .nav div.main_list {
@@ -45,8 +36,7 @@
 
 .nav div.main_list ul li {
   width: auto;
-  height: 65px;
-  padding: 0;
+  height: 70px;
   padding-right: 3rem;
 }
 
@@ -55,14 +45,31 @@
   color: rgb(255, 255, 255);
   line-height: 65px;
   font-size: 1.4rem;
+  padding: 7px 13px;
+  border-radius: 3px;
 }
 
-.nav div.main_list ul li a.active {
-  color: lightcoral;
+
+.nav div.main_list ul li a.active, .nav div.main_list ul li a:hover {
+  background-color: lightcoral;
+  transition: 0.5s;
 }
 
-.nav div.main_list ul li a:hover {
-  color: lightcoral;
+.nav .nav-icon {
+  height: 100%;
+  justify-content: center;
+  float: right;
+  margin-right: 30px;
+  display: none;
+}
+.nav i {
+  line-height: 70px;
+  font-size: 30px;
+  color:lightcoral;
+}
+
+#check {
+  display: none;
 }
 
 .container-fluid {
@@ -81,7 +88,7 @@
 .jumbotron-background {
   position: absolute;
   z-index: 1;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 .jumbotron-background img {
@@ -125,4 +132,83 @@ img.blur {
   -webkit-filter: blur(3px);
   filter: blur(2px);
   filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+}
+
+#intro-container {
+  position: fixed;
+  top: 70px;
+  width: 100%;
+  height: 100vh;
+  /* text-align: center; */
+  /* justify-content: center; */
+  /* font-family:courier,arial,helvetica; */
+}
+
+.intro-head {
+  color: rgba(143, 30, 153, 0.986);
+  font-size: 40px;
+}
+
+.intro-detail {
+  color:  rgba(122, 105, 16, 0.945);
+  font-size: 25px;
+}
+
+#intro-head-small, #intro-detail-small {
+  display: none;
+}
+
+@media (max-width: 810px) {
+  #intro-head-small {
+    display: block;
+    font-size: 30px;
+  }
+
+  #intro-detail-small {
+    display: block;
+    font-size: 15px;
+
+  }
+
+  #intro-head-big, #intro-detail-big {
+    display: none;
+  }
+
+  .nav .nav-icon {
+    display: block;
+  }
+  
+  .nav .nav-icon:hover {
+    cursor: pointer;
+  }
+  .nav div.main_list{
+    position: fixed;
+    top: 70px;
+    left: 100%;
+    width: 50%;
+    height: 100vh;
+    background: rgba(3, 101, 182, 0.8);
+    text-align: center;
+    opacity: 1;
+    transition: all 0.5s;
+  }
+
+  .nav div.main_list ul{
+    width: 100%;
+    padding-top: 20px;
+    display: block;
+  }
+
+  .nav div.main_list ul li a{
+    font-size: 20px;
+  }
+  .nav div.main_list ul li a:hover, .nav div.main_list ul li a.active {
+    background: none;
+    color: lightcoral;
+  }
+
+  #check:checked ~ div.main_list {
+    left: 50%;
+  }
+  
 }

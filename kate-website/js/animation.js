@@ -1,7 +1,14 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-ctx.canvas.width = 1000;
-ctx.canvas.height = 500;
+
+var canvasContainer = document.getElementById("canvas-container");
+ctx.canvas.width = canvasContainer.offsetWidth * 0.8;
+ctx.canvas.height = (canvasContainer.offsetHeight-70) * 0.8;
+
+window.addEventListener("resize", (e) => {
+  ctx.canvas.width = canvasContainer.offsetWidth * 0.8;
+  ctx.canvas.height = (canvasContainer.offsetHeight-70) * 0.8;
+})
 
 window.requestAnimationFrame(update);
 

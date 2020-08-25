@@ -32,12 +32,13 @@
 // ];
 
 
-const imgIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+const numImgs = 15;
+const imgIDs = [...Array(numImgs+1).keys()].slice(1);
 
 var imageGallery = document.getElementById("myGallery");
 
 imgIDs.forEach((id) => {
   let imgDiv =
-    '<div class="mb-3 pics animation"><img class="img-fluid" src="./imgs/kate-pic' + id + '.jpg"></img></div>';
+    `<div class="mb-3 pics animation"><img class="img-fluid" id="pic${id}" src="./imgs/kate-pic${id}.jpg" loading="lazy"></img></div>`;
   imageGallery.innerHTML += imgDiv;
 });

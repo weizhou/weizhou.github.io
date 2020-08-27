@@ -50,9 +50,10 @@ imageGallery.addEventListener("click", (e) => {
   
   drawingPopupContainer.style.display = "block";
   imageGallery.style.display = "none";
-  
+
   let image = e.target;
   image.style.height = "100%";
+  image.style.objectFit = "cover";
   drawingPopup.appendChild(image);
 })
 

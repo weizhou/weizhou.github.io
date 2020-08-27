@@ -42,3 +42,18 @@ imgIDs.forEach((id) => {
     `<div class="mb-3 pics animation"><img class="img-fluid" id="pic${id}" src="./imgs/kate-pic${id}.jpg" loading="lazy"></img></div>`;
   imageGallery.innerHTML += imgDiv;
 });
+
+var drawingPopupContainer = document.getElementById("drawing-popup-container");
+var drawingPopup = document.getElementById("drawing-popup");
+
+imageGallery.addEventListener("click", (e) => {
+  
+  drawingPopupContainer.style.display = "block";
+  imageGallery.style.display = "none";
+  
+  let image = e.target;
+  image.style.height = "100%";
+  drawingPopup.appendChild(image);
+})
+
+

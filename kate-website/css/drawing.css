@@ -66,3 +66,23 @@ button {
   width: 200px;
   height: 50px;
 }
+
+#drawing-popup-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
+}
+
+#drawing-popup {
+  position: relative;
+  margin-top: 70px;
+  padding-top: 20px;
+  padding-bottom: 90px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(50, 50, 50, 0.9);
+  text-align: center;
+  justify-content: center;
+}

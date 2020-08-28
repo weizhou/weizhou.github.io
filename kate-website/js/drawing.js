@@ -51,10 +51,45 @@ imageGallery.addEventListener("click", (e) => {
   drawingPopupContainer.style.display = "block";
   imageGallery.style.display = "none";
 
-  let image = e.target;
+  let leftArrowIcon = document.createElement("ICON");
+  leftArrowIcon.className = "fas fa-chevron-left";
+  leftArrowIcon.style.fontSize = "40px";
+  leftArrowIcon.style.color = "white";
+  leftArrowIcon.style.position = "relative";
+  leftArrowIcon.style.float = "left";
+  leftArrowIcon.style.marginRight = "50px";
+  drawingPopup.append(leftArrowIcon);
+
+  let image = e.target.cloneNode(true);
   image.style.height = "100%";
   image.style.objectFit = "cover";
+  image.style.position = "relative";
   drawingPopup.appendChild(image);
+
+  let rightArrowIcon = document.createElement("ICON");
+  rightArrowIcon.className = "fas fa-chevron-right";
+  rightArrowIcon.style.fontSize = "40px";
+  rightArrowIcon.style.color = "white";
+  rightArrowIcon.style.position = "relative";
+  rightArrowIcon.style.float = "right";
+  rightArrowIcon.style.marginLeft = "50px";
+  drawingPopup.append(rightArrowIcon);
+
+  let crossicon = document.createElement("ICON");
+  crossicon.className = "far fa-times-circle";
+  crossicon.style.fontSize = "40px";
+  crossicon.style.color = "white";
+  crossicon.style.position = "absolute";
+  crossicon.style.top = "90px";
+  crossicon.style.right = "50px";
+  crossicon.style.marginLeft = "50px";
+  drawingPopup.appendChild(crossicon);
+
+  crossicon.addEventListener("click", e=>{
+    drawingPopupContainer.style.display = "none";
+    drawingPopup.innerHTML = "";
+    imageGallery.style.display = "block";
+  })
 })
 
 

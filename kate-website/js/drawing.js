@@ -31,6 +31,19 @@
 //   "https://app.nihaocloud.com/f/47a5c714c94c4bfc819f/?dl=1"
 // ];
 
+window.addEventListener("resize", e => {
+  let image = document.getElementById("popupImg");
+  if (image !== undefined){
+    if(window.innerWidth > window.innerHeight) {
+      image.style.height = "100%";
+      image.style.width = "";
+    } else {
+      image.style.width = "80%";
+      image.style.height = "";
+    }
+  }
+})
+
 
 const numImgs = 15;
 const imgIDs = [...Array(numImgs+1).keys()].slice(1);
@@ -61,9 +74,14 @@ imageGallery.addEventListener("click", (e) => {
   drawingPopup.append(leftArrowIcon);
 
   let image = e.target.cloneNode(true);
-  image.style.height = "100%";
+  if(window.innerWidth > window.innerHeight) {
+    image.style.height = "100%";
+  } else {
+    image.style.width = "80%";
+  }
   image.style.objectFit = "cover";
   image.style.position = "relative";
+  image.id = "popupImg";
   drawingPopup.appendChild(image);
 
   let rightArrowIcon = document.createElement("ICON");

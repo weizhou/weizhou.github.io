@@ -1,10 +1,10 @@
 #drawing-container {
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
   margin-top: 70px;
 }
 
-.gallery {
+/* .gallery {
   column-count: 2;
   -webkit-column-count: 2;
   -moz-column-count: 2;
@@ -13,23 +13,28 @@
   -moz-column-width: 50%;
   margin-bottom: 30px;
   padding-bottom: 30px;
-}
-
-.gallery .pics .img-fluid {
-  border-style: solid;
-  border-width: 5px;
-  border-color: lightblue;
-}
+} */
 
 @media (max-width: 1000px) {
-  .gallery {
+  /* .gallery {
     column-count: 1;
     -webkit-column-count: 1;
     -moz-column-count: 1;
     column-width: 100%;
     -webkit-column-width: 100%;
     -moz-column-width: 100%;
-  }
+  } */
+}
+
+.card {
+  border: none;
+  text-align: center;
+}
+
+.card p {
+  /* margin-top: -40px; */
+  background-color:lightblue;
+  color: white;
 }
 
 .carousel-indicators li {
@@ -114,4 +119,28 @@ button {
 #popupImg {
   object-fit: cover;
   position: relative;  
+}
+
+.fade-in {
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 2s;
+  -moz-animation: fadeIn ease 2s;;
+  -o-animation: fadeIn ease 2s;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@-moz-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@-o-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }

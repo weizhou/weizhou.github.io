@@ -31,71 +31,106 @@
 //   "https://app.nihaocloud.com/f/47a5c714c94c4bfc819f/?dl=1"
 // ];
 
+var popupImg = document.getElementById("popupImg");
+var crossIcon = document.getElementById("crossIcon");
+var drawingPopupContainer = document.getElementById("drawing-popup-container");
+var drawingPopup = document.getElementById("drawing-popup");
+var rightArrowIcon = document.getElementById("rightArrowIcon");
+var leftArrowIcon = document.getElementById("leftArrowIcon");
+var currentPopupImgId = 1;
+const numImgs = 15;
+const imgDesc = ["a happy bear", 
+                 "yummy custard pie",
+                 "yay! It is fall",
+                 "some flowers",
+                 "pink!",
+                 "I love cherrys",
+                 "yay! It is summer", 
+                 "rainbow Starbucks",
+                 "mm, strawbarry",
+                 "I love blueberrys and the color blue!",
+                 "peeches",
+                 "nock nock! A woodpecker",
+                 "a happy girl", 
+                 "anima",
+                 "save the trees!"]
+
+
 window.addEventListener("resize", e => {
-  let popupImg = document.getElementById("popupImg");
+  positionImageAndIcons();
+})
+
+function positionImageAndIcons(){
   if(window.innerWidth > window.innerHeight) {
     popupImg.style.height = "100%";
     popupImg.style.width = "";
   } else {
-    console.log("width: 100");
     popupImg.style.width = "100%";
     popupImg.style.height = "";
   }
   let imgRec = popupImg.getClientRects()[0];
-  let crossIcon = document.getElementById("crossIcon");
-  let crossIconPosTop = imgRec.y-20;
-  let crossIconPosLeft = imgRec.x + imgRec.width-20;
-  crossIcon.style.top = `${crossIconPosTop}px`;
-  crossIcon.style.left = `${crossIconPosLeft}px`
-})
+  if(imgRec){
+    let crossIconPosTop = imgRec.y-20;
+    let crossIconPosLeft = imgRec.x + imgRec.width-20;
+    crossIcon.style.top = `${crossIconPosTop}px`;
+    crossIcon.style.left = `${crossIconPosLeft}px`
+  }
+}
 
-
-const numImgs = 15;
 const imgIDs = [...Array(numImgs+1).keys()].slice(1);
+const imgSrcs = imgIDs.map( id => {
+  return `./imgs/kate-pic${id}.jpg`;
+})
 
 var imageGallery = document.getElementById("myGallery");
 
 imgIDs.forEach((id) => {
   let imgDiv =
-    `<div class="mb-3 pics animation">
-      <img class="img-fluid" id="pic${id}" src="./imgs/kate-pic${id}.jpg" loading="lazy"></img>
+    `<div class="card mb-5">
+      <img class="img-fluid" id="pic${id}" src=${imgSrcs[id-1]} loading="lazy"></img>
+      <p class="card-footer">${imgDesc[id-1]}</p>
     </div>`;
   imageGallery.innerHTML += imgDiv;
 });
 
-var drawingPopupContainer = document.getElementById("drawing-popup-container");
-var drawingPopup = document.getElementById("drawing-popup");
-
 imageGallery.addEventListener("click", (e) => {
   
-  drawingPopupContainer.style.display = "block";
-  imageGallery.style.display = "none";
+    if(e.target.src){
+    drawingPopupContainer.style.display = "block";
+    imageGallery.style.display = "none";
+  
+    popupImg.src = e.target.src;
+    currentPopupImgId = parseInt(e.target.id.replace("pic", ""));
 
-
-  let popupImg = document.getElementById("popupImg");
-  if(window.innerWidth > window.innerHeight) {
-    popupImg.style.height = "100%";
-  } else {
-    popupImg.style.width = "100%";
+    positionImageAndIcons();
   }
 
-  popupImg.src = e.target.src;
-  
-
-  let crossIcon = document.getElementById("crossIcon");
-  let imgRec = popupImg.getClientRects()[0];
-
-  let crossIconPosTop = imgRec.y-20;
-  let crossIconPosLeft = imgRec.x + imgRec.width-20;
-
-  crossIcon.style.top = `${crossIconPosTop}px`;
-  crossIcon.style.left = `${crossIconPosLeft}px`
+})
 
 
-  crossIcon.addEventListener("click", e=>{
-    drawingPopupContainer.style.display = "none";
-    imageGallery.style.display = "block";
-  })
+crossIcon.addEventListener("click", e=>{
+  drawingPopupContainer.style.display = "none";
+  imageGallery.style.display = "block";
+})
+
+
+rightArrowIcon.addEventListener("click", e => {
+  if(currentPopupImgId === numImgs){
+    currentPopupImgId = 1;
+  }else{
+    currentPopupImgId ++;
+  }
+  popupImg.src = imgSrcs[currentPopupImgId-1];
+})
+
+
+leftArrowIcon.addEventListener("click", e => {
+  if(currentPopupImgId === 1){
+    currentPopupImgId = numImgs;
+  }else{
+    currentPopupImgId --;
+  }
+  popupImg.src = imgSrcs[currentPopupImgId-1];
 })
 
 

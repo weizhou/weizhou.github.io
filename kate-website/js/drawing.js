@@ -32,16 +32,21 @@
 // ];
 
 window.addEventListener("resize", e => {
-  let image = document.getElementById("popupImg");
-  if (image !== undefined){
-    if(window.innerWidth > window.innerHeight) {
-      image.style.height = "100%";
-      image.style.width = "";
-    } else {
-      image.style.width = "80%";
-      image.style.height = "";
-    }
+  let popupImg = document.getElementById("popupImg");
+  if(window.innerWidth > window.innerHeight) {
+    popupImg.style.height = "100%";
+    popupImg.style.width = "";
+  } else {
+    console.log("width: 100");
+    popupImg.style.width = "100%";
+    popupImg.style.height = "";
   }
+  let imgRec = popupImg.getClientRects()[0];
+  let crossIcon = document.getElementById("crossIcon");
+  let crossIconPosTop = imgRec.y-20;
+  let crossIconPosLeft = imgRec.x + imgRec.width-20;
+  crossIcon.style.top = `${crossIconPosTop}px`;
+  crossIcon.style.left = `${crossIconPosLeft}px`
 })
 
 
@@ -52,7 +57,9 @@ var imageGallery = document.getElementById("myGallery");
 
 imgIDs.forEach((id) => {
   let imgDiv =
-    `<div class="mb-3 pics animation"><img class="img-fluid" id="pic${id}" src="./imgs/kate-pic${id}.jpg" loading="lazy"></img></div>`;
+    `<div class="mb-3 pics animation">
+      <img class="img-fluid" id="pic${id}" src="./imgs/kate-pic${id}.jpg" loading="lazy"></img>
+    </div>`;
   imageGallery.innerHTML += imgDiv;
 });
 
@@ -64,48 +71,29 @@ imageGallery.addEventListener("click", (e) => {
   drawingPopupContainer.style.display = "block";
   imageGallery.style.display = "none";
 
-  let leftArrowIcon = document.createElement("ICON");
-  leftArrowIcon.className = "fas fa-chevron-left";
-  leftArrowIcon.style.fontSize = "40px";
-  leftArrowIcon.style.color = "white";
-  leftArrowIcon.style.position = "relative";
-  leftArrowIcon.style.float = "left";
-  leftArrowIcon.style.marginRight = "50px";
-  drawingPopup.append(leftArrowIcon);
 
-  let image = e.target.cloneNode(true);
+  let popupImg = document.getElementById("popupImg");
   if(window.innerWidth > window.innerHeight) {
-    image.style.height = "100%";
+    popupImg.style.height = "100%";
   } else {
-    image.style.width = "80%";
+    popupImg.style.width = "100%";
   }
-  image.style.objectFit = "cover";
-  image.style.position = "relative";
-  image.id = "popupImg";
-  drawingPopup.appendChild(image);
 
-  let rightArrowIcon = document.createElement("ICON");
-  rightArrowIcon.className = "fas fa-chevron-right";
-  rightArrowIcon.style.fontSize = "40px";
-  rightArrowIcon.style.color = "white";
-  rightArrowIcon.style.position = "relative";
-  rightArrowIcon.style.float = "right";
-  rightArrowIcon.style.marginLeft = "50px";
-  drawingPopup.append(rightArrowIcon);
+  popupImg.src = e.target.src;
+  
 
-  let crossicon = document.createElement("ICON");
-  crossicon.className = "far fa-times-circle";
-  crossicon.style.fontSize = "40px";
-  crossicon.style.color = "white";
-  crossicon.style.position = "absolute";
-  crossicon.style.top = "90px";
-  crossicon.style.right = "50px";
-  crossicon.style.marginLeft = "50px";
-  drawingPopup.appendChild(crossicon);
+  let crossIcon = document.getElementById("crossIcon");
+  let imgRec = popupImg.getClientRects()[0];
 
-  crossicon.addEventListener("click", e=>{
+  let crossIconPosTop = imgRec.y-20;
+  let crossIconPosLeft = imgRec.x + imgRec.width-20;
+
+  crossIcon.style.top = `${crossIconPosTop}px`;
+  crossIcon.style.left = `${crossIconPosLeft}px`
+
+
+  crossIcon.addEventListener("click", e=>{
     drawingPopupContainer.style.display = "none";
-    drawingPopup.innerHTML = "";
     imageGallery.style.display = "block";
   })
 })

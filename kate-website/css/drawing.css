@@ -88,3 +88,30 @@ button {
   align-items: center;
   justify-content: center;
 }
+
+#leftArrowIcon {
+  font-size: 40px;
+  color: white;
+  position: relative;
+  float: left;
+  margin-right: 50px;
+}
+
+#rightArrowIcon {
+  font-size: 40px;
+  color: white;
+  position: relative;
+  float: right;
+  margin-left: 50px;
+}
+
+#crossIcon {
+  font-size: 40px;
+  color: white;
+  position: absolute;
+}
+
+#popupImg {
+  object-fit: cover;
+  position: relative;  
+}

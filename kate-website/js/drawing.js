@@ -151,12 +151,12 @@ leftArrowIcon.addEventListener("click", e => {
 
 var touchStartX, touchEndX;
 popupImg.addEventListener("touchstart", e => {
-  touchStartX = e.touches.x;
+  touchStartX = e.changedTouches[0].clientX;
 })
 
 popupImg.addEventListener("touchend", e => {
-  touchEndX = e.touches.x;
-  if(touchEndX > touchStartX){
+  touchEndX = e.changedTouches[0].clientX;
+  if(touchEndX < touchStartX){
     displayNextImg();
   }else{
     displayPrevImg();

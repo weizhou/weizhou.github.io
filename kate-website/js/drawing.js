@@ -57,10 +57,11 @@ const imgDesc = ["a happy bear",
 
 
 window.addEventListener("resize", e => {
-  positionImageAndIcons();
+  positionPopupImage();
+  positionCrossIcon();
 })
 
-function positionImageAndIcons(){
+function positionPopupImage(){
   if(window.innerWidth > window.innerHeight) {
     popupImg.style.height = "100%";
     popupImg.style.width = "";
@@ -68,10 +69,13 @@ function positionImageAndIcons(){
     popupImg.style.width = "100%";
     popupImg.style.height = "";
   }
+}
+
+function positionCrossIcon(){
   let imgRec = popupImg.getClientRects()[0];
   if(imgRec){
-    let crossIconPosTop = imgRec.y-20;
-    let crossIconPosLeft = imgRec.x + imgRec.width-20;
+    let crossIconPosTop = imgRec.y;
+    let crossIconPosLeft = imgRec.x + imgRec.width-40;
     crossIcon.style.top = `${crossIconPosTop}px`;
     crossIcon.style.left = `${crossIconPosLeft}px`
   }
@@ -96,15 +100,18 @@ imgIDs.forEach((id) => {
 imageGallery.addEventListener("click", (e) => {
   
     if(e.target.src){
-    drawingPopupContainer.style.display = "block";
-    imageGallery.style.display = "none";
-  
-    popupImg.src = e.target.src;
-    currentPopupImgId = parseInt(e.target.id.replace("pic", ""));
+      drawingPopupContainer.style.display = "block";
+      imageGallery.style.display = "none";
+    
+      popupImg.src = e.target.src;
+      currentPopupImgId = parseInt(e.target.id.replace("pic", ""));
 
-    positionImageAndIcons();
+      positionPopupImage();
+      
+      popupImg.addEventListener("load", e => {
+        positionCrossIcon();
+      })
   }
-
 })
 
 
@@ -114,23 +121,46 @@ crossIcon.addEventListener("click", e=>{
 })
 
 
-rightArrowIcon.addEventListener("click", e => {
+function displayNextImg(){
   if(currentPopupImgId === numImgs){
     currentPopupImgId = 1;
   }else{
     currentPopupImgId ++;
   }
   popupImg.src = imgSrcs[currentPopupImgId-1];
-})
+}
 
-
-leftArrowIcon.addEventListener("click", e => {
+function displayPrevImg() {
   if(currentPopupImgId === 1){
     currentPopupImgId = numImgs;
   }else{
     currentPopupImgId --;
   }
   popupImg.src = imgSrcs[currentPopupImgId-1];
+}
+
+
+rightArrowIcon.addEventListener("click", e => {
+  displayNextImg();
 })
 
+
+leftArrowIcon.addEventListener("click", e => {
+  displayPrevImg();
+})
+
+var touchStartX, touchEndX;
+popupImg.addEventListener("touchstart", e => {
+  touchStartX = e.touches.x;
+})
+
+popupImg.addEventListener("touchend", e => {
+  touchEndX = e.touches.x;
+  if(touchEndX > touchStartX){
+    displayNextImg();
+  }else{
+    displayPrevImg();
+  }
+  touchStartX = touchEndX = 0;
+})
 

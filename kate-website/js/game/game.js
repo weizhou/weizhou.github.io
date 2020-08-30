@@ -34,4 +34,11 @@ function loopy (ms) {
 
 //start game
 const anima1 = new fadingdot();
+const logo = new Texture("./imgs/logo.png");
+const logoSprite = new Sprite(logo);
+const racoon = new Texture("./imgs/fashionRacoon.jpeg");
+const racoonSprite = new Sprite(racoon);
+// scene.add(racoonSprite);
+// scene.add(logoSprite);
 scene.add(anima1);
+

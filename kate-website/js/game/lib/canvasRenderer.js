@@ -51,7 +51,7 @@ class CanvasRenderer {
                     ctx.fillText(child.text, 0, 0);
                 }
                 if(child.texture){
-                    ctx.drawImage(child.texture.img, x, y);
+                    ctx.drawImage(child.texture.img, child.pos.x, child.pos.y);
                 }
                 if(child.render){
                     child.render(ctx);

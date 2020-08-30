@@ -33,6 +33,7 @@ function loopy (ms) {
 }
 
 //start game
+const keyCtl = new keyControls();
 const anima1 = new fadingdot();
 const logo = new Texture("./imgs/logo.png");
 const logoSprite = new Sprite(logo);
@@ -41,4 +42,5 @@ const racoonSprite = new Sprite(racoon);
 // scene.add(racoonSprite);
 // scene.add(logoSprite);
 scene.add(anima1);
+
 

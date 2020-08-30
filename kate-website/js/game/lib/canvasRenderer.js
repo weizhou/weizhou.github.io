@@ -1,27 +1,3 @@
-class Text {
-    constructor(text = "", style = {}) {
-        this.pos = { x: 0, y: 0 };
-        this.text = text;
-        this.style = style;
-    }
-}
-
-class Texture {
-    constructor (url) {
-        this.img = new Image();
-        this.img.src = url;
-    }
-}
-
-class Sprite {
-    constructor(texture) {
-        this.texture = texture;
-        this.pos = {x: 0, y: 0};
-    }
-}
-
-
-
 class CanvasRenderer {
     constructor (w, h) {
         const canvas = document.createElement("canvas");
@@ -43,6 +19,9 @@ class CanvasRenderer {
                 if(child.pos){
                     ctx.translate(Math.round(child.pos.x), Math.round(child.pos.y));
                 }
+                if(child.scale){
+                    ctx.scale(child.scale.x, child.scale.y);
+                }
                 if(child.text){
                     const {font, fill, align} = child.style;
                     if(font) ctx.font = font;
@@ -51,7 +30,13 @@ class CanvasRenderer {
                     ctx.fillText(child.text, 0, 0);
                 }
                 if(child.texture){
-                    ctx.drawImage(child.texture.img, child.pos.x, child.pos.y);
+                    const img = child.texture.img;
+                    if (child.tilew) {                        
+                        ctx.drawImage(img, child.frame.x * child.tilew, child.frame.y * child.tileh, child.tilew, child.tileh, 
+                            0, 0, child.tilew, child.tileh);
+                    }else {
+                        ctx.drawImage(img, 0, 0);
+                    }
                 }
                 if(child.render){
                     child.render(ctx);
@@ -63,9 +48,15 @@ class CanvasRenderer {
                 ctx.restore();
             });
         }
+
         if(clear){
             ctx.clearRect(0, 0, this.w, this. h);
         }
         renderRec(container);
+
+    }
+
+    reset() {
+        this.ctx.clearRect(0, 0, this.w, this. h);
     }
 }

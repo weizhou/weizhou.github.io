@@ -158,7 +158,7 @@ img.blur {
   display: none;
 }
 
-@media (max-width: 810px) {
+@media (max-width: 950px) {
   #intro-head-small {
     display: block;
     font-size: 30px;

@@ -2,11 +2,12 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <title>Kate's drawing</title>
-    <!-- Latest compiled and minified CSS -->
+    <title>Kate's animation arts</title>
+
+      <!-- Latest compiled and minified CSS -->
     <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
 
     <!-- jQuery library -->
@@ -21,9 +22,10 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <link rel="stylesheet" href="./css/default.css" />
-    <link rel="stylesheet" href="./css/drawing.css" />
+    <link rel="stylesheet" href="./css/game.css" />
 
   </head>
+
 
 
   <body>
@@ -36,31 +38,20 @@
         </div>
         <div id="mainListDiv" class="main_list">
           <ul class="navlinks">
-            <li><a href="./drawing.html" class="active">My Drawings</a></li>
+            <li><a href="./drawing.html">My Drawings</a></li>
             <li><a href="./video.html">My Videos</a></li>
             <li><a href="./animation.html">My Animations</a></li>
-            <li><a href="./game.html">My Games</a></li>
-            
+            <li><a href="./game.html" class="active">My Games</a></li>
           </ul>
         </div>
       </nav>
-
-      <div id="drawing-container" class="pt-5">
-        <!-- <div class="gallery" id="myGallery"></div> -->
-        <div class="card-columns" id="myGallery"></div>
-      </div>
-
-      <div id="drawing-popup-container">
-        <div id="drawing-popup">
-          <i class="fas fa-chevron-left" id="leftArrowIcon"></i>
-          <img class="fade-in" src="" id="popupImg">
-          <i class="fas fa-chevron-right" id="rightArrowIcon"></i>
-          <i class="far fa-times-circle" id="crossIcon"></i>          
-        </div>
-      </div>
-
+      <div id="board"></div>
     </div>
 
-    <script src="./js/drawing.js"></script>
+
+    <script src="./js/game/lib/container.js"></script>
+    <script src="./js/game/scenes/fadingdots.js"></script>
+    <script src="./js/game/lib/canvasRenderer.js"></script>
+    <script src="./js/game/game.js"></script>
   </body>
 </html>

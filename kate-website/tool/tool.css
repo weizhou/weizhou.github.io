@@ -2,13 +2,14 @@
     /* float: center; */
     text-align: center;
     font-size: 30px;
+    color: lightcoral;
 }
 
 #tool-container {
     margin-top: 70px;
     height: 60px;
     /* padding: 20px; */
-    background: #aaa;  
+    background: rgba(226, 223, 223, 0.979);  
     display: flex;
     justify-content: space-around;  
     align-items: center;
@@ -19,8 +20,13 @@
     line-height: 50px;
     text-align: center;
     font-size: 20px;
-    background-color: white;
+    background-color:  rgb(172, 159, 230);
+    color: white;
     margin: 0;
+}
+
+.tab-label.active {
+    background-color: rgb(66, 32, 218);
 }
 
 #input-div {
@@ -60,4 +66,13 @@ canvas {
     padding: 50px;
     margin: 50px;
     border: solid 1px;
+}
+
+#btn-col {
+    display: none;
+}
+
+#canvas-col {
+    justify-content: center;
+    display: none;
 }

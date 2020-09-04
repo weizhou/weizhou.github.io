@@ -1,0 +1,63 @@
+#nav-title {
+    /* float: center; */
+    text-align: center;
+    font-size: 30px;
+}
+
+#tool-container {
+    margin-top: 70px;
+    height: 60px;
+    /* padding: 20px; */
+    background: #aaa;  
+    display: flex;
+    justify-content: space-around;  
+    align-items: center;
+}
+
+.tab-label {
+    width: 49%;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    background-color: white;
+    margin: 0;
+}
+
+#input-div {
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    /* margin-left: 100px; */
+}
+
+#upload-input {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+
+
+#image-preview {
+    padding: 40px;
+    width: 80%;
+    min-height: 300px;
+    border: solid 1px;
+}
+
+#resize-width {
+    width: 100px;
+    height: 48px;
+}
+
+#download-file-name {
+    width: 200px;
+    height: 48px;
+}
+
+canvas {
+    padding: 50px;
+    margin: 50px;
+    border: solid 1px;
+}

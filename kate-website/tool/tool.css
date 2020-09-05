@@ -1,14 +1,26 @@
+.nav {
+    background-color:rgb(172, 159, 230);
+}
+
 #nav-title {
     /* float: center; */
+    position: fixed;
+    width: 100%;
+    line-height: 70px;
+    top: 0;
+    z-index: 3;
     text-align: center;
     font-size: 30px;
-    color: lightcoral;
+    font-weight: bolder;
+    color: rgb(233, 56, 56);
 }
 
 #tool-container {
-    margin-top: 70px;
+    position: fixed;
+    top: 70px;
+    z-index: 2;
+    width: 100%;
     height: 60px;
-    /* padding: 20px; */
     background: rgba(226, 223, 223, 0.979);  
     display: flex;
     justify-content: space-around;  
@@ -29,11 +41,17 @@
     background-color: rgb(66, 32, 218);
 }
 
-#input-div {
+#resize-container {
+    margin-top: 130px;
+    min-height: calc(100vh - 130px);
+}
+
+#upload-btn {
     position: relative;
     overflow: hidden;
-    width: 200px;
-    /* margin-left: 100px; */
+    min-width: 25%;
+    line-height: 80px;
+    margin-top: 10px;
 }
 
 #upload-input {
@@ -44,14 +62,15 @@
     top: 0;
 }
 
-
 #image-preview {
-    padding: 40px;
-    width: 80%;
-    min-height: 300px;
+    margin-top: 50px;
+    padding: 20px;
     border: solid 1px;
 }
 
+#resize-btn {
+    margin-top: 50px;
+}
 #resize-width {
     width: 100px;
     height: 48px;
@@ -68,11 +87,3 @@ canvas {
     border: solid 1px;
 }
 
-#btn-col {
-    display: none;
-}
-
-#canvas-col {
-    justify-content: center;
-    display: none;
-}

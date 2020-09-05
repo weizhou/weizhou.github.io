@@ -32,45 +32,33 @@
         <div class="logo">
           <a href="#"><img src="../imgs/logo.png" /></a>
         </div>
-        <div id="nav-title">My Useful Tools</div>
-        <!-- <div id="mainListDiv" class="main_list">
-          <ul class="navlinks">
-            <li><a href="#" class="active">My Useful Tools</a></li>            
-          </ul>
-        </div> -->
       </nav>
+      <div id="nav-title">My Useful Tools</div>
 
       <div id="tool-container">
         <label class="tab-label active">resize image</label>
         <label class="tab-label">create sprite sheet</label>
       </div>
 
-
-
-      <div class="container-fluid mt-5">
-        <div class="row">
-          <div class="col-5 d-flex justify-content-center flex-column" id="img-col">
-            <img class="d-block mx-auto" src="" alt="image preview" id ="image-preview">
-            <div class="file btn btn-lg btn-primary mt-3 mx-auto" id="input-div">
-              Upload an image
-              <input type="file" id="upload-input" name="file"/>
-            </div>
-          </div>
-          <div class="col-2 align-self-center" id="btn-col">
-            <div class="d-flex justify-content-center">
-              <button class="btn btn-primary btn-lg " id="convert-btn">resize to width: </button>
-              <input type="text" class="form-control ml-3" id="resize-width" placeholder="width"/>
-            </div>
-          </div>
-          <div class="col-5" id="canvas-col">
-            <div class="row"><canvas id="canvas-image" class="d-block mx-auto my-auto"></canvas></div>            
-            <div class="row mt-5 d-flex justify-content-center">
-              <button id="download-btn" class="btn btn-primary btn-lg">download</button>
-              <input type="text" class="form-control ml-3" id="download-file-name" placeholder="file name"/>
-            </div>
+      <div class="d-flex flex-column justify-content-center align-items-center" id="resize-container">
+        <div class="file btn btn-lg btn-primary mt-3 mx-auto" id="upload-btn">
+          Upload an image
+          <input type="file" id="upload-input" name="file"/>
+        </div>
+        <img src="" alt="image preview" id ="image-preview">
+        <div id="resize-btn">
+          <button class="btn btn-primary btn-lg " id="convert-btn">resize to width: </button>
+          <input type="text" class="form-control ml-3" id="resize-width" placeholder="width"/>
+        </div>
+        <div class="mt-5" id="canvas-div">
+          <div class="row"><canvas id="canvas-image" class="d-block mx-auto my-auto"></canvas></div>            
+          <div class="row mt-5 mb-5 d-flex justify-content-center">
+            <button id="download-btn" class="btn btn-primary btn-lg">download</button>
+            <input type="text" class="form-control ml-3" id="download-file-name" placeholder="file name"/>
           </div>
         </div>
       </div>
+
     </div>
 
     <script src="./tool.js"></script>

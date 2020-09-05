@@ -31,14 +31,19 @@
 //   "https://app.nihaocloud.com/f/47a5c714c94c4bfc819f/?dl=1"
 // ];
 
-var popupImg = document.getElementById("popupImg");
-var crossIcon = document.getElementById("crossIcon");
-var drawingPopupContainer = document.getElementById("drawing-popup-container");
-var drawingPopup = document.getElementById("drawing-popup");
-var rightArrowIcon = document.getElementById("rightArrowIcon");
-var leftArrowIcon = document.getElementById("leftArrowIcon");
+const imageGallery = document.getElementById("myGallery");
+const popupImg = document.getElementById("popupImg");
+const crossIcon = document.getElementById("crossIcon");
+const drawingPopupContainer = document.getElementById("drawing-popup-container");
+const drawingPopup = document.getElementById("drawing-popup");
+const rightArrowIcon = document.getElementById("rightArrowIcon");
+const leftArrowIcon = document.getElementById("leftArrowIcon");
+const moreImgBtn = document.getElementById("more-img-btn");
+
 var currentPopupImgId = 1;
 const numImgs = 15;
+var loadedImgs = 9;
+
 const imgDesc = ["a happy bear", 
                  "yummy custard pie",
                  "yay! It is fall",
@@ -53,8 +58,8 @@ const imgDesc = ["a happy bear",
                  "nock nock! A woodpecker",
                  "a happy girl", 
                  "anima",
-                 "save the trees!"]
-
+                 "save the trees!"];
+var imgSrcs = [];
 
 window.addEventListener("resize", e => {
   positionPopupImage();
@@ -81,21 +86,27 @@ function positionCrossIcon(){
   }
 }
 
-const imgIDs = [...Array(numImgs+1).keys()].slice(1);
-const imgSrcs = imgIDs.map( id => {
-  return `./imgs/kate-pic${id}.jpg`;
-})
+function loadImages(start, imgCount){
+  const imgIDs = [...Array(imgCount).keys()].slice(start);
+  imgSrcs = imgIDs.map( id => {
+    return `./imgs/kate-pic${id+1}-512.png`;
+  })
+  
+  imageGallery.innerHTML = "";
 
-var imageGallery = document.getElementById("myGallery");
+  imgIDs.forEach((id) => {
+    let imgDiv =
+      `<div class="card mb-5">
+        <img class="img-fluid" id="pic${id}" src=${imgSrcs[id]} loading="lazy"></img>
+        <p class="card-footer">${imgDesc[id]}</p>
+      </div>`;
+    imageGallery.innerHTML += imgDiv;
+  });
+}
 
-imgIDs.forEach((id) => {
-  let imgDiv =
-    `<div class="card mb-5">
-      <img class="img-fluid" id="pic${id}" src=${imgSrcs[id-1]} loading="lazy"></img>
-      <p class="card-footer">${imgDesc[id-1]}</p>
-    </div>`;
-  imageGallery.innerHTML += imgDiv;
-});
+function getHighDefImg(src){
+  return src.substr(0, src.lastIndexOf("-512")) + ".jpg";
+}
 
 imageGallery.addEventListener("click", (e) => {
   
@@ -103,7 +114,7 @@ imageGallery.addEventListener("click", (e) => {
       drawingPopupContainer.style.display = "block";
       imageGallery.style.display = "none";
     
-      popupImg.src = e.target.src;
+      popupImg.src = getHighDefImg(e.target.src);
       currentPopupImgId = parseInt(e.target.id.replace("pic", ""));
 
       positionPopupImage();
@@ -127,7 +138,7 @@ function displayNextImg(){
   }else{
     currentPopupImgId ++;
   }
-  popupImg.src = imgSrcs[currentPopupImgId-1];
+  popupImg.src = getHighDefImg(imgSrcs[currentPopupImgId-1]);
 }
 
 function displayPrevImg() {
@@ -136,7 +147,7 @@ function displayPrevImg() {
   }else{
     currentPopupImgId --;
   }
-  popupImg.src = imgSrcs[currentPopupImgId-1];
+  popupImg.src = getHighDefImg(imgSrcs[currentPopupImgId-1]);
 }
 
 
@@ -163,4 +174,15 @@ popupImg.addEventListener("touchend", e => {
   }
   touchStartX = touchEndX = 0;
 })
+
+moreImgBtn.addEventListener("click", e=> {
+  loadedImgs += 9;
+  if(loadedImgs > numImgs){
+    loadedImgs = numImgs;
+    moreImgBtn.style.display = "none";
+  } 
+  loadImages(0, loadedImgs);
+})
+
+loadImages(0, loadedImgs);
 

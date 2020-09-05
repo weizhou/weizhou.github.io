@@ -7,7 +7,14 @@
 .card {
   border: none;
   text-align: center;
+  min-width: calc(100vw / 4);
+  margin: 10px;
 }
+
+.card img {
+  width: 100%;
+}
+
 
 .card p {
   background-color:lightblue;

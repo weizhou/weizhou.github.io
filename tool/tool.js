@@ -1,4 +1,5 @@
 const uploadBtn = document.getElementById("upload-btn")
+const uploadFileinput = document.getElementById("upload-input");
 const imagePreview = document.getElementById('image-preview');
 const resizeBtn = document.getElementById("resize-btn");
 const canvasDiv = document.getElementById("canvas-div");
@@ -6,6 +7,8 @@ const canvas = document.getElementById("canvas-image");
 const resizeTab = document.getElementById("resize-tab");
 const spriteTab = document.getElementById("sprite-tab");
 const resizeContainer = document.getElementById("resize-container");
+const downloadFilenameInput = document.getElementById("download-file-name")
+var uploadFilename;
 
 imagePreview.style.display = "none";
 resizeBtn.style.display = "none";
@@ -13,6 +16,9 @@ canvasDiv.style.display = "none";
 resizeContainer.style.display = "flex";
 
 uploadBtn.addEventListener("input", e => {
+    uploadFilename = uploadFileinput.value;
+    uploadFilename = uploadFilename.substr(uploadFilename.lastIndexOf('\\') + 1).split('.')[0];
+
     var reader = new FileReader();
     reader.onload = function(){
         uploadBtn.style.lineHeight = "40px";
@@ -23,8 +29,10 @@ uploadBtn.addEventListener("input", e => {
 
         resizeBtn.style.display = "flex";
         resizeBtn.style.justifyContent = "center";
+
     }
     reader.readAsDataURL(e.target.files[0]);    
+
 })
 
 const convertBtn = document.getElementById("convert-btn");
@@ -41,6 +49,7 @@ convertBtn.addEventListener("click", e=>{
     canvas.height = resizeHeight;
     ctx.drawImage(imagePreview, 0, 0, imgwidth, imgheight, 0, 0, resizeWidth, resizeHeight);
     canvasDiv.style.display = "block";
+    downloadFilenameInput.value = `${uploadFilename}-${resizeWidth}.png` 
 }, false);
 
 

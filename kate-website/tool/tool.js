@@ -3,10 +3,14 @@ const imagePreview = document.getElementById('image-preview');
 const resizeBtn = document.getElementById("resize-btn");
 const canvasDiv = document.getElementById("canvas-div");
 const canvas = document.getElementById("canvas-image");
+const resizeTab = document.getElementById("resize-tab");
+const spriteTab = document.getElementById("sprite-tab");
+const resizeContainer = document.getElementById("resize-container");
 
 imagePreview.style.display = "none";
 resizeBtn.style.display = "none";
 canvasDiv.style.display = "none";
+resizeContainer.style.display = "flex";
 
 uploadBtn.addEventListener("input", e => {
     var reader = new FileReader();
@@ -65,3 +69,14 @@ document.getElementById("download-btn").addEventListener("click", e=> {
     download(filename, canvas.toDataURL());
 })
 
+spriteTab.addEventListener("click", e=>{
+    resizeContainer.style.display = "none";
+    spriteTab.classList.add("active");
+    resizeTab.classList.remove("active");
+})
+
+resizeTab.addEventListener("click", e=>{
+    resizeContainer.style.display = "flex";
+    spriteTab.classList.remove("active");
+    resizeTab.classList.add("active");
+})

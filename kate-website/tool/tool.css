@@ -35,6 +35,11 @@
     background-color:  rgb(172, 159, 230);
     color: white;
     margin: 0;
+    cursor: pointer;
+}
+
+.tab-label.pointer {
+    cursor: pointer;
 }
 
 .tab-label.active {

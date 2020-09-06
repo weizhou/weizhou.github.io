@@ -44,7 +44,7 @@ const tab1 = document.getElementById("tab1");
 const tab2 = document.getElementById("tab2");
 const tabs = [tab0, tab1, tab2];
 
-var currentPopupImgId = 1;
+var currentPopupImgId = 0;
 var loadedImgs = 6;
 var imgsPerLoad = 6;
 var selectedTab = 0;
@@ -169,21 +169,21 @@ crossIcon.addEventListener("click", e=>{
 
 
 function displayNextImg(){
-  if(currentPopupImgId === imgSrcs.length){
-    currentPopupImgId = 1;
+  if(currentPopupImgId === imgSrcs.length-1){
+    currentPopupImgId = 0;
   }else{
     currentPopupImgId ++;
   }
-  popupImg.src = getHighDefImg(imgSrcs[currentPopupImgId-1]);
+  popupImg.src = getHighDefImg(imgSrcs[currentPopupImgId]);
 }
 
 function displayPrevImg() {
-  if(currentPopupImgId === 1){
-    currentPopupImgId = imgSrcs.length;
+  if(currentPopupImgId === 0){
+    currentPopupImgId = imgSrcs.length-1;
   }else{
     currentPopupImgId --;
   }
-  popupImg.src = getHighDefImg(imgSrcs[currentPopupImgId-1]);
+  popupImg.src = getHighDefImg(imgSrcs[currentPopupImgId]);
 }
 
 

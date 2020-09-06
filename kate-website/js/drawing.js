@@ -42,7 +42,8 @@ const moreImgBtn = document.getElementById("more-img-btn");
 
 var currentPopupImgId = 1;
 const numImgs = 15;
-var loadedImgs = 9;
+var loadedImgs = 3;
+var imgsPerLoad = 3;
 
 const imgDesc = ["a happy bear", 
                  "yummy custard pie",
@@ -176,8 +177,8 @@ popupImg.addEventListener("touchend", e => {
 })
 
 moreImgBtn.addEventListener("click", e=> {
-  loadedImgs += 9;
-  if(loadedImgs > numImgs){
+  loadedImgs += imgsPerLoad;
+  if(loadedImgs >= numImgs){
     loadedImgs = numImgs;
     moreImgBtn.style.display = "none";
   } 

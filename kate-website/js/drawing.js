@@ -39,48 +39,62 @@ const drawingPopup = document.getElementById("drawing-popup");
 const rightArrowIcon = document.getElementById("rightArrowIcon");
 const leftArrowIcon = document.getElementById("leftArrowIcon");
 const moreImgBtn = document.getElementById("more-img-btn");
+const tab0 = document.getElementById("tab0");
+const tab1 = document.getElementById("tab1");
+const tab2 = document.getElementById("tab2");
+const tabs = [tab0, tab1, tab2];
 
 var currentPopupImgId = 1;
-const numImgs = 15;
-var loadedImgs = 3;
-var imgsPerLoad = 3;
+var loadedImgs = 6;
+var imgsPerLoad = 6;
+var selectedTab = 0;
 
 const drawingDesc = [
-0  "",
-1  "",
-2
-3  "yummy custard pie",
-4  "yay! It is fall",
-5  "some flowers",
-6  "pink!",
-7  "I love cherrys",
-8  "yay! It is summer", 
-9  "rainbow Starbucks",
-10  "mm, strawbarry",
-11  "I love blueberrys and the color blue!",
-12  "peeches",
-13  "nock nock! A woodpecker",
-14  "a happy girl", 
-15  "anima",
-16  "save the trees!",
-17  "",
-18
-19
-20
-21
-];
-
-const paintingDesc = [
-  "",
-  "a happy bear", 
+  "Flowers",
+  "pinapple",
+  "yummy custard pie",
+  "yay! It is fall",
+  "Junk food", 
+  "the magic tree",
+  "I love cherrys",
+  "yay! It is summer",
+  "rainbow Starbucks",
+  "mm stawberry",
+  "I love blueberrys and the color blue!",
+  "peeches",
+  "nock nock! A woodpecker",
+  "a happy girl",
+  "anima", 
+  "a funny girl",
+  "it is me kate!",
+  "deserts",
+  "lets go to the beech",
+  "chinese food",
+  "a cool girl",
+  "cubes can create anything!"
 ];
 
 const graphicsDesc = [
-
+  "the world without gravity",
+  "cookie girl",
+  "mommy's purse", 
+  "fasion racoon",
+  "be careful",
+  "Chritsmas",
+  "4 flowers"
 ];
 
+const paintingDesc = [
+ "Chritsmas trees",
+ "A happy bear",
+ "A water fall",
+ "save the trees",
+ "a lot of flowers",
+ "pink!"
+];
 
-var imgSrcs = [];
+const artDesc = [drawingDesc, paintingDesc, graphicsDesc];
+const imgSrcPath = ["drawings/drawing", "paintings/painting", "graphics/graphics"];
 
 window.addEventListener("resize", e => {
   positionPopupImage();
@@ -110,7 +124,8 @@ function positionCrossIcon(){
 function loadImages(start, imgCount){
   const imgIDs = [...Array(imgCount).keys()].slice(start);
   imgSrcs = imgIDs.map( id => {
-    return `./imgs/kate-pic${id+1}-512.png`;
+
+    return `./arts/${imgSrcPath[selectedTab]}${id}-512.png`;
   })
   
   imageGallery.innerHTML = "";
@@ -119,7 +134,7 @@ function loadImages(start, imgCount){
     let imgDiv =
       `<div class="card mb-5">
         <img class="img-fluid" id="pic${id}" src=${imgSrcs[id]} loading="lazy"></img>
-        <p class="card-footer">${imgDesc[id]}</p>
+        <p class="card-footer">${artDesc[selectedTab][id]}</p>
       </div>`;
     imageGallery.innerHTML += imgDiv;
   });
@@ -154,7 +169,7 @@ crossIcon.addEventListener("click", e=>{
 
 
 function displayNextImg(){
-  if(currentPopupImgId === numImgs){
+  if(currentPopupImgId === imgSrcs.length){
     currentPopupImgId = 1;
   }else{
     currentPopupImgId ++;
@@ -164,7 +179,7 @@ function displayNextImg(){
 
 function displayPrevImg() {
   if(currentPopupImgId === 1){
-    currentPopupImgId = numImgs;
+    currentPopupImgId = imgSrcs.length;
   }else{
     currentPopupImgId --;
   }
@@ -198,12 +213,30 @@ popupImg.addEventListener("touchend", e => {
 
 moreImgBtn.addEventListener("click", e=> {
   loadedImgs += imgsPerLoad;
-  if(loadedImgs >= numImgs){
-    loadedImgs = numImgs;
+  if(loadedImgs >= artDesc[selectedTab].length){
+    loadedImgs = artDesc[selectedTab].length;
     moreImgBtn.style.display = "none";
   } 
   loadImages(0, loadedImgs);
 })
 
+document.querySelectorAll(".tab-label").forEach(t => t.addEventListener("click", e=> {
+  tabs[selectedTab].classList.remove("active");
+  selectedTab = e.target.id.substr(3);
+  tabs[selectedTab].classList.add("active");
+  loadedImgs = 6;
+  loadImages(0, loadedImgs);
+  initMoreImgBtn();
+}));
+
+function initMoreImgBtn(){
+  moreImgBtn.style.display = "block";
+  if(loadedImgs >= artDesc[selectedTab].length){
+    loadedImgs = artDesc[selectedTab].length;
+    moreImgBtn.style.display = "none";
+  }
+}
+
 loadImages(0, loadedImgs);
+initMoreImgBtn();
 

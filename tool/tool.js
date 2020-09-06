@@ -10,7 +10,8 @@ const resizeContainer = document.getElementById("resize-container");
 const downloadFilenameInput = document.getElementById("download-file-name")
 var uploadFilename;
 
-imagePreview.style.display = "none";
+imagePreview.style.width = "40%";
+imagePreview.style.minHeight = "200px";
 resizeBtn.style.display = "none";
 canvasDiv.style.display = "none";
 resizeContainer.style.display = "flex";
@@ -24,12 +25,10 @@ uploadBtn.addEventListener("input", e => {
         uploadBtn.style.lineHeight = "40px";
 
         imagePreview.src = reader.result;
-        imagePreview.style.width = "40%";
-        imagePreview.style.display = "block";
-
+        
         resizeBtn.style.display = "flex";
         resizeBtn.style.justifyContent = "center";
-
+        canvasDiv.style.display = "block";
     }
     reader.readAsDataURL(e.target.files[0]);    
 
@@ -48,7 +47,7 @@ convertBtn.addEventListener("click", e=>{
     canvas.width = resizeWidth;
     canvas.height = resizeHeight;
     ctx.drawImage(imagePreview, 0, 0, imgwidth, imgheight, 0, 0, resizeWidth, resizeHeight);
-    canvasDiv.style.display = "block";
+
     downloadFilenameInput.value = `${uploadFilename}-${resizeWidth}.png` 
 }, false);
 

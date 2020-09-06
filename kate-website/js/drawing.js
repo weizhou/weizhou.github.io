@@ -45,21 +45,41 @@ const numImgs = 15;
 var loadedImgs = 3;
 var imgsPerLoad = 3;
 
-const imgDesc = ["a happy bear", 
-                 "yummy custard pie",
-                 "yay! It is fall",
-                 "some flowers",
-                 "pink!",
-                 "I love cherrys",
-                 "yay! It is summer", 
-                 "rainbow Starbucks",
-                 "mm, strawbarry",
-                 "I love blueberrys and the color blue!",
-                 "peeches",
-                 "nock nock! A woodpecker",
-                 "a happy girl", 
-                 "anima",
-                 "save the trees!"];
+const drawingDesc = [
+0  "",
+1  "",
+2
+3  "yummy custard pie",
+4  "yay! It is fall",
+5  "some flowers",
+6  "pink!",
+7  "I love cherrys",
+8  "yay! It is summer", 
+9  "rainbow Starbucks",
+10  "mm, strawbarry",
+11  "I love blueberrys and the color blue!",
+12  "peeches",
+13  "nock nock! A woodpecker",
+14  "a happy girl", 
+15  "anima",
+16  "save the trees!",
+17  "",
+18
+19
+20
+21
+];
+
+const paintingDesc = [
+  "",
+  "a happy bear", 
+];
+
+const graphicsDesc = [
+
+];
+
+
 var imgSrcs = [];
 
 window.addEventListener("resize", e => {

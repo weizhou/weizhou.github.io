@@ -54,26 +54,32 @@
         <video
           controls
           preload="auto"
-          width="60%"
+          width="70%"
           style="
             border-style: solid;
             border-color: lightblue;
-            border-width: 5px;
+            border-width: 2px;
+            max-height: calc(100vh * 0.7);
           "
+          id="videoElement"
         >
           <source
-            src="https://firebasestorage.googleapis.com/v0/b/kate-website-70fda.appspot.com/o/kevin-piano1.mp4?alt=media&token=1e7d84de-5743-471f-a8c2-a60eb7b805c3"
+            src=""
             type="video/mp4"
-          />
-          <source
-            src="./videos/kevin_piano1_480_40.mp4"
-            type="video/mp4"
+            id="videoSource"
           />
           Sorry, your browser doesn't support embedded videos.
         </video>
+
+        <div id="videoNav" class="d-flex justify-content-center mt-5">
+          <button class="btn btn-primary mx-5 px-5" id="prevBtn"><i class="fa fa-angle-double-left"></i> Prev</button>
+          <button class="btn btn-primary mx-5 px-5" id="nextBtn">Next <i class="fa fa-angle-double-right"></i></button>
+        </div>
       </div>
 
-      <div class="video-container">
+
+
+      <!-- <div class="video-container">
         <video
           controls
           preload="auto"
@@ -116,10 +122,11 @@
             type="video/mp4"
           />
           Sorry, your browser doesn't support embedded videos.
-        </video>
-      </div>
+        </video> -->
+      <!-- </div> -->
     </div>
 
-    <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+    <!-- <script src="https://vjs.zencdn.net/7.8.4/video.js"></script> -->
+    <script src="./js/video.js"></script>
   </body>
 </html>

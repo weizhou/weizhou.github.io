@@ -81,7 +81,9 @@ const graphicsDesc = [
   "fasion racoon",
   "be careful",
   "Chritsmas",
-  "4 flowers"
+  "4 flowers",
+  "were on a adventure!",
+  "buns"
 ];
 
 const paintingDesc = [

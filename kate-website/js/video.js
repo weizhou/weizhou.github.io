@@ -19,7 +19,7 @@ function playVideo(videoIndex){
 
 prevBtn.addEventListener("click", e=>{
     if (selectedVideo === 0){
-        selectedVideo = videoSrcs.length;
+        selectedVideo = videoSrcs.length-1;
     }else {
         selectedVideo --;
     }

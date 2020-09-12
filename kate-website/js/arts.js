@@ -64,7 +64,7 @@ const drawingDesc = [
   "peeches",
   "nock nock! A woodpecker",
   "a happy girl",
-  "anima", 
+  "anime", 
   "a funny girl",
   "it is me kate!",
   "deserts",
@@ -83,8 +83,15 @@ const graphicsDesc = [
   "Chritsmas",
   "4 flowers",
   "were on a adventure!",
-  "buns"
-];
+  "buns",
+  "food",
+  "1 graphic anime girl",
+  "2 graphic anime girl",
+  "3 graphic anime girl",
+  "4 graphic anime girl"
+ 
+
+]
 
 const paintingDesc = [
  "Chritsmas trees",

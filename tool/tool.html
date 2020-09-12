@@ -40,10 +40,10 @@
         <label class="tab-label" id="sprite-tab">create sprite sheet</label>
       </div>
 
-      <div class="flex-column justify-content-center align-items-center" id="resize-container">
-        <div class="file btn btn-lg btn-primary mt-3 mx-auto" id="upload-btn">
+      <div class="flex-column justify-content-center align-items-center content-container" id="resize-container">
+        <div class="file btn btn-lg btn-primary mt-3 mx-auto upload-btn" id="upload-btn">
           Upload an image
-          <input type="file" id="upload-input" name="file"/>
+          <input type="file" id="upload-input" class="upload-input" name="file"/>
         </div>
         <img src="" alt="image preview" id ="image-preview">
         <div id="resize-btn">
@@ -56,6 +56,28 @@
             <button id="download-btn" class="btn btn-primary btn-lg">download</button>
             <input type="text" class="form-control ml-3" id="download-file-name" placeholder="download.png"/>
           </div>
+        </div>
+      </div>
+
+      <div class="flex-column justify-content-center align-items-center content-container" id="sprite-container">
+        <div class="file btn btn-lg btn-primary mt-3 mx-auto upload-btn" id="sprite-upload-btn">
+          Upload images
+          <input type="file" id="sprite-upload-input" class="upload-input" name="file" multiple/>
+        </div>
+        <div src="" alt="image preview" id ="sprite-image-preview"></div>
+        <div id="sprite-setting-div" class="d-flex w-100 mt-5 align-items-center justify-content-center">
+          <button class="btn btn-primary btn-lg" id="sprite-btn">create sprite</button>
+          <label class="ml-3">image width</label>
+          <input type="text" class="form-control ml-3 sprite-setting-input" id="sprite-width-input" placeholder="512"/>
+          <label class="ml-3">rows</label>
+          <input type="text" class="form-control ml-3 sprite-setting-input" id="sprite-rows-input" placeholder="2"/>
+          <label class="ml-3">columns</label>
+          <input type="text" class="form-control ml-3 sprite-setting-input" id="sprite-columns-input" placeholder="4"/>
+        </div>
+        <canvas id="sprite-canvas" class="d-block mx-auto mt-5 mb-1"></canvas>
+        <div class="mt-5 mb-5 d-flex justify-content-center align-items-center">
+          <button id="sprite-download-btn" class="btn btn-primary btn-lg">download</button>
+          <input type="text" class="form-control ml-3" id="sprite-download-file-name" placeholder="sprite.png"/>
         </div>
       </div>
 

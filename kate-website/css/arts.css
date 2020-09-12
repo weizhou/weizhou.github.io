@@ -52,6 +52,10 @@
   /* min-width: calc(100vw / 5); */
   width: 500px;
   margin: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: rgb(198, 240, 236);
 }
 
 .card img {
@@ -60,8 +64,10 @@
 
 
 .card p {
-  background-color:lightblue;
-  color: white;
+  /* background-color:lightblue; */
+  background-color: rgb(198, 240, 236);
+  color: rgb(128, 16, 233);
+  margin-bottom: 0px;
 }
 
 #drawing-popup-container {

@@ -65,9 +65,10 @@ nextBtn.addEventListener("click", e => {
 
 const anima1 = new fadingdot();
 let anima2 = new AnimateSprite(new Texture("./js/game/asset/catsprite.png"), 544, 476);
+let anima3 = new AnimateSprite(new Texture("./js/game/asset/flyingbird.png"), 512, 512, 3, 3);
 
-var animas = [anima1, anima2];
-var clearRecSettings = [false, true];
+var animas = [anima1, anima2, anima3];
+var clearRecSettings = [false, true, true];
 var animaIndex = 0;
 
 scene.add(animas[animaIndex]);

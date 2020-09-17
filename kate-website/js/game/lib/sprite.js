@@ -21,21 +21,24 @@ class Sprite {
 }
 
 class TileSprite extends Sprite {
-    constructor(texture, w, h) {
+    constructor(texture, w, h, rows=1, cols=8) {
         super(texture);
         this.tilew = w;
         this.tileh = h;
+        this.grid = {rows: rows, cols: cols};
         this.frame = {x: 0, y: 0};
         this.scale = {x: 1, y: 1};
     }
 }
 
 class AnimateSprite extends TileSprite {
-    constructor(texture, w, h) {
-        super(texture, w, h);
+    constructor(texture, w, h, rows, cols) {
+        super(texture, w, h, rows, cols);
     }
     update (dt, t) {
-        this.frame.x = Math.floor(t/0.1) % 8;
+        let frameNumber = Math.floor(t/0.1) % (this.grid.cols * this.grid.rows);
+        this.frame.x = frameNumber % this.grid.cols;
+        this.frame.y = Math.floor(frameNumber / this.grid.cols);
     }
 }
 

@@ -6,6 +6,8 @@ canvas.width = canvasContainer.clientWidth;
 canvas.height = canvasContainer.clientHeight;
 const gl = canvas.getContext('webgl');
 
+const mouseControl = new MouseControl(canvas);
+
 if(!gl) {
   throw new Error('WebGL not supported');
 }
@@ -39,8 +41,8 @@ varying vec3 vColor;
 uniform mat4 matrix;
 
 void main() {
-  // vColor = vec3(position.xy, 1);
-  vColor = vec3(0, 0.8, 1);
+  vColor = vec3(position.xy, 1);
+  // vColor = vec3(0, 0.8, 1);
   gl_Position = matrix * vec4(position, 1);
   gl_PointSize = 0.01;
 }
@@ -97,8 +99,9 @@ mat4.invert(viewMatrix, viewMatrix);
 function animate() {
   requestAnimationFrame(animate);
 
-  mat4.rotateY(modelMatrix, modelMatrix, 0.01);
-  mat4.rotateX(modelMatrix, modelMatrix, 0.01);
+  
+  mat4.rotateX(modelMatrix, modelMatrix, 0.08*(mouseControl.normPos.y-0.5));
+  mat4.rotateY(modelMatrix, modelMatrix, 0.08*(mouseControl.normPos.x-0.5));
 
   mat4.multiply(mvMatrix, viewMatrix, modelMatrix);
   mat4.multiply(mvpMatrix, projectionMatrix, mvMatrix);

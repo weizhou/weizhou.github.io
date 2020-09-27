@@ -1,4 +1,4 @@
-class mouseControls {
+class MouseControl {
     constructor(container) {
         this.el = container || document.body;
         //state
@@ -39,5 +39,14 @@ class mouseControls {
     update() {
         this.released = false;
         this.pressed = false;
+    }
+
+    get normPos() {
+        const {el, pos} = this;
+        const rect = el.getBoundingClientRect();
+        return {
+            x: this.pos.x/rect.width,
+            y: this.pos.y/rect.height
+        }
     }
 }

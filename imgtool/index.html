@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Wei's image tool</title>
+    <meta name="view-port" content="width=device-width, initial-scale=1.0" >   
+
+    <link rel="stylesheet" href="./style.css">
+  </head>
+
+  <body>
+    <div class="container">
+
+      <header class="main-header">
+        <section class="logo">
+          <a href="#">Wei's image tool</a>
+        </section>
+        <action class="main-action">
+          <ul>
+            <li class="main-action__item"><a id="load-image-btn" href="#">load image<input type="file" id="fileupload-input" style="display: none"></a></li>
+            <li class="main-action__item"><a id="process-btn" href="#">process</a></li>
+            <li class="main-action__item"><a id="download-btn" href="#">download</a></li>
+          </ul>
+        </action>
+      </header>
+
+      <section class="middle-area">
+        <nav class="side-menu">
+          <ul>
+            <li class="side-menu__item" id="side-menu__resize"><a href="#">resize</a></li>
+            <li class="side-menu__item" id="side-menu__sprite"><a href="#">sprite</a></li>
+          </ul>
+        </nav>
+        <setting class="setting" id="setting-panel">
+          <section class="setting-section" id="resize-setting-section">
+            <label class="setting-label">width: </label><input class="setting-input" type="number" placeholder="512">
+          </section>
+        </setting>
+        <section class="work-area" id="work-area">
+          <div class="image-info-section">
+            <label id="image-size-label">size:</label>
+            <label id="image-orignal-size-label" class="clickable">original</label>
+            <label id="image-fit-size-lable" class="clickable">fit</label>
+            <label id="image-zoom-in-label" class="clickable">zoom in</label>
+            <label id="image-zoom-out-label" class="clickable">zoom out</label>
+          </div>
+          <div class="canvas-section" id="canvas-section">
+            <canvas id="work-canvas"></canvas>
+          </div>
+        </section>
+      </section>    
+
+      <footer>
+        <p>&copy; 2020 Developed by Wei Zhou. All rights reserved.</p>
+      </footer>
+
+    </div>
+
+    <script src="./imgtool.js"></script>
+  </body>
+
+
+</html>

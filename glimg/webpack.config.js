@@ -1,6 +1,7 @@
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin');
  
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -9,10 +10,8 @@ module.exports = {
     libraryTarget: 'umd',
   },
   plugins: [
-    new CopyPlugin({
-      patterns: [
-        { from: './dist/glimg.bundle.js', to: '../../webgl/' },
-      ],
-    }),
+    new WebpackShellPlugin({onBuildStart:['echo Webpack Start'], onBuildEnd:['echo start copy bundle file to webgl', 'cp ./dist/*.js ../webgl/.', 'echo Webpack End']})
   ],
 };
+
+

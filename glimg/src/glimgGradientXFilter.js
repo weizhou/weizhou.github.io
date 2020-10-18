@@ -1,9 +1,6 @@
 import { GLImg3x3ConvFilter } from './glimg3x3ConvFilter';
-import { GLImgGradientXFilter } from './glimgGradientXFilter'
-import { GLImgGradientYFilter } from './glimgGradientYFilter'
 
-
-export class GLImgSobelEdgeFilter extends GLImg3x3ConvFilter {
+export class GLImgGradientXFilter extends GLImg3x3ConvFilter {
   constructor() {
     super();
 

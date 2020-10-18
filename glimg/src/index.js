@@ -4,6 +4,8 @@ export { GLImg3x3ConvFilter } from "./glimg3x3ConvFilter";
 export { GLImgAverageColorFilter } from "./glimgAverageColorFilter";
 export { GLImgEmbossFilter } from "./glimgEmbossFilter";
 export { GLImgMedianFilter }  from "./glimgMedianFilter";
+export { GLImgGradientXFilter } from "./glimgGradientXFilter";
+export { GLImgGradientYFilter } from "./glimgGradientYFilter";
 export { GLImgSobelEdgeFilter } from "./glimgSobelEdgeFilter";
 export { GLImgGrayscaleFilter } from "./glimgGrayscaleFilter";
 export { GLImage } from "./glimg.js";

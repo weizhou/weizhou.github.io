@@ -10,7 +10,7 @@ module.exports = {
     libraryTarget: 'umd',
   },
   plugins: [
-    new WebpackShellPlugin({onBuildStart:['echo Webpack Start'], onBuildEnd:['echo start copy bundle file to webgl', 'cp ./dist/*.js ../webgl/.', 'echo Webpack End']})
+    new WebpackShellPlugin({onBuildStart:['echo Webpack Start'], onBuildEnd:['echo start copy bundle file to webgl', 'cp ./dist/*.js ./examples/.', 'echo Webpack End']})
   ],
 };
 

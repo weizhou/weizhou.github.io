@@ -17,7 +17,14 @@ export class GLImage {
 
 
   addFilter(filter){
-    this._filters.push(filter);
+    if(filter.isAssembeFilter){
+      var filters = filter.getAssemblingFilters();
+      for(let i=0; i<filters.length; ++i){
+        this.addFilter(filters[i]);
+      }
+    }else{
+      this._filters.push(filter);
+    }
   }
 
   defineUrlProperty(){
@@ -67,9 +74,11 @@ export class GLImage {
     this._filterChainFramebuffers = [];
     for (let i=0; i<2; ++i){
       var texture = this._gl.createTexture();
-      this._gl.bindTexture(this._gl.TEXTURE_2D, texture);
       this._filterChainFramebufferTextures.push(texture);
+      this._gl.bindTexture(this._gl.TEXTURE_2D, texture);
       this._gl.texImage2D(this._gl.TEXTURE_2D, 0, this._gl.RGBA, this._canvas.width, this._canvas.height, 0, this._gl.RGBA, this._gl.UNSIGNED_BYTE, null);
+      this._gl.generateMipmap(this._gl.TEXTURE_2D);
+
       var fbo = this._gl.createFramebuffer();
       this._filterChainFramebuffers.push(fbo);
       this._gl.bindFramebuffer(this._gl.FRAMEBUFFER, fbo);
@@ -134,7 +143,6 @@ export class GLImage {
     this._gl.drawArrays(this._gl.TRIANGLE_STRIP, 0, 4);
     if(frameBufferTexture){
       this._gl.bindTexture(this._gl.TEXTURE_2D, frameBufferTexture);
-      this._gl.generateMipmap(this._gl.TEXTURE_2D);  
     }  
   }
 

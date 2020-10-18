@@ -7,7 +7,7 @@ const glimgs = [
   {url: "./lenna.png", desc: "Grayscal+Emboss filters", filter: [new GLImgGrayscaleFilter(), new GLImgEmbossFilter()]},
   {url: "./lisa.png", desc: "original image", filter: null},
   {url: "./lisa.png", desc: "Averagecolor filter", filter: [new GLImgAverageColorFilter()]},
-  {url: "./lisa.png", desc: "Median image (8 iterations)", filter: new Array(8).fill(new GLImgMedianFilter()).flat()},
+  {url: "./lisa.png", desc: "Median filter (8 iterations)", filter: new Array(8).fill(new GLImgMedianFilter()).flat()},
 ]
 
 for (var i=0; i<glimgs.length; ++i) {

@@ -27,6 +27,8 @@ export class GLImgFilter {
     `;
 
     this.flipY = 1.0;
+    this.inputTextureId = 0;
+    this.outputTextureId = 0;
   }
 
   bindDataToAttribute(gl, glProgram, attri, data, size) {

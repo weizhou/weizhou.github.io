@@ -39,14 +39,12 @@ export class GLImage {
           this.setupCanvasAndTexture(image);
           this.setupFilterChainTextureFrameBuffers();
 
-          // if no filter, draw from _texture to Canvas
-          // if has filter, draw from _texture to textbuffer, then from textbuffer to canvas
-          this._gl.bindTexture(this._gl.TEXTURE_2D, this._texture);
           for(var i=0; i<this._filters.length; ++i){
-            this.drawTexture(this._filterChainFramebuffers[i%2], this._filterChainFramebufferTextures[i%2], this._filters[i]);
+            this.drawTexture(this._filters[i]);
           }
           var lastFilter = new GLImgFilter();
-          this.drawTexture(null, null, lastFilter);
+          lastFilter.outputTextureId = null;
+          this.drawTexture(lastFilter);
           this.onload();
         };    
         image.src = url;
@@ -84,6 +82,7 @@ export class GLImage {
       this._gl.bindFramebuffer(this._gl.FRAMEBUFFER, fbo);
       this._gl.framebufferTexture2D(this._gl.FRAMEBUFFER, this._gl.COLOR_ATTACHMENT0, this._gl.TEXTURE_2D, texture, 0);
     }
+    this._activeFilterChainFrameBufferId = null;
   }
 
   getImage() {
@@ -135,15 +134,53 @@ export class GLImage {
     filter.bindShaderAttributes(this._gl, this._glProgram);
   }
 
-  drawTexture(frameBuffer, frameBufferTexture, filter){
-    this._gl.bindFramebuffer(this._gl.FRAMEBUFFER, frameBuffer);
+  drawTexture(filter){
+
+    //filter should have input textureid, and output textureid
+    this.bindInputTexture(filter);
+    this.bindOutputTexture(filter);
+
     this._gl.viewport(0, 0, this._canvas.width, this._canvas.height);
     this.setupShader(filter);
     this.bindShaderAttributes(filter);
     this._gl.drawArrays(this._gl.TRIANGLE_STRIP, 0, 4);
-    if(frameBufferTexture){
-      this._gl.bindTexture(this._gl.TEXTURE_2D, frameBufferTexture);
-    }  
+  }
+
+  bindInputTexture(filter) {
+    //if input textureid is 0, then it is either _texture, or the activefilterChainBufferTexture
+    // else the input textures are a list of the tempBufferTexture, need to attach
+    if(filter.inputTextureId === 0){
+      this._gl.activeTexture(this._gl.TEXTURE0);
+      if(this._activeFilterChainFrameBufferId === null){
+        this._gl.bindTexture(this._gl.TEXTURE_2D, this._texture);
+      }else{
+        this._gl.bindTexture(this._gl.TEXTURE_2D, this._filterChainFramebufferTextures[this._activeFilterChainFrameBufferId]);
+      }
+    }else {
+      // Todo: need to handle a list of inputTexture
+
+    }
+
+  }
+
+  bindOutputTexture(filter) {
+    if(this._activeFilterChainFrameBufferId === null){
+      this._activeFilterChainFrameBufferId = 0;
+    }else{
+      this._activeFilterChainFrameBufferId = (this._activeFilterChainFrameBufferId + 1) % 2;
+    }
+    //filter has outputTextureID
+    //if outputTextureId is null, then render to canvas
+    //if outputTextureId is 0, then render to filterChainFrameBuffer
+    //if outputTextureId is larger than 0, then reder to tempBufferTexture
+    if(filter.outputTextureId === null){
+      this._gl.bindFramebuffer(this._gl.FRAMEBUFFER, null);
+    }else if(filter.outputTextureId === 0){
+      this._gl.bindFramebuffer(this._gl.FRAMEBUFFER, this._filterChainFramebuffers[this._activeFilterChainFrameBufferId]);
+    }
+
+
+
   }
 
 }

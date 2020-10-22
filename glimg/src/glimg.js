@@ -38,6 +38,7 @@ export class GLImage {
         image.onload = ()=> {
           this.setupCanvasAndTexture(image);
           this.setupFilterChainTextureFrameBuffers();
+          this.setupTempTextureFrameBuffers();
 
           for(var i=0; i<this._filters.length; ++i){
             this.drawTexture(this._filters[i]);
@@ -83,6 +84,24 @@ export class GLImage {
       this._gl.framebufferTexture2D(this._gl.FRAMEBUFFER, this._gl.COLOR_ATTACHMENT0, this._gl.TEXTURE_2D, texture, 0);
     }
     this._activeFilterChainFrameBufferId = null;
+  }
+
+  //temp frame buffers for filters with multiple input textures
+  setupTempTextureFrameBuffers(){
+    this._tempFramebufferTextures = [];
+    this._tempFramebuffers = [];
+    for (let i=0; i<5; ++i){
+      var texture = this._gl.createTexture();
+      this._tempFramebufferTextures.push(texture);
+      this._gl.bindTexture(this._gl.TEXTURE_2D, texture);
+      this._gl.texImage2D(this._gl.TEXTURE_2D, 0, this._gl.RGBA, this._canvas.width, this._canvas.height, 0, this._gl.RGBA, this._gl.UNSIGNED_BYTE, null);
+      this._gl.generateMipmap(this._gl.TEXTURE_2D);
+
+      var fbo = this._gl.createFramebuffer();
+      this._tempFramebuffers.push(fbo);
+      this._gl.bindFramebuffer(this._gl.FRAMEBUFFER, fbo);
+      this._gl.framebufferTexture2D(this._gl.FRAMEBUFFER, this._gl.COLOR_ATTACHMENT0, this._gl.TEXTURE_2D, texture, 0);
+    }
   }
 
   getImage() {
@@ -156,19 +175,21 @@ export class GLImage {
       }else{
         this._gl.bindTexture(this._gl.TEXTURE_2D, this._filterChainFramebufferTextures[this._activeFilterChainFrameBufferId]);
       }
-    }else {
+    }else if(Array.isArray(filter.inputTextureId)){
       // Todo: need to handle a list of inputTexture
-
+      for(var i=0; i<filter.inputTextureId.length; ++i){
+        this._gl.activeTexture(this._gl.TEXTURE0+filter.inputTextureId[i]);
+        this._gl.bindTexture(this._gl.TEXTURE_2D, this._tempFramebufferTextures[filter.inputTextureId[i]-filter.tempTextureIDOffset]);  
+      }
+    }else{
+      this._gl.activeTexture(this._gl.TEXTURE0+filter.inputTextureId);
+      this._gl.bindTexture(this._gl.TEXTURE_2D, this._tempFramebufferTextures[filter.inputTextureId-filter.tempTextureIDOffset]);
     }
 
   }
 
   bindOutputTexture(filter) {
-    if(this._activeFilterChainFrameBufferId === null){
-      this._activeFilterChainFrameBufferId = 0;
-    }else{
-      this._activeFilterChainFrameBufferId = (this._activeFilterChainFrameBufferId + 1) % 2;
-    }
+
     //filter has outputTextureID
     //if outputTextureId is null, then render to canvas
     //if outputTextureId is 0, then render to filterChainFrameBuffer
@@ -176,7 +197,14 @@ export class GLImage {
     if(filter.outputTextureId === null){
       this._gl.bindFramebuffer(this._gl.FRAMEBUFFER, null);
     }else if(filter.outputTextureId === 0){
+      if(this._activeFilterChainFrameBufferId === null){
+        this._activeFilterChainFrameBufferId = 0;
+      }else{
+        this._activeFilterChainFrameBufferId = (this._activeFilterChainFrameBufferId + 1) % 2;
+      }
       this._gl.bindFramebuffer(this._gl.FRAMEBUFFER, this._filterChainFramebuffers[this._activeFilterChainFrameBufferId]);
+    }else{
+      this._gl.bindFramebuffer(this._gl.FRAMEBUFFER, this._tempFramebuffers[filter.outputTextureId-filter.tempTextureIDOffset]);
     }
 
 

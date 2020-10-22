@@ -29,6 +29,7 @@ export class GLImgFilter {
     this.flipY = 1.0;
     this.inputTextureId = 0;
     this.outputTextureId = 0;
+    this.tempTextureIDOffset = 5;
   }
 
   bindDataToAttribute(gl, glProgram, attri, data, size) {
@@ -91,7 +92,7 @@ export class GLImgFilter {
     this.bindDataToAttribute(gl, glProgram, 'inputPosition', vertexData, 3);
     this.bindDataToAttribute(gl, glProgram, 'inputTextureCoordinate', textureCoordinateData, 2);
     this.setUniformValue1f(gl, glProgram, 'flipY', this.flipY);
-    this.setUniformValue1i(gl, glProgram, 'textureID', 0);
+    this.setUniformValue1i(gl, glProgram, 'textureID', this.inputTextureId);
   }
 
 }

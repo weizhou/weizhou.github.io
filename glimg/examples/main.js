@@ -2,9 +2,12 @@ const imageContainer = document.querySelector('div');
 
 const glimgs = [
   {url: "./lenna.png", desc: "original image", filter: null},
+  {url: "./lenna.png", desc: "Brightness filter", filter: [new GLImgBrightnessFilter()]},
   {url: "./lenna.png", desc: "GrayScale filter", filter: [new GLImgGrayscaleFilter()]},
   {url: "./lenna.png", desc: "Grayscal+GradientX filters", filter: [new GLImgGrayscaleFilter(), new GLImgGradientXFilter()]},
   {url: "./lenna.png", desc: "Grayscal+GradientY filters", filter: [new GLImgGrayscaleFilter(), new GLImgGradientYFilter()]},
+  {url: "./lenna.png", desc: "Grayscal+Normal filters", filter: [new GLImgGrayscaleFilter(), new GLImgNormalFilter()]},
+  {url: "./lenna.png", desc: "Sobel filters", filter: [new GLImgSobelEdgeFilter()]},
   {url: "./lenna.png", desc: "Grayscal+Emboss filters", filter: [new GLImgGrayscaleFilter(), new GLImgEmbossFilter()]},
   {url: "./lisa.png", desc: "original image", filter: null},
   {url: "./lisa.png", desc: "Averagecolor filter", filter: [new GLImgAverageColorFilter()]},

@@ -1,5 +1,7 @@
 export { GLImgFilter } from "./glimgFilter";
 export { GLImgBrightnessFilter } from './colorFilters/glimgBrightnessFilter';
+export { GLImgContrastFilter } from './colorFilters/glimgContrastFilter';
+export { GLImgExposureFilter } from './colorFilters/glimgExposureFilter';
 export { GLImg3x3Filter } from "./glimg3x3Filter";
 export { GLImg3x3ConvFilter } from "./glimg3x3ConvFilter";
 export { GLImgAverageColorFilter } from "./glimgAverageColorFilter";
@@ -11,14 +13,3 @@ export { GLImgNormalFilter } from './glimgNormalFilter';
 export { GLImgSobelEdgeFilter } from "./glimgSobelEdgeFilter";
 export { GLImgGrayscaleFilter } from "./glimgGrayscaleFilter";
 export { GLImage } from "./glimg.js";
-
-// export {
-//   GLImgFilter,
-//   GLImg3x3Filter,
-//   GLImg3x3ConvFilter,
-//   GLImgAverageColorFilter,
-//   GLImgMedianFilter,
-//   GLImgSobelEdgeFilter,
-//   GLImgGrayscaleFilter,
-//   GLImage
-// };

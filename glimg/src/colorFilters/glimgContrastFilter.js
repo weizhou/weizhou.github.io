@@ -1,6 +1,6 @@
 import { GLImgFilter } from '../glimgFilter';
 
-export class GLImgBrightnessFilter extends GLImgFilter {
+export class GLImgContrastFilter extends GLImgFilter {
   constructor() {
     super();
 
@@ -8,20 +8,21 @@ export class GLImgBrightnessFilter extends GLImgFilter {
       precision highp float;
       varying vec2 textureCoordinate;
       uniform sampler2D textureID;
-      uniform lowp float brightness;
+      uniform lowp float contrast;
 
       void main() {
         lowp vec4 textureColor = texture2D(textureID, textureCoordinate);
-        gl_FragColor = vec4(textureColor.rgb+vec3(brightness), textureColor.a);
-      }
+        gl_FragColor = vec4(((textureColor.rgb - vec3(0.5)) * contrast + vec3(0.5)), textureColor.a);
 
+      }
     `;
+
     this.flipY = -1.0;
-    this.brightness = 0.2;
+    this.contrast = 2.0;
   }
 
   bindShaderAttributes(gl, glProgram){  
     super.bindShaderAttributes(gl, glProgram);
-    this.setUniformValue1f(gl, glProgram, 'brightness', this.brightness);
+    this.setUniformValue1f(gl, glProgram, 'contrast', this.contrast);
   }
 }

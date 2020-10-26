@@ -37,7 +37,7 @@
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { GLImg3x3Filter } from './glimg3x3Filter';
+import { GLImg3x3Filter } from '../glimg3x3Filter';
 
 export class GLImgMedianFilter extends GLImg3x3Filter {
 

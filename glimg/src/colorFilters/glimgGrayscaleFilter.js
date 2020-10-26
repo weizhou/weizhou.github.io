@@ -1,4 +1,4 @@
-import { GLImgFilter } from './glimgFilter';
+import { GLImgFilter } from '../glimgFilter';
 
 export class GLImgGrayscaleFilter extends GLImgFilter {
   constructor() {

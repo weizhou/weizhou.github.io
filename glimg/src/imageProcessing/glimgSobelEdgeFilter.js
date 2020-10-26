@@ -1,7 +1,7 @@
-import { GLImgFilter } from './glimgFilter';
+import { GLImgFilter } from '../glimgFilter';
 import { GLImgGradientXFilter } from './glimgGradientXFilter'
 import { GLImgGradientYFilter } from './glimgGradientYFilter'
-import { GLImgGrayscaleFilter } from './glimgGrayscaleFilter';
+import { GLImgGrayscaleFilter } from '../colorFilters/glimgGrayscaleFilter';
 import { GLImgNormalFilter } from './glimgNormalFilter';
 
 

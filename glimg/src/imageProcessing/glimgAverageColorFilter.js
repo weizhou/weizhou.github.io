@@ -1,4 +1,4 @@
-import { GLImg3x3Filter } from './glimg3x3Filter';
+import { GLImg3x3Filter } from '../glimg3x3Filter';
 
 export class GLImgAverageColorFilter extends GLImg3x3Filter {
 

@@ -18,7 +18,20 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
   - exposure: The adjusted exposure (-10.0 to 10.0, default 1.0)
 - GLImgContrastFilter: Adjusts the contrast of the image
   - contrast: The adjusted contrast (0.0 to 4.0, default 1.0) 
-  
+- GLImgSaturationFilter: Adjusts the saturation of an image
+  - saturation: The degree of saturation or desaturation to apply to the image (0.0 - 2.0, with 1.5 as the default)
+- GLImgGammaFilter: Adjusts the gamma of an image
+  - gamma: The gamma adjustment to apply (0.0 - 3.0, with 2.0 as the default)
+- GLImgLevelsFilter: levels adjustment. 
+  - The min, max, minOut and maxOut parameters are floats in the range [0, 1]. 
+  - The gamma/mid parameter is a float >= 0. 
+  - If you want to apply levels to RGB as well as individual channels you need to use this filter twice - first for the individual channels and then for all channels.
+- GLImgColorMatrixFilter: Transforms the colors of an image by applying a matrix to them
+  - colorMatrix: A 4x4 matrix used to transform each color in an image
+  - intensity: The degree to which the new transformed color replaces the original color for each pixel
+- GLImgRGBFilter: Adjusts the individual RGB channels of an image
+  - red, green, blue: Normalized values by which each color channel is multiplied. The range is from 0.0 up, with 1.0 as the default.
+
 ### Image processing
 - GLImgAverageColorFilter
 - GLImgEmbossFilter

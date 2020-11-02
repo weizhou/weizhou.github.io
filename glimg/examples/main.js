@@ -5,6 +5,12 @@ const glimgs = [
   {url: "./lenna.png", desc: "Brightness filter", filter: [new GLImgBrightnessFilter()]},
   {url: "./lenna.png", desc: "Contrast filter", filter: [new GLImgContrastFilter()]},
   {url: "./lenna.png", desc: "Exposure filter", filter: [new GLImgExposureFilter()]},
+  {url: "./lenna.png", desc: "Saturation filter", filter: [new GLImgSaturationFilter()]},
+  {url: "./lenna.png", desc: "Gamma filter", filter: [new GLImgGammaFilter()]},
+  {url: "./lenna.png", desc: "Levels filter", filter: [new GLImgLevelsFilter()]},
+  {url: "./lenna.png", desc: "Colormatrix filter", filter: [new GLImgColormatrixFilter()]},
+  {url: "./lenna.png", desc: "RGB filter", filter: [new GLImgRGBFilter()]},
+
   {url: "./lenna.png", desc: "GrayScale filter", filter: [new GLImgGrayscaleFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+GradientX filters", filter: [new GLImgGrayscaleFilter(), new GLImgGradientXFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+GradientY filters", filter: [new GLImgGrayscaleFilter(), new GLImgGradientYFilter()]},

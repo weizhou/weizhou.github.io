@@ -73,6 +73,11 @@ export class GLImgFilter {
     gl.uniformMatrix3fv(uniformLocation, false, data); 
   }
 
+  setUniformMatrix4fv(gl, glProgram, attri, data) {
+    const uniformLocation = gl.getUniformLocation(glProgram, attri);
+    gl.useProgram(glProgram);
+    gl.uniformMatrix4fv(uniformLocation, false, data); 
+  }
 
   bindShaderAttributes(gl, glProgram){  
     const vertexData = [

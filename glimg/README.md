@@ -31,6 +31,18 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
   - intensity: The degree to which the new transformed color replaces the original color for each pixel
 - GLImgRGBFilter: Adjusts the individual RGB channels of an image
   - red, green, blue: Normalized values by which each color channel is multiplied. The range is from 0.0 up, with 1.0 as the default.
+- GLImgHueFilter: Adjusts the hue of an image
+  - hue: The hue angle, in degrees. 90 degrees by default
+- GLImgTintFilter: Adjusts the Tint of an image.
+  - tint: The tint to adjust the image by. A value of -200 is very green and 200 is very pink. The default value is 0.
+- GLImgTemperatureFilter: Adjusts the Temperature of an image.
+  - temperature: The temperature to adjust the image by, in ºK. A value of 4000 is very cool and 7000 very warm. The default value is 5000. Note that the scale between 4000 and 5000 is nearly as visually significant as that between 5000 and 7000.  
+- GLImgHighlightsAndShadowsFilter: Adjusts the shadows and highlights of an image
+  - shadows: Increase to lighten shadows, from 0.0 to 1.0, with 0.0 as the default.
+  - highlights: Decrease to darken highlights, from 1.0 to 0.0, with 1.0 as the default.
+
+
+
 
 ### Image processing
 - GLImgAverageColorFilter
@@ -50,6 +62,43 @@ glimg.onload = ()=> {
 };
 glimg.url = imageUrl;
 ```
+
+```
+const glimg = new GLImage();
+const filter = new GLImgLookupFilter();
+
+// the lookup filter have a property of lookupImgUrl
+// set the property will trigger the image load asynly
+// once image load, it set the image to a temp texture for use
+// and also set isready to true
+// glimg will wait for filter to be ready to apply the filter
+// but this will block the thread while waiting for filter to be ready
+
+// any better approach to do it asynly?
+// filter.ready() return a promise, in glimg, when go through each filters, 
+// use filter.ready().then(... apply the filter), but the problem is, we want to keep the sequencing of the filters ...
+
+
+// solution: 
+// make a asyn function filter.init()
+// which will await for any asyn operations. 
+// in this case, we are waiting the image to be loaded to the texture
+// before apply the filter, we simply call the init() function first
+// or even better, we can call this init() function in the constructor as needed
+
+
+
+glimg.addFilter(filter);
+glimg.onload = ()=> {
+  document.createElement('div').appendChild(glimg.getCanvas());
+};
+glimg.url = imageUrl;
+```
+
+
+
+
+
 
 ## Demo
 A [demo page](https://weizhou.github.io/glimg/examples/) has been setup to show how to use the libary.

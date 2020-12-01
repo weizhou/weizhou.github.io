@@ -6,6 +6,11 @@ export { GLImgGammaFilter } from './colorFilters/glimgGammaFilter';
 export { GLImgLevelsFilter } from './colorFilters/glimgLevelsFilter';
 export { GLImgColormatrixFilter } from './colorFilters/glimgColormatrixFilter';
 export { GLImgRGBFilter } from './colorFilters/glimgRGBFilter';
+export { GLImgHueFilter } from './colorFilters/glimgHueFilter';
+export { GLImgTintFilter } from './colorFilters/glimgTintFilter';
+export { GLImgTemperatureFilter } from './colorFilters/glimgTemperatureFilter';
+export { GLImgHighlightShadowFilter } from './colorFilters/glimgHighlightShadowFilter';
+
 export { GLImgExposureFilter } from './colorFilters/glimgExposureFilter';
 export { GLImg3x3Filter } from "./glimg3x3Filter";
 export { GLImg3x3ConvFilter } from "./glimg3x3ConvFilter";

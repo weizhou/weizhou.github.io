@@ -27,6 +27,7 @@ export class GLImage {
     }
   }
 
+  /*
   defineUrlProperty(){
     Object.defineProperty(this, 'url', {
       get() {
@@ -50,6 +51,51 @@ export class GLImage {
         };    
         image.src = url;
       }
+    });
+  }
+*/
+
+
+  defineUrlProperty(){
+    Object.defineProperty(this, 'url', {
+      get() {
+        return this._url;
+      },
+      set(url){
+        this._url = url;
+        this.applyFilterToImage(url);
+      }
+    });
+  }
+
+  async applyFilterToImage(url) {
+    var image = await this.loadImage(url);
+    this.setupCanvasAndTexture(image);
+    this.setupFilterChainTextureFrameBuffers();
+    this.setupTempTextureFrameBuffers();
+
+    for(var i=0; i<this._filters.length; ++i){
+      if(this._filters[i].needGL){
+        await this._filters[i].setGL(this._gl);
+      }
+      this.drawTexture(this._filters[i]);
+    }
+    var lastFilter = new GLImgFilter();
+    lastFilter.outputTextureId = null;
+    this.drawTexture(lastFilter);
+    this.onload();
+  }
+
+  async loadImage(url){
+    return new Promise(function(resolve, reject) {
+      const image = new Image();  
+      image.onload = ()=>{
+        resolve(image);
+      }
+      image.onerror = error => {
+        reject(error);
+      }
+      image.src = url;
     });
   }
 

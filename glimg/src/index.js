@@ -1,3 +1,6 @@
+import "./assets/images/lookup_amatorka.png";
+import "./assets/images/lookup_miss_etikate.png";
+
 export { GLImgFilter } from "./glimgFilter";
 export { GLImgBrightnessFilter } from './colorFilters/glimgBrightnessFilter';
 export { GLImgContrastFilter } from './colorFilters/glimgContrastFilter';
@@ -10,6 +13,7 @@ export { GLImgHueFilter } from './colorFilters/glimgHueFilter';
 export { GLImgTintFilter } from './colorFilters/glimgTintFilter';
 export { GLImgTemperatureFilter } from './colorFilters/glimgTemperatureFilter';
 export { GLImgHighlightShadowFilter } from './colorFilters/glimgHighlightShadowFilter';
+export { GLImgAmatorkaFilter } from './colorFilters/glimgAmatorkaFilter';
 
 export { GLImgExposureFilter } from './colorFilters/glimgExposureFilter';
 export { GLImg3x3Filter } from "./glimg3x3Filter";

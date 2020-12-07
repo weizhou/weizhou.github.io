@@ -14,7 +14,9 @@ const glimgs = [
   {url: "./lenna.png", desc: "Tint filter", filter: [new GLImgTintFilter()]},
   {url: "./lenna.png", desc: "Temperature filter", filter: [new GLImgTemperatureFilter()]},
   {url: "./lenna.png", desc: "HighlightShadow filter", filter: [new GLImgHighlightShadowFilter()]},
-  {url: "./lenna.png", desc: "Amatorka filter", filter: [new GLImgAmatorkaFilter()]},
+  // {url: "./lenna.png", desc: "Amatorka filter", filter: [new GLImgAmatorkaFilter()]},
+  {url: "./lenna.png", desc: "Color inversion filter", filter: [new GLImgColorInversionFilter()]},
+  {url: "./lenna.png", desc: "Monochrome filter", filter: [new GLImgMonochromeFilter()]},
 
   // {url: "./lenna.png", desc: "GrayScale filter", filter: [new GLImgGrayscaleFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+GradientX filters", filter: [new GLImgGrayscaleFilter(), new GLImgGradientXFilter()]},

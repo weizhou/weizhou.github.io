@@ -41,6 +41,11 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
   - shadows: Increase to lighten shadows, from 0.0 to 1.0, with 0.0 as the default.
   - highlights: Decrease to darken highlights, from 1.0 to 0.0, with 1.0 as the default.
 
+- GLImgColorInversionFilter: Inverts the colors of an image
+
+- GLImgMonochromeFilter: Converts the image to a single-color version, based on the luminance of each pixel
+  - intensity: The degree to which the specific color replaces the normal image color (0.0 - 1.0, with 1.0 as the default)
+  - color: The color to use as the basis for the effect, with (0.6, 0.45, 0.3, 1.0) as the default.
 
 
 
@@ -62,41 +67,6 @@ glimg.onload = ()=> {
 };
 glimg.url = imageUrl;
 ```
-
-```
-const glimg = new GLImage();
-const filter = new GLImgLookupFilter();
-
-// the lookup filter have a property of lookupImgUrl
-// set the property will trigger the image load asynly
-// once image load, it set the image to a temp texture for use
-// and also set isready to true
-// glimg will wait for filter to be ready to apply the filter
-// but this will block the thread while waiting for filter to be ready
-
-// any better approach to do it asynly?
-// filter.ready() return a promise, in glimg, when go through each filters, 
-// use filter.ready().then(... apply the filter), but the problem is, we want to keep the sequencing of the filters ...
-
-
-// solution: 
-// make a asyn function filter.init()
-// which will await for any asyn operations. 
-// in this case, we are waiting the image to be loaded to the texture
-// before apply the filter, we simply call the init() function first
-// or even better, we can call this init() function in the constructor as needed
-
-
-
-glimg.addFilter(filter);
-glimg.onload = ()=> {
-  document.createElement('div').appendChild(glimg.getCanvas());
-};
-glimg.url = imageUrl;
-```
-
-
-
 
 
 

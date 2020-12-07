@@ -35,21 +35,22 @@ export class GLImgAmatorkaFilter extends GLImgFilter {
         quad2.x = ceil(blueColor) - (quad2.y * 8.0);
         
         highp vec2 texPos1;
-        texPos1.x = (quad1.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.r);
-        texPos1.y = (quad1.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.g);
+        // texPos1.x = (quad1.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.r);
+        // texPos1.y = (quad1.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.g);
+        texPos1.x = (quad1.x + textureColor.r) * 0.125;
+        texPos1.y = (quad1.y + textureColor.g) * 0.125;
 
-
-        highp vec2 texPos2;
-        texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.r);
-        texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.g);
+        // highp vec2 texPos2;
+        // texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.r);
+        // texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.g);
         
         highp vec4 newColor1 = texture2D(lookupTextureID, texPos1);
         // highp vec4 newColor1 = texture2D(lookupTextureID, vec2(254.0/255.0, 254.0/255.0));
 
-        highp vec4 newColor2 = texture2D(lookupTextureID, texPos2);
+        // highp vec4 newColor2 = texture2D(lookupTextureID, texPos2);
         
-        highp vec4 newColor = mix(newColor1, newColor2, fract(blueColor));
-        gl_FragColor = mix(textureColor, vec4(newColor1.rgb, textureColor.a), intensity);
+        // highp vec4 newColor = mix(newColor1, newColor2, fract(blueColor));
+        // gl_FragColor = mix(textureColor, vec4(newColor1.rgb, textureColor.a), intensity);
 
         // newColor1 = textureColor;
         // newColor1 = vec4(texPos1.x, texPos1.y, textureColor.g, 1.0);
@@ -60,7 +61,7 @@ export class GLImgAmatorkaFilter extends GLImgFilter {
         // }
 
         // newColor1 = texture2D(lookupTextureID, vec2(237.0/255.0, 184.0/255.0));
-        // gl_FragColor = newColor1;
+        gl_FragColor = newColor1;
 
       }
     `;

@@ -2,10 +2,10 @@ const imageContainer = document.querySelector('div');
 
 const glimgs = [
   {url: "./lenna.png", desc: "original image", filter: null},
-  {url: "./lenna.png", desc: "Brightness filter", filter: [new GLImgBrightnessFilter()]},
-  {url: "./lenna.png", desc: "Contrast filter", filter: [new GLImgContrastFilter()]},
-  {url: "./lenna.png", desc: "Exposure filter", filter: [new GLImgExposureFilter()]},
-  {url: "./lenna.png", desc: "Saturation filter", filter: [new GLImgSaturationFilter()]},
+  // {url: "./lenna.png", desc: "Brightness filter", filter: [new GLImgBrightnessFilter()]},
+  // {url: "./lenna.png", desc: "Contrast filter", filter: [new GLImgContrastFilter()]},
+  // {url: "./lenna.png", desc: "Exposure filter", filter: [new GLImgExposureFilter()]},
+  // {url: "./lenna.png", desc: "Saturation filter", filter: [new GLImgSaturationFilter()]},
   {url: "./lenna.png", desc: "Gamma filter", filter: [new GLImgGammaFilter()]},
   {url: "./lenna.png", desc: "Levels filter", filter: [new GLImgLevelsFilter()]},
   {url: "./lenna.png", desc: "Colormatrix filter", filter: [new GLImgColormatrixFilter()]},
@@ -17,8 +17,11 @@ const glimgs = [
   // {url: "./lenna.png", desc: "Amatorka filter", filter: [new GLImgAmatorkaFilter()]},
   {url: "./lenna.png", desc: "Color inversion filter", filter: [new GLImgColorInversionFilter()]},
   {url: "./lenna.png", desc: "Monochrome filter", filter: [new GLImgMonochromeFilter()]},
+  {url: "./lenna.png", desc: "FalseColor filter", filter: [new GLImgFalseColorFilter()]},
+  {url: "./lenna.png", desc: "Haze filter", filter: [new GLImgHazeFilter()]},
+  {url: "./amatorka.jpg", desc: "SepiaTone filter", filter: [new GLImgSepiaToneFilter()]},
 
-  // {url: "./lenna.png", desc: "GrayScale filter", filter: [new GLImgGrayscaleFilter()]},
+  {url: "./amatorka.jpg", desc: "GrayScale filter", filter: [new GLImgGrayscaleFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+GradientX filters", filter: [new GLImgGrayscaleFilter(), new GLImgGradientXFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+GradientY filters", filter: [new GLImgGrayscaleFilter(), new GLImgGradientYFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+Normal filters", filter: [new GLImgGrayscaleFilter(), new GLImgNormalFilter()]},

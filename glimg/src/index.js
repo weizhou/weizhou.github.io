@@ -16,6 +16,9 @@ export { GLImgHighlightShadowFilter } from './colorFilters/glimgHighlightShadowF
 export { GLImgAmatorkaFilter } from './colorFilters/glimgAmatorkaFilter';
 export { GLImgColorInversionFilter } from './colorFilters/glimgColorInversionFilter';
 export { GLImgMonochromeFilter } from './colorFilters/glimgMonochromeFilter';
+export { GLImgFalseColorFilter } from './colorFilters/glimgFalseColorFilter';
+export { GLImgHazeFilter } from './colorFilters/glimgHazeFilter';
+export { GLImgSepiaToneFilter } from './colorFilters/glimgSepiaToneFilter';
 
 export { GLImgExposureFilter } from './colorFilters/glimgExposureFilter';
 export { GLImg3x3Filter } from "./glimg3x3Filter";

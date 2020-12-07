@@ -40,13 +40,17 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
 - GLImgHighlightsAndShadowsFilter: Adjusts the shadows and highlights of an image
   - shadows: Increase to lighten shadows, from 0.0 to 1.0, with 0.0 as the default.
   - highlights: Decrease to darken highlights, from 1.0 to 0.0, with 1.0 as the default.
-
 - GLImgColorInversionFilter: Inverts the colors of an image
-
 - GLImgMonochromeFilter: Converts the image to a single-color version, based on the luminance of each pixel
   - intensity: The degree to which the specific color replaces the normal image color (0.0 - 1.0, with 1.0 as the default)
   - color: The color to use as the basis for the effect, with (0.6, 0.45, 0.3, 1.0) as the default.
-
+- GLImgFalseColorFilter: Uses the luminance of the image to mix between two user-specified colors
+  - firstColor, secondColor: The first and second colors specify what colors replace the dark and light areas of the image, respectively. The defaults are (0.0, 0.0, 0.5) and (1.0, 0.0, 0.0).
+- GLImgHazeFilter: Used to add or remove haze (similar to a UV filter)
+  - distance: Strength of the color applied. Default 0. Values between -.3 and .3 are best.
+  - slope: Amount of color change. Default 0. Values between -.3 and .3 are best.
+- GLImgSepiaToneFilter: Simple sepia tone filter
+  - intensity: The degree to which the sepia tone replaces the normal image color (0.0 - 1.0, with 1.0 as the default)
 
 
 ### Image processing

@@ -23,6 +23,7 @@ export { GLImgOpacityFilter } from './colorFilters/glimgOpacityFilter';
 export { GLImgLuminanceThresholdFilter } from './colorFilters/glimgLuminanceThresholdFilter';
 export { GLImgChromakeyingFilter } from './colorFilters/glimgChromakeyingFilter';
 export { GLImgVibranceFilter } from './colorFilters/glimgVibranceFilter';
+export { GLImgHighlightShadowTintFilter } from './colorFilters/glimgHighlightShadowTintFilter';
 
 
 export { GLImgExposureFilter } from './colorFilters/glimgExposureFilter';

@@ -67,6 +67,12 @@ export class GLImgFilter {
     gl.uniform3fv(uniformLocation, data);  
   }
 
+  setUniformValue4fv(gl, glProgram, attri, data) {
+    const uniformLocation = gl.getUniformLocation(glProgram, attri);
+    gl.useProgram(glProgram);
+    gl.uniform4fv(uniformLocation, data);  
+  }
+
   setUniformMatrix3fv(gl, glProgram, attri, data) {
     const uniformLocation = gl.getUniformLocation(glProgram, attri);
     gl.useProgram(glProgram);

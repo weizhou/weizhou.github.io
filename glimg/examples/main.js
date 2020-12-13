@@ -24,6 +24,7 @@ const glimgs = [
   // {url: "./lenna.png", desc: "Luminance threshold filter", filter: [new GLImgLuminanceThresholdFilter()]},
   {url: "./lenna.png", desc: "Chroma keying filter", filter: [new GLImgChromakeyingFilter()]},
   {url: "./lenna.png", desc: "Vibrance filter", filter: [new GLImgVibranceFilter()]},
+  {url: "./lenna.png", desc: "HighlightShadowTint filter", filter: [new GLImgHighlightShadowTintFilter()]},
 
 
   // {url: "./lenna.jpg", desc: "GrayScale filter", filter: [new GLImgGrayscaleFilter()]},

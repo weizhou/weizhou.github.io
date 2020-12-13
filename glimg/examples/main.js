@@ -22,7 +22,8 @@ const glimgs = [
   // {url: "./lenna.png", desc: "SepiaTone filter", filter: [new GLImgSepiaToneFilter()]},
   // {url: "./lenna.png", desc: "Opacity filter", filter: [new GLImgOpacityFilter()]},
   // {url: "./lenna.png", desc: "Luminance threshold filter", filter: [new GLImgLuminanceThresholdFilter()]},
-
+  {url: "./lenna.png", desc: "Chroma keying filter", filter: [new GLImgChromakeyingFilter()]},
+  {url: "./lenna.png", desc: "Vibrance filter", filter: [new GLImgVibranceFilter()]},
 
 
   // {url: "./lenna.jpg", desc: "GrayScale filter", filter: [new GLImgGrayscaleFilter()]},
@@ -37,7 +38,7 @@ const glimgs = [
   {url: "./lenna.png", desc: "Box blur filter (1 iterations)", filter: new Array(1).fill(new GLImgBoxblurFilter()).flat()},
   {url: "./lenna.png", desc: "Gaussian blur filter (1 iterations)", filter: new Array(1).fill(new GLImgGaussianblurFilter()).flat()},
   {url: "./lenna.png", desc: "Adaptive threshold filter", filter: [new GLImgAdaptiveThresholdFilter()]},
-  {url: "./lenna.png", desc: "Chroma keying filter", filter: [new GLImgChromakeyingFilter()]},
+  
 ]
 
 for (var i=0; i<glimgs.length; ++i) {

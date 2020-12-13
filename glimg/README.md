@@ -55,14 +55,13 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
   - opacity: The value to multiply the incoming alpha channel for each pixel by (0.0 - 1.0, with 1.0 as the default)
 - GLImgLuminanceThresholdFilter: Pixels with a luminance above the threshold will appear white, and those below will be black
   - threshold: The luminance threshold, from 0.0 to 1.0, with a default of 0.5
-
-
 - GLImgChromaKeyingFilter: For a given color in the image, sets the alpha channel to 0. This is similar to the ChromaKeyBlend, only instead of blending in a second image for a matching color this doesn't take in a second image and just turns a given color transparent.
-  - thresholdSensitivity: How close a color match needs to exist to the target color to be replaced (default of 0.4)
-  - smoothing: How smoothly to blend for the color match (default of 0.1)
+  - thresholdSensitivity: How close a color match needs to exist to the target color to be replaced (default of 0.1)
+  - smoothing: How smoothly to blend for the color match (default of 0.05)
+  - colorToReplace: the color to compare to. default is set to [0.2, 0.2, 0.2]
 - GLImgVibranceFilter: Adjusts the vibrance of an image
-  - vibrance: The vibrance adjustment to apply, using 0.0 as the default, and a suggested min/max of around -1.2 and 1.2, respectively.
-- HighlightShadowTint: Allows you to tint the shadows and highlights of an image independently using a color and intensity
+  - vibrance: The vibrance adjustment to apply, using 1.0 as the default, and a suggested min/max of around -1.2 and 1.2, respectively.
+- GLImgHighlightShadowTintFilter: Allows you to tint the shadows and highlights of an image independently using a color and intensity
   - shadowTintColor: Shadow tint RGB color (GPUVector4). Default: {1.0f, 0.0f, 0.0f, 1.0f} (red).
   - highlightTintColor: Highlight tint RGB color (GPUVector4). Default: {0.0f, 0.0f, 1.0f, 1.0f} (blue).
   - shadowTintIntensity: Shadow tint intensity, from 0.0 to 1.0. Default: 0.0

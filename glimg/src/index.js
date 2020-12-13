@@ -19,6 +19,9 @@ export { GLImgMonochromeFilter } from './colorFilters/glimgMonochromeFilter';
 export { GLImgFalseColorFilter } from './colorFilters/glimgFalseColorFilter';
 export { GLImgHazeFilter } from './colorFilters/glimgHazeFilter';
 export { GLImgSepiaToneFilter } from './colorFilters/glimgSepiaToneFilter';
+export { GLImgOpacityFilter } from './colorFilters/glimgOpacityFilter';
+export { GLImgLuminanceThresholdFilter } from './colorFilters/glimgLuminanceThresholdFilter';
+
 
 export { GLImgExposureFilter } from './colorFilters/glimgExposureFilter';
 export { GLImg3x3Filter } from "./glimg3x3Filter";
@@ -31,4 +34,8 @@ export { GLImgGradientYFilter } from "./imageProcessing/glimgGradientYFilter";
 export { GLImgNormalFilter } from './imageProcessing/glimgNormalFilter';
 export { GLImgSobelEdgeFilter } from "./imageProcessing/glimgSobelEdgeFilter";
 export { GLImgGrayscaleFilter } from "./colorFilters/glimgGrayscaleFilter";
+export { GLImgRadiusFilter } from "./glimgRadiusFilter";
+export { GLImgBoxblurFilter } from "./imageProcessing/glimgBoxblurFilter";
+export { GLImgGaussianblurFilter } from "./imageProcessing/glimgGaussianblurFilter";
+
 export { GLImage } from "./glimg.js";

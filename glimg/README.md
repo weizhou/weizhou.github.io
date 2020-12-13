@@ -51,6 +51,24 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
   - slope: Amount of color change. Default 0. Values between -.3 and .3 are best.
 - GLImgSepiaToneFilter: Simple sepia tone filter
   - intensity: The degree to which the sepia tone replaces the normal image color (0.0 - 1.0, with 1.0 as the default)
+- GLImgOpacityFilter: Adjusts the alpha channel of the incoming image
+  - opacity: The value to multiply the incoming alpha channel for each pixel by (0.0 - 1.0, with 1.0 as the default)
+- GLImgLuminanceThresholdFilter: Pixels with a luminance above the threshold will appear white, and those below will be black
+  - threshold: The luminance threshold, from 0.0 to 1.0, with a default of 0.5
+- GLImgAdaptiveThresholdFilter: Determines the local luminance around a pixel, then turns the pixel black if it is below that local luminance and white if above. This can be useful for picking out text under varying lighting conditions.
+  - blurRadiusInPixels: A multiplier for the background averaging blur radius in pixels, with a default of 4.
+- GLImgAverageLuminanceThresholdFilter: This applies a thresholding operation where the threshold is continually adjusted based on the average luminance of the scene.
+  - thresholdMultiplier: This is a factor that the average luminance will be multiplied by in order to arrive at the final threshold to use. By default, this is 1.0.
+- GLImgChromaKeyingFilter: For a given color in the image, sets the alpha channel to 0. This is similar to the ChromaKeyBlend, only instead of blending in a second image for a matching color this doesn't take in a second image and just turns a given color transparent.
+  - thresholdSensitivity: How close a color match needs to exist to the target color to be replaced (default of 0.4)
+  - smoothing: How smoothly to blend for the color match (default of 0.1)
+- GLImgVibranceFilter: Adjusts the vibrance of an image
+  - vibrance: The vibrance adjustment to apply, using 0.0 as the default, and a suggested min/max of around -1.2 and 1.2, respectively.
+- HighlightShadowTint: Allows you to tint the shadows and highlights of an image independently using a color and intensity
+  - shadowTintColor: Shadow tint RGB color (GPUVector4). Default: {1.0f, 0.0f, 0.0f, 1.0f} (red).
+  - highlightTintColor: Highlight tint RGB color (GPUVector4). Default: {0.0f, 0.0f, 1.0f, 1.0f} (blue).
+  - shadowTintIntensity: Shadow tint intensity, from 0.0 to 1.0. Default: 0.0
+  - highlightTintIntensity: Highlight tint intensity, from 0.0 to 1.0, with 0.0 as the default.
 
 
 ### Image processing
@@ -59,6 +77,12 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
 - GLImgGrayScaleFilter
 - GLImgMedianFilter
 - GLImgSobelEdgeFilter
+- GLImgBoxblurFilter: variable-radius box blur
+  - radius: A radius in pixels to use for the blur, with a default of 2.0. This adjusts the box radius for the blur function.
+- GLImgGaussianblurFilter: variable-radius gaussian blur
+  - radius: A radius in pixels to use for the blur, with a default of 2.0. This adjusts the box radius for the blur function.
+  - sigma: a value to the sigma variable in the Gaussian distribution function to generate the Gaussian kernel, with default value of 3.0
+
 
 ### Image blending
 
@@ -76,3 +100,9 @@ glimg.url = imageUrl;
 
 ## Demo
 A [demo page](https://weizhou.github.io/glimg/examples/) has been setup to show how to use the libary.
+
+## GLSL tips
+- no implicit type conversion, use explicit type conversion functions, such as float(), int() etc.
+- no dynamic alloc array. define a MAX_SIZE in the compile time, and use size variable to only access the part needed
+- seems no support to varying int, only varying float
+- can not for loop on a variable, work around is loop on MAX_COUNT, and break when the count exceed the needed size

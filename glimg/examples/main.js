@@ -37,6 +37,7 @@ const glimgs = [
   {url: "./lenna.png", desc: "Box blur filter (1 iterations)", filter: new Array(1).fill(new GLImgBoxblurFilter()).flat()},
   {url: "./lenna.png", desc: "Gaussian blur filter (1 iterations)", filter: new Array(1).fill(new GLImgGaussianblurFilter()).flat()},
   {url: "./lenna.png", desc: "Adaptive threshold filter", filter: [new GLImgAdaptiveThresholdFilter()]},
+  {url: "./lenna.png", desc: "Chroma keying filter", filter: [new GLImgChromakeyingFilter()]},
 ]
 
 for (var i=0; i<glimgs.length; ++i) {

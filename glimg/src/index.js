@@ -21,6 +21,7 @@ export { GLImgHazeFilter } from './colorFilters/glimgHazeFilter';
 export { GLImgSepiaToneFilter } from './colorFilters/glimgSepiaToneFilter';
 export { GLImgOpacityFilter } from './colorFilters/glimgOpacityFilter';
 export { GLImgLuminanceThresholdFilter } from './colorFilters/glimgLuminanceThresholdFilter';
+export { GLImgChromakeyingFilter } from './colorFilters/glimgChromakeyingFilter';
 
 
 export { GLImgExposureFilter } from './colorFilters/glimgExposureFilter';

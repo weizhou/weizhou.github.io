@@ -37,5 +37,6 @@ export { GLImgGrayscaleFilter } from "./colorFilters/glimgGrayscaleFilter";
 export { GLImgRadiusFilter } from "./glimgRadiusFilter";
 export { GLImgBoxblurFilter } from "./imageProcessing/glimgBoxblurFilter";
 export { GLImgGaussianblurFilter } from "./imageProcessing/glimgGaussianblurFilter";
+export { GLImgAdaptiveThresholdFilter } from "./imageProcessing/glimgAdaptiveThresholdFilter";
 
 export { GLImage } from "./glimg.js";

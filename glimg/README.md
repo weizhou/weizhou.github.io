@@ -55,10 +55,8 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
   - opacity: The value to multiply the incoming alpha channel for each pixel by (0.0 - 1.0, with 1.0 as the default)
 - GLImgLuminanceThresholdFilter: Pixels with a luminance above the threshold will appear white, and those below will be black
   - threshold: The luminance threshold, from 0.0 to 1.0, with a default of 0.5
-- GLImgAdaptiveThresholdFilter: Determines the local luminance around a pixel, then turns the pixel black if it is below that local luminance and white if above. This can be useful for picking out text under varying lighting conditions.
-  - blurRadiusInPixels: A multiplier for the background averaging blur radius in pixels, with a default of 4.
-- GLImgAverageLuminanceThresholdFilter: This applies a thresholding operation where the threshold is continually adjusted based on the average luminance of the scene.
-  - thresholdMultiplier: This is a factor that the average luminance will be multiplied by in order to arrive at the final threshold to use. By default, this is 1.0.
+
+
 - GLImgChromaKeyingFilter: For a given color in the image, sets the alpha channel to 0. This is similar to the ChromaKeyBlend, only instead of blending in a second image for a matching color this doesn't take in a second image and just turns a given color transparent.
   - thresholdSensitivity: How close a color match needs to exist to the target color to be replaced (default of 0.4)
   - smoothing: How smoothly to blend for the color match (default of 0.1)
@@ -82,6 +80,8 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
 - GLImgGaussianblurFilter: variable-radius gaussian blur
   - radius: A radius in pixels to use for the blur, with a default of 2.0. This adjusts the box radius for the blur function.
   - sigma: a value to the sigma variable in the Gaussian distribution function to generate the Gaussian kernel, with default value of 3.0
+- GLImgAdaptiveThresholdFilter: Determines the local luminance around a pixel, then turns the pixel black if it is below that local luminance and white if above. This can be useful for picking out text under varying lighting conditions.
+  - blurRadiusInPixels: A multiplier for the background averaging blur radius in pixels, with a default of 4.
 
 
 ### Image blending

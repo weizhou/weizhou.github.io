@@ -103,8 +103,20 @@ export class GLImgRadiusFilter extends GLImgFilter {
     return invokeWeightFuncString;
   }
 
+  getFragmentShaderPart1(){
+    return this.fragmentShaderPart1;
+  }
+
+  getFragmentShaderPart2(){
+    return this.fragmentShaderPart2;
+  }
+
+  getFragmentShaderPart3(){
+    return this.fragmentShaderPart3;
+  }
+
   generateFragmentShader() {
-    return this.fragmentShaderPart1 + this.weightFunc() + this.fragmentShaderPart2 + this.invokeWeightFunc() + this.fragmentShaderPart3;
+    return this.getFragmentShaderPart1() + this.weightFunc() + this.getFragmentShaderPart2() + this.invokeWeightFunc() + this.getFragmentShaderPart3();
   }
 
   bindShaderAttributes(gl, glProgram){  

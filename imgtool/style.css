@@ -1,21 +1,21 @@
-/* :root {
-    --footer-height: 50px;
-    --main-header-background: #91cce9;
-    --side-menu-background: #b8fdff;
-    --setting-background: #ffffff;
-    --work-area-background: #cae5ff;
-    --footer-background: #113C52;
-    --text-color: #F6F2E6;
-} */
 
 :root {
-    --footer-height: 50px;
-    --main-header-background: #113C52;
-    --side-menu-background: #1c4a61;
-    --setting-background: #29757E;
-    --work-area-background: #C5C7AA;
-    --footer-background: #113C52;
+    --header-height: 50px;
+    --footer-height: 30px;
+    --side-menu-width: 80px;
+    --setting-panel-width: 200px;
+    --main-action-margin-left: 100px;
+    --image-info-height: 20px;
+    --image-info-margin-top: 10px;
+    --font-size: 1rem;
+    --footer-font-size: 0.8rem;
+    --main-header-background: #053852;
+    --side-menu-background: #143d52;
+    --setting-background: #1c4a61;
+    --work-area-background: #021722;
+    --footer-background: #0c3642;
     --text-color: #F6F2E6;
+    --image-info-text-color: #646462;
 }
 
 html {
@@ -24,7 +24,7 @@ html {
 
 body {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: var(--font-size);
     font-family: serif;
 }
 
@@ -33,13 +33,13 @@ body {
 }
 
 .main-header {
-    height: 100px;
+    height: var(--header-height);
     background-color: var(--main-header-background);
     display: flex;
 }
 
 .logo a {
-    line-height: 100px;
+    line-height: var(--header-height);
     /* font-size: 40px; */
     text-decoration-line: none;
     color: var(--text-color);
@@ -47,19 +47,19 @@ body {
 }
 
 .main-action {
-    margin-left: 30px;
+    margin-left: var(--main-action-margin-left);
 }
 
 .main-action ul {
     display: flex;
     margin: 0;
-    height: 100px;
+    height: var(--header-height);
 }
 
 .main-action__item {
     list-style-type: none;
     margin-right: 30px;
-    line-height: 100px;
+    line-height: var(--header-height);
 }
 
 .main-action__item a {
@@ -75,8 +75,8 @@ body {
 .side-menu {
     background-color: var(--side-menu-background);
     margin: 0px;
-    width: 200px;
-    height: calc(100vh - 150px);
+    width: var(--side-menu-width);
+    height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
 .side-menu ul {
@@ -100,8 +100,8 @@ body {
 
 .setting {
     background-color: var(--setting-background);
-    width: 300px;
-    height: calc(100vh - 150px);
+    width: var(--setting-panel-width);
+    height: calc(100vh - var(--header-height) - var(--footer-background));
 }
 
 .setting-section {
@@ -120,21 +120,21 @@ body {
 
 .work-area {
     background-color: var(--work-area-background);
-    width: calc(100vw - 500px);
-    height: calc(100vh - 150px);
+    width: calc(100vw - var(--side-menu-width) - var(--setting-panel-width));
+    height: calc(100vh - - var(--header-height) - var(--footer-height));
     color: var(--main-header-background);
 }
 
 .image-info-section {
     width: 100%;
-    height: 50px;
-    margin-top: 30px;
+    height: var(--image-info-height);
+    margin-top: var(--image-info-margin-top);
     text-align: center;
 }
 
 .image-info-section label {
- 
-    line-height: 50px;
+    color: var(--image-info-text-color);
+    line-height: var(--image-info-height);
     margin: 0 20px;
 }
 
@@ -143,9 +143,9 @@ body {
 }
 
 .canvas-section {
-    border: solid 1px;
+    border-bottom: solid 1px;
     width: calc(100% - 40px);
-    height: calc(100% - 100px);
+    height: calc(100% - 40px - var(--image-info-height) - var(--image-info-margin-top));
     margin: 10px 20px;
     display: flex;
     align-items: center;
@@ -168,6 +168,6 @@ footer p {
     color: var(--text-color);
     text-align: center;
     line-height: var(--footer-height);
-    font-size: 1rem;
+    font-size: var(--footer-font-size);
 
 }

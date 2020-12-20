@@ -61,7 +61,7 @@ GLImgFilterDef.filters = {
   "VibranceFilter": new GLImgVibranceFilter(),
   "HighlightShadowTintFilter": new GLImgHighlightShadowTintFilter(),
 
-  "GrayScaleFilter": new GLImgGrayscaleFilter(),
+  "GrayscaleFilter": new GLImgGrayscaleFilter(),
   "GradientXFilter": new GLImgGradientXFilter(),
   "GradientYFilter": new GLImgGradientYFilter(),
   "NormalFilter": new GLImgNormalFilter(),

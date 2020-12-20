@@ -11,12 +11,20 @@
   </head>
   <body>
     <div>
-    </div>
-    <div>
       <gl-img filters='[
-      {"name": "BlockblurFilter", "radius": 30.0}
+        {"name": "GrayScaleFilter"},
+        {"name": "BlockblurFilter", "radius": 10.0}
+        ]' src="./lenna.png">
+      </gl-img>
+
+      <gl-img filters='[
+      {"name": "MedianFilter"},
+      {"name": "MedianFilter"},
+      {"name": "MedianFilter"},
+      {"name": "MedianFilter"}
+
                        ]'
-              src="./lenna.png">
+              src="./lisa.png">
       </gl-img>
     </div>
   </body>

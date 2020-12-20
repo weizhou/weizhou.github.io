@@ -1,7 +1,7 @@
 const imageContainer = document.querySelector('div');
 
 const glimgs = [
-  // {url: "./lenna.png", desc: "original image", filter: null},
+  {url: "./lenna.png", desc: "original image", filter: null},
   // {url: "./lenna.png", desc: "Brightness filter", filter: [new GLImgBrightnessFilter()]},
   // {url: "./lenna.png", desc: "Contrast filter", filter: [new GLImgContrastFilter()]},
   // {url: "./lenna.png", desc: "Exposure filter", filter: [new GLImgExposureFilter()]},
@@ -22,23 +22,23 @@ const glimgs = [
   // {url: "./lenna.png", desc: "SepiaTone filter", filter: [new GLImgSepiaToneFilter()]},
   // {url: "./lenna.png", desc: "Opacity filter", filter: [new GLImgOpacityFilter()]},
   // {url: "./lenna.png", desc: "Luminance threshold filter", filter: [new GLImgLuminanceThresholdFilter()]},
-  {url: "./lenna.png", desc: "Chroma keying filter", filter: [new GLImgChromakeyingFilter()]},
-  {url: "./lenna.png", desc: "Vibrance filter", filter: [new GLImgVibranceFilter()]},
-  {url: "./lenna.png", desc: "HighlightShadowTint filter", filter: [new GLImgHighlightShadowTintFilter()]},
+  // {url: "./lenna.png", desc: "Chroma keying filter", filter: [new GLImgChromakeyingFilter()]},
+  // {url: "./lenna.png", desc: "Vibrance filter", filter: [new GLImgVibranceFilter()]},
+  // {url: "./lenna.png", desc: "HighlightShadowTint filter", filter: [new GLImgHighlightShadowTintFilter()]},
 
 
   // {url: "./lenna.jpg", desc: "GrayScale filter", filter: [new GLImgGrayscaleFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+GradientX filters", filter: [new GLImgGrayscaleFilter(), new GLImgGradientXFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+GradientY filters", filter: [new GLImgGrayscaleFilter(), new GLImgGradientYFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+Normal filters", filter: [new GLImgGrayscaleFilter(), new GLImgNormalFilter()]},
-  {url: "./lenna.png", desc: "Sobel filters", filter: [new GLImgSobelEdgeFilter()]},
+  // {url: "./lenna.png", desc: "Sobel filters", filter: [new GLImgSobelEdgeFilter()]},
   // {url: "./lenna.png", desc: "Grayscal+Emboss filters", filter: [new GLImgGrayscaleFilter(), new GLImgEmbossFilter()]},
   // {url: "./lisa.png", desc: "original image", filter: null},
   // {url: "./lisa.png", desc: "Averagecolor filter", filter: [new GLImgAverageColorFilter()]},
   // {url: "./lisa.png", desc: "Median filter (8 iterations)", filter: new Array(8).fill(new GLImgMedianFilter()).flat()},
-  {url: "./lenna.png", desc: "Box blur filter (1 iterations)", filter: new Array(1).fill(new GLImgBoxblurFilter()).flat()},
-  {url: "./lenna.png", desc: "Gaussian blur filter (1 iterations)", filter: new Array(1).fill(new GLImgGaussianblurFilter()).flat()},
-  {url: "./lenna.png", desc: "Adaptive threshold filter", filter: [new GLImgAdaptiveThresholdFilter()]},
+  // {url: "./lenna.png", desc: "Box blur filter (1 iterations)", filter: new Array(1).fill(new GLImgBoxblurFilter()).flat()},
+  // {url: "./lenna.png", desc: "Gaussian blur filter (1 iterations)", filter: new Array(1).fill(new GLImgGaussianblurFilter()).flat()},
+  // {url: "./lenna.png", desc: "Adaptive threshold filter", filter: [new GLImgAdaptiveThresholdFilter()]},
   
 ]
 

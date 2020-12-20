@@ -42,4 +42,6 @@ export { GLImgBoxblurFilter } from "./imageProcessing/glimgBoxblurFilter";
 export { GLImgGaussianblurFilter } from "./imageProcessing/glimgGaussianblurFilter";
 export { GLImgAdaptiveThresholdFilter } from "./imageProcessing/glimgAdaptiveThresholdFilter";
 
-export { GLImage } from "./glimg.js";
+export { GLImage } from "./glimg";
+export { GLImgFilterDef } from "./glimgFilterDef"
+export { GLImageElement } from "./glimgElement";

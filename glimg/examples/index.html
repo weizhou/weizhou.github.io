@@ -11,9 +11,14 @@
   </head>
   <body>
     <div>
-
     </div>
-
-
+    <div>
+      <gl-img filters='[
+      {"name": "BrightnessFilter", "brightness":0.5},
+      {"name": "ChromakeyingFilter", "colorToReplace": "[0.2, 0.2, 0.2]"}
+                       ]'
+              src="./lenna.png">
+      </gl-img>
+    </div>
   </body>
 </html>

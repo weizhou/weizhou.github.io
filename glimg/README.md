@@ -1,4 +1,4 @@
-# GLMedia
+# GLMedia (under development!!)
 
 GLMedia is a javascript image processing library based on webgl 2.0 inspired by the [GPUImage project](https://github.com/BradLarson/GPUImage). It supports both images and videos. The goal is to abstract out the boilerplate code of webgl setup, provide a framework to apply different image processing filters coded using GLSL to images or videos. The library ported over most of the GPUImage filters, and added more. It also allows the users to add custom filters easily.
 

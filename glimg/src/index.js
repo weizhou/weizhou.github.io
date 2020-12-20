@@ -41,6 +41,7 @@ export { GLImgRadiusFilter } from "./glimgRadiusFilter";
 export { GLImgBoxblurFilter } from "./imageProcessing/glimgBoxblurFilter";
 export { GLImgGaussianblurFilter } from "./imageProcessing/glimgGaussianblurFilter";
 export { GLImgAdaptiveThresholdFilter } from "./imageProcessing/glimgAdaptiveThresholdFilter";
+export { GLImgBlockblurFilter } from './imageProcessing/glimgBlockblurFilter';
 
 export { GLImage } from "./glimg";
 export { GLImgFilterDef } from "./glimgFilterDef"

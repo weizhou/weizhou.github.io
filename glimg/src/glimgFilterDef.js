@@ -32,6 +32,7 @@ import { GLImgMedianFilter } from './imageProcessing/glimgMedianFilter'
 import { GLImgBoxblurFilter } from './imageProcessing/glimgBoxblurFilter'
 import { GLImgGaussianblurFilter } from './imageProcessing/glimgGaussianblurFilter'
 import { GLImgAdaptiveThresholdFilter } from './imageProcessing/glimgAdaptiveThresholdFilter'
+import { GLImgBlockblurFilter } from './imageProcessing/glimgBlockblurFilter'
 
 
 export class GLImgFilterDef {}
@@ -70,7 +71,8 @@ GLImgFilterDef.filters = {
   "MedianFilter": new GLImgMedianFilter(),
   "BoxblurFilter": new GLImgBoxblurFilter(),
   "GaussianblurFilter": new GLImgGaussianblurFilter(),
-  "AdaptiveThresholdFilter": new GLImgAdaptiveThresholdFilter()
+  "AdaptiveThresholdFilter": new GLImgAdaptiveThresholdFilter(),
+  "BlockblurFilter": new GLImgBlockblurFilter()
 }
 
 GLImgFilterDef.getFilter = (filtername)=>{

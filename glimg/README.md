@@ -69,11 +69,13 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
 
 
 ### Image processing
-- GLImgAverageColorFilter
-- GLImgEmbossFilter
-- GLImgGrayScaleFilter
-- GLImgMedianFilter
-- GLImgSobelEdgeFilter
+- GLImgAverageColorFilter: calculate the average colors from (top-left, top-right, bottom-left, bottom-right) pixels, and set it to the current position.
+- GLImgEmbossFilter: Applies an embossing effect on the image
+  - intensity: The strength of the embossing, from 0.0 to 4.0, with 1.0 as the normal level
+- GLImgGrayScaleFilter: Turn the image into a gray scale image
+- GLImgMedianFilter: Takes the median value of the three color components, over a 3x3 area
+- GLImgSobelEdgeFilter: Sobel edge detection, with edges highlighted in white
+  - edgeStrength: Adjusts the dynamic range of the filter. Higher values lead to stronger edges, but can saturate the intensity colorspace. Default is 1.0.
 - GLImgBoxblurFilter: variable-radius box blur
   - radius: A radius in pixels to use for the blur, with a default of 2.0. This adjusts the box radius for the blur function.
 - GLImgGaussianblurFilter: variable-radius gaussian blur
@@ -81,6 +83,8 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
   - sigma: a value to the sigma variable in the Gaussian distribution function to generate the Gaussian kernel, with default value of 3.0
 - GLImgAdaptiveThresholdFilter: Determines the local luminance around a pixel, then turns the pixel black if it is below that local luminance and white if above. This can be useful for picking out text under varying lighting conditions.
   - blurRadiusInPixels: A multiplier for the background averaging blur radius in pixels, with a default of 4.
+- GLImgBlockblurFilter: variable-radius block blur
+  - radius: A radius in pixels to use for the blur, with a default of 2.0. This adjusts the block size for the blur function.
 
 
 ### Image blending

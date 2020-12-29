@@ -10,7 +10,13 @@ module.exports = {
     libraryTarget: 'umd',
   },
   plugins: [
-    new WebpackShellPlugin({onBuildStart:['echo Webpack Start'], onBuildEnd:['echo start copy bundle file to examples', 'cp ./dist/*.js ./examples/.', 'echo Webpack End']})
+    new WebpackShellPlugin(
+      {
+        onBuildStart:['echo Webpack Start'], 
+        onBuildEnd:['echo start copy bundle file to examples and glimglab',
+                    'cp ./dist/*.js ./examples/.',
+                    'cp ./dist/*.js ../glimglab/src/assets/js/.',
+                    'echo Webpack End']})
   ],
   module: {
     rules: [

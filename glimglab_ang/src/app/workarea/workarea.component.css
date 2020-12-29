@@ -1,0 +1,39 @@
+.work-area {
+  background-color: var(--work-area-background);
+  width: calc(100vw - var(--side-menu-width) - var(--setting-panel-width));
+  height: 100%;
+  color: var(--main-header-background);
+}
+
+.image-info-section {
+  width: 100%;
+  height: var(--image-info-height);
+  margin-top: var(--image-info-margin-top);
+  text-align: center;
+}
+
+.image-info-section label {
+  color: var(--image-info-text-color);
+  line-height: var(--image-info-height);
+  margin: 0 20px;
+}
+
+.image-info-section .clickable {
+  cursor: pointer;
+}
+
+.canvas-section {
+  border-bottom: solid 1px;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px - var(--image-info-height) - var(--image-info-margin-top));
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  position: relative;
+}
+
+#work-canvas {
+  position: absolute;
+}

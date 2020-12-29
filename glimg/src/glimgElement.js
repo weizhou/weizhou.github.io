@@ -2,6 +2,9 @@ import { GLImage } from './glimg';
 import { GLImgFilterDef } from "./glimgFilterDef";
 
 export class GLImageElement extends HTMLElement {
+
+  static get observedAttributes() { return ["filters"]; }
+
   constructor() {
     super();
     

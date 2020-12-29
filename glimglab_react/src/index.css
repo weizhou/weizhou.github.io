@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --header-height: 50px;
+  --footer-height: 30px;
+  --side-menu-width: 80px;
+  --setting-panel-width: 200px;
+  --main-action-margin-left: 100px;
+  --image-info-height: 20px;
+  --image-info-margin-top: 10px;
+  --font-size: 1rem;
+  --footer-font-size: 0.8rem;
+  --main-header-background: #053852;
+  --side-menu-background: #143d52;
+  --setting-background: #1c4a61;
+  --work-area-background: #021722;
+  --footer-background: #0c3642;
+  --text-color: #F6F2E6;
+  --image-info-text-color: #646462;
+}
+
+html {
+  font-family: Georgia, serif;
+}
+
+body {
+  margin: 0;
+  font-size: var(--font-size);
+  font-family: serif;
+}
+
+.container {
+  margin: 0;
+}

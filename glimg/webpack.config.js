@@ -15,7 +15,7 @@ module.exports = {
         onBuildStart:['echo Webpack Start'], 
         onBuildEnd:['echo start copy bundle file to examples and glimglab',
                     'cp ./dist/*.js ./examples/.',
-                    'cp ./dist/*.js ../glimglab/src/assets/js/.',
+                    'cp ./dist/*.js ../glimglab/src/lib/.',
                     'echo Webpack End']})
   ],
   module: {

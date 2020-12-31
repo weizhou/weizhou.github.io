@@ -20,8 +20,8 @@ var imageZoominLabel = document.getElementById("image-zoom-in-label");
 var imageZoomoutLabel = document.getElementById("image-zoom-out-label");
 // canvas section
 var canvasSection = document.getElementById("canvas-section");
-var canvas = document.getElementById("work-canvas");
-var ctx = canvas.getContext("2d");
+var glimgElement = document.getElementById("work-canvas");
+// var ctx = canvas.getContext("2d");
 
 
 
@@ -29,13 +29,13 @@ var ctx = canvas.getContext("2d");
 var settingPanelWidth = settingPanel.clientWidth;
 var displaySettingPanel = true;
 
-resizeBtn.addEventListener("click", e=>{
-    if(displaySettingPanel){
-        hideSettingPanel();
-    }else {
-        showSettingPanel();
-    }
-})
+// resizeBtn.addEventListener("click", e=>{
+//     if(displaySettingPanel){
+//         hideSettingPanel();
+//     }else {
+//         showSettingPanel();
+//     }
+// })
 
 function hideSettingPanel() {
     settingPanel.style.display = "none";
@@ -82,90 +82,90 @@ function getImageSrcFromLocalStorage() {
 
 // work area logic
 // -- canvas related logic
-function initCanvas() {
-    let image = new Image();
-    image.src = getImageSrcFromLocalStorage();
+// function initCanvas() {
+//     let image = new Image();
+//     image.src = getImageSrcFromLocalStorage();
 
-    if(image.src) {
-        image.onload = e=>{
-            drawImageToCanvas(e.target);
-        };
-    }else {
-        drawInitalTextToCanvas();
-    }
+//     if(image.src) {
+//         image.onload = e=>{
+//             drawImageToCanvas(e.target);
+//         };
+//     }else {
+//         drawInitalTextToCanvas();
+//     }
+// }
+
+// function drawInitalTextToCanvas() {
+//     setCanvasSize(300, 200);
+
+//     ctx.save();
+//     ctx.translate(canvas.width/2, canvas.height/2);
+//     ctx.font = "30px Arial";
+//     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--text-color");
+//     ctx.textAlign = "center";
+//     ctx.fillText("load images to start!", 0, 0);
+//     ctx.restore();
+// }
+
+function positionAndScaleGlimgElement(width, height) {
+    glimgElement.width = `${width}px`;
+    glimgElement.height = `${height}px`;
+
+    // if (width > canvasSection.Width || height > canvasSection.clientHeight){
+    //     canvas.style.top = 0;
+    //     canvas.style.left = 0;    
+    // }else{
+    //     canvas.style.top = "";
+    //     canvas.style.left = "";    
+    // }
 }
 
-function drawInitalTextToCanvas() {
-    setCanvasSize(300, 200);
+function setglimgElementSize(width, height) {
+    glimgElement.width = width;
+    glimgElement.height = height;
 
-    ctx.save();
-    ctx.translate(canvas.width/2, canvas.height/2);
-    ctx.font = "30px Arial";
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--text-color");
-    ctx.textAlign = "center";
-    ctx.fillText("load images to start!", 0, 0);
-    ctx.restore();
+    positionAndScaleGlimgElement(width, height);
 }
 
-function positionAndScaleCanvas(width, height) {
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-
-    if (width > canvasSection.Width || height > canvasSection.clientHeight){
-        canvas.style.top = 0;
-        canvas.style.left = 0;    
-    }else{
-        canvas.style.top = "";
-        canvas.style.left = "";    
-    }
-}
-
-function setCanvasSize(width, height) {
-    canvas.width = width;
-    canvas.height = height;
-
-    positionAndScaleCanvas(width, height);
-}
-
-function drawImageToCanvas(image) {
-    setCanvasSize(image.width, image.height);
-    ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);    
-    imageSizeLabel.innerHTML = `size: ${image.width} x ${image.height}`;
-}
+// function drawImageToCanvas(image) {
+//     setCanvasSize(image.width, image.height);
+//     ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);    
+//     imageSizeLabel.innerHTML = `size: ${image.width} x ${image.height}`;
+// }
 
 imageFitLabel.addEventListener("click", e=>{
-    let imageAspect = canvas.width / canvas.height;
+    let imageAspect = glimgElement.canvasWidth / glimgElement.canvasHeight;
     let canvasSectionAspect = (canvasSection.offsetWidth-2) / (canvasSection.offsetHeight-2);
-    let canvasWidth = canvasSection.offsetWidth-2;
-    let canvasHeight = canvasSection.offsetHeight-2;
+    let glimgElementWidth = canvasSection.offsetWidth-2;
+    let glimgElementHeight = canvasSection.offsetHeight-2;
     if(imageAspect >= canvasSectionAspect){
-        canvasHeight = canvasWidth / imageAspect;
+        glimgElementHeight = glimgElementWidth / imageAspect;
     }else{
-        canvasWidth = canvasHeight * imageAspect;
+        glimgElementWidth = glimgElementHeight * imageAspect;
     }
-    positionAndScaleCanvas(canvasWidth, canvasHeight);
+    positionAndScaleGlimgElement(glimgElementWidth, glimgElementHeight);
 })
 
 imageOriginalLabel.addEventListener("click", e=>{
-    positionAndScaleCanvas(canvas.width, canvas.height);
+    positionAndScaleGlimgElement(glimgElement.width, glimgElement.height);
 })
 
 imageZoominLabel.addEventListener("click", e=>{
-    let zoominFactor = 1.5;
-    let canvasWidth = parseInt(canvas.style.width);
-    let canvasHeight = parseInt(canvas.style.height);
-    canvasWidth *= zoominFactor;
-    canvasHeight *= zoominFactor;
-    positionAndScaleCanvas(canvasWidth, canvasHeight);
+    zoomGlimgElement(1.5);
 })
 
 imageZoomoutLabel.addEventListener("click", e=>{
-    let zoomoutFactor = 1.5;
-    let canvasWidth = parseInt(canvas.style.width);
-    let canvasHeight = parseInt(canvas.style.height);
-    canvasWidth /= zoomoutFactor;
-    canvasHeight /= zoomoutFactor;
-    positionAndScaleCanvas(canvasWidth, canvasHeight);
+    zoomGlimgElement(1.0/1.5);
 })
 
-initCanvas();
+function zoomGlimgElement(zoomFactor){
+    const elWidth = glimgElement.width;
+    const elHeight = glimgElement.height;
+    let glimgElementWidth = parseInt(elWidth.substr(0, elWidth.length-2));
+    let glimgElementHeight = parseInt(elHeight.substr(0, elHeight.length -2));
+    glimgElementWidth *= zoomFactor;
+    glimgElementHeight *= zoomFactor;
+    positionAndScaleGlimgElement(glimgElementWidth, glimgElementHeight);
+}
+
+// initCanvas();

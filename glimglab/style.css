@@ -3,6 +3,7 @@
     --header-height: 50px;
     --footer-height: 30px;
     --side-menu-width: 80px;
+    --side-menu-icon-width: 50px;
     --setting-panel-width: 200px;
     --main-action-margin-left: 100px;
     --image-info-height: 20px;
@@ -38,12 +39,23 @@ body {
     display: flex;
 }
 
+.logo {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.logo svg {
+    margin-left: 10px;
+    align-self: center;
+}
+
+
 .logo a {
     line-height: var(--header-height);
     /* font-size: 40px; */
     text-decoration-line: none;
     color: var(--text-color);
-    margin-left: 20px;
 }
 
 .main-action {
@@ -57,15 +69,27 @@ body {
 }
 
 .main-action__item {
+    display: flex;
     list-style-type: none;
     margin-right: 30px;
     line-height: var(--header-height);
+    align-items: center;
+    justify-content: center;
 }
 
 .main-action__item a {
+    display: flex;
     color: var(--text-color);
     /* font-size: 30px; */
     text-decoration-line: none;
+    justify-content: center;
+    align-content: center;
+}
+
+.main-action__item a svg{
+    fill: var(--text-color);
+    align-self: center;
+    margin-left: 5px;
 }
 
 .middle-area {
@@ -87,15 +111,28 @@ body {
 }
 
 .side-menu__item {
+    display: flex;
+    flex-direction: column;
     list-style-type: none;
     text-align: center;
+    justify-content: center;
+    margin: 30px 0px;
 }
 
 .side-menu__item a {
-    line-height: 100px;
+    /* line-height: 100px; */
+    width:  var(--side-menu-width);
+    margin-top: 2px;
     color: var(--text-color);
-    /* font-size: 30px; */
+    font-size: 10px;
     text-decoration-line: none;
+}
+
+.side-menu__item svg {
+    align-self: center;
+    width: var(--side-menu-icon-width);
+    height: var(--side-menu-icon-width);
+    fill: rgba(155,155,155,1);
 }
 
 .setting {
@@ -136,6 +173,12 @@ body {
     color: var(--image-info-text-color);
     line-height: var(--image-info-height);
     margin: 0 20px;
+}
+
+.image-info-section label svg{
+    width: 20px;
+    height: 20px;
+    fill: rgb(155, 155, 155);
 }
 
 .image-info-section .clickable {

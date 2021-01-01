@@ -5,6 +5,7 @@
     <title>GLIMG LAB</title>
     <meta name="view-port" content="width=device-width, initial-scale=1.0" >   
     <script src="lib/glimg.bundle.js" defer></script>
+    <script src="./elements/glimglabNav.js" defer></script>
     <link rel="stylesheet" href="./style.css">
   </head>
 
@@ -45,7 +46,8 @@
       </header>
 
       <section class="middle-area">
-        <nav class="side-menu">
+        <lab-nav></lab-nav>
+        <!-- <nav class="side-menu">
           <ul>
             <li class="side-menu__item">
               <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 48 48" fill="rgba(153, 153, 153, 1)">
@@ -83,7 +85,7 @@
               <a href="#">Image Blend</a>
             </li>
           </ul>
-        </nav>
+        </nav> -->
         <setting class="setting" id="setting-panel">
           <section class="setting-section" id="resize-setting-section">
             <label class="setting-label">width: </label><input class="setting-input" type="number" placeholder="512">
@@ -122,13 +124,6 @@
               </svg>
             </label>
           </div>
-
-
-     
-
-
-
-
         </section>
       </section>    
 

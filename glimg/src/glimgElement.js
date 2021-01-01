@@ -3,10 +3,12 @@ import { GLImgFilterDef } from "./glimgFilterDef";
 
 export class GLImageElement extends HTMLElement {
 
-  static get observedAttributes() { return ['filters', 'width', 'height']; }
+  static get observedAttributes() { return ['src', 'filters', 'width', 'height']; }
   
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
+      case 'src':
+        this.glImage.url = this.getAttribute('src');
       case 'width':
         console.log(`width changed from ${oldValue} to ${newValue}`);
         this.updateCanvasStyle();
@@ -69,7 +71,15 @@ export class GLImageElement extends HTMLElement {
   get canvasHeight() {
     return this.glImage.getCanvas().height;
   }
+
+  get src() {
+    return this.getAttribute('src');
+  }
   
+  set src(newValue) {
+    this.setAttribute('src', newValue);
+  }
+
   get width() {
     return this.getAttribute('width');
   }

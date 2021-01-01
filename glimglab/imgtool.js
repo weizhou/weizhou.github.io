@@ -64,8 +64,8 @@ fileuploadInput.addEventListener("input", e => {
     reader.onload = function(){
         let img = new Image();
         img.onload = e=>{
-            drawImageToCanvas(e.target);
             saveImageToLocalStorage(img);
+            updateGlimgElementSrc(getImageSrcFromLocalStorage());
         };
         img.src = reader.result;
     }
@@ -168,4 +168,6 @@ function zoomGlimgElement(zoomFactor){
     positionAndScaleGlimgElement(glimgElementWidth, glimgElementHeight);
 }
 
-// initCanvas();
+function updateGlimgElementSrc(img){
+    glimgElement.src = img;
+}

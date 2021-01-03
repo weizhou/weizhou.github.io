@@ -4,11 +4,12 @@
   <head>
     <title>GLIMG LAB</title>
     <meta name="view-port" content="width=device-width, initial-scale=1.0" >   
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.1.0/rxjs.umd.js" defer></script> -->
-    <script src="./service/glimgService.js" defer></script>
     <script src="lib/glimg.bundle.js" defer></script>
+    <script src="./service/glimgService.js" defer></script>
+    <script src="./service/glimglabFilterService.js" defer></script>
     <script src="./elements/glimglabNav.js" defer></script>
     <script src="./elements/glimglabImageList.js" defer></script>
+    <script src="./elements/glimglabFilterList.js" defer></script>
     <script src="./elements/glimglabSizing.js" defer></script>
     <script src="./imgtool.js" defer></script>
     <link rel="stylesheet" href="./style.css">
@@ -51,30 +52,20 @@
       </header>
 
       <section class="middle-area">
+
         <lab-nav></lab-nav>
 
         <setting class="setting" id="setting-panel">
-          <lab-img-list></lab-img-list>
-
-          <!-- <section class="setting-section" id="resize-setting-section">
-            <label class="setting-label">width: </label><input class="setting-input" type="number" placeholder="512">
-          </section> -->
         </setting>
-
 
         <section class="work-area" id="work-area">
           <div class="canvas-section" id="canvas-section">
-            <!-- <div id="work-canvas"> -->
-              <!-- <gl-img id="work-canvas" filters='[
-                ]' src="./assets/images/canvas_init.jpg"
-                >
-              </gl-img> -->
-            <!-- </div> -->
           </div>
           <div class="image-info-section">
             <lab-img-sizing id="img-sizing-bar"></lab-img-sizing>
           </div>
         </section>
+
       </section>    
 
       <footer>

@@ -151,7 +151,6 @@ async function initImagesPanel() {
     imagePanel = new GLImagelabImageListElement();
     glimgService.subscribe(imagePanel);
     settingPanel.appendChild(imagePanel);
-    createGlimgElement("./assets/images/canvas_init.jpg");
 }
 
 function createGlimgElement(imgSrc, filters=null) {
@@ -161,7 +160,20 @@ function createGlimgElement(imgSrc, filters=null) {
     glimgElement.id = "work-canvas";
     glimgElement.onload = ()=>{fitImage();}
     canvasSection.appendChild(glimgElement);
-    // fitImage();
 }
 
-initImagesPanel();
+function initFiltersPanel() {
+    colorAdjustmentFilterPanel = new GLImagelabFilterListElement(glimglabFiltersService.colorAdjustFilters);
+    // colorAdjustmentFilterPanel.style = "display: none";
+    imageProcessingFilterPanel = new GLImagelabFilterListElement(glimglabFiltersService.imageProcessingFilters);
+    imageProcessingFilterPanel.style = "display: none";
+    settingPanel.appendChild(colorAdjustmentFilterPanel);
+    settingPanel.appendChild(imageProcessingFilterPanel);
+}
+
+(() => {
+    initImagesPanel();
+    initFiltersPanel();
+    createGlimgElement("./assets/images/canvas_init.jpg");
+})();
+

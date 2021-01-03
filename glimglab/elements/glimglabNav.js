@@ -113,6 +113,10 @@ class GLImagelabNavElement extends HTMLElement {
           fill: var(--side-menu-icon-color);
       }    
 
+      .side-menu__item.active {
+        border-left: 5px solid white; 
+      }
+
       .side-menu__item.active label {
         color: var(--side-menu-icon-color-active);
       }

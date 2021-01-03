@@ -1,10 +1,5 @@
 // element refrence section
-
 var settingPanel = document.getElementById("setting-panel");
-
-//side menu items
-var resizeBtn = document.getElementById("side-menu__resize");
-var spriteBtn = document.getElementById("side-menu__sprite");
 
 //main action buttons
 var loadImagesBtn = document.getElementById("load-image-btn");
@@ -12,18 +7,10 @@ var fileuploadInput = document.getElementById("fileupload-input");
 
 //work area
 var workArea = document.getElementById("work-area");
-// image info section labels
-var imageSizeLabel = document.getElementById("image-size-label");
-var imageFitLabel = document.getElementById("image-fit-size-lable");
-var imageOriginalLabel = document.getElementById("image-orignal-size-label");
-var imageZoominLabel = document.getElementById("image-zoom-in-label");
-var imageZoomoutLabel = document.getElementById("image-zoom-out-label");
+var imageSizingBar = document.getElementById("img-sizing-bar");
+
 // canvas section
 var canvasSection = document.getElementById("canvas-section");
-var glimgElement = document.getElementById("work-canvas");
-// var ctx = canvas.getContext("2d");
-
-
 
 // setting panel logic: show and hide panel
 var settingPanelWidth = settingPanel.clientWidth;
@@ -49,7 +36,6 @@ function showSettingPanel() {
     displaySettingPanel = true;
 }
 
-
 // main action logic
 // --load image
 loadImagesBtn.addEventListener("click", e=>{
@@ -64,8 +50,8 @@ fileuploadInput.addEventListener("input", e => {
     reader.onload = function(){
         let img = new Image();
         img.onload = e=>{
-            saveImageToLocalStorage(img);
-            updateGlimgElementSrc(getImageSrcFromLocalStorage());
+            glimgService.addImg(img.src);
+            createGlimgElement(img.src);
         };
         img.src = reader.result;
     }
@@ -73,51 +59,40 @@ fileuploadInput.addEventListener("input", e => {
 })
 
 function saveImageToLocalStorage(img){
-    localStorage.setItem("image", img.src);
+    let imgCount = 0;
+    if(localStorage.getItem('imgCount')) {
+        imgCount = parseInt(localStorage.getItem("imgCount"));
+    }
+
+    localStorage.setItem(`image${imgCount}`, img.src);
+    localStorage.setItem("imgCount", ++imgCount);
 }
 
 function getImageSrcFromLocalStorage() {
-    return localStorage.getItem("image");
+    let imgCount = localStorage.getItem('imgCount');
+    return localStorage.getItem(`image${imgCount-1}`);
 }
 
-// work area logic
-// -- canvas related logic
-// function initCanvas() {
-//     let image = new Image();
-//     image.src = getImageSrcFromLocalStorage();
-
-//     if(image.src) {
-//         image.onload = e=>{
-//             drawImageToCanvas(e.target);
-//         };
-//     }else {
-//         drawInitalTextToCanvas();
-//     }
-// }
-
-// function drawInitalTextToCanvas() {
-//     setCanvasSize(300, 200);
-
-//     ctx.save();
-//     ctx.translate(canvas.width/2, canvas.height/2);
-//     ctx.font = "30px Arial";
-//     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--text-color");
-//     ctx.textAlign = "center";
-//     ctx.fillText("load images to start!", 0, 0);
-//     ctx.restore();
-// }
+imageSizingBar.addEventListener("sizing-action", e=>{
+    switch (e.detail){
+        case "fit":
+            fitImage();
+            break;
+        case "original":
+            originalImage();
+            break;
+        case "zoomin":
+            zoominImage();
+            break;
+        case "zoomout":
+            zoomoutImage();
+            break;
+    }
+});
 
 function positionAndScaleGlimgElement(width, height) {
     glimgElement.width = `${width}px`;
     glimgElement.height = `${height}px`;
-
-    // if (width > canvasSection.Width || height > canvasSection.clientHeight){
-    //     canvas.style.top = 0;
-    //     canvas.style.left = 0;    
-    // }else{
-    //     canvas.style.top = "";
-    //     canvas.style.left = "";    
-    // }
 }
 
 function setglimgElementSize(width, height) {
@@ -127,13 +102,13 @@ function setglimgElementSize(width, height) {
     positionAndScaleGlimgElement(width, height);
 }
 
-// function drawImageToCanvas(image) {
-//     setCanvasSize(image.width, image.height);
-//     ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);    
-//     imageSizeLabel.innerHTML = `size: ${image.width} x ${image.height}`;
-// }
+function drawImageToCanvas(image) {
+    setCanvasSize(image.width, image.height);
+    ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);    
+    imageSizeLabel.innerHTML = `size: ${image.width} x ${image.height}`;
+}
 
-imageFitLabel.addEventListener("click", e=>{
+function fitImage() {
     let imageAspect = glimgElement.canvasWidth / glimgElement.canvasHeight;
     let canvasSectionAspect = (canvasSection.offsetWidth-2) / (canvasSection.offsetHeight-2);
     let glimgElementWidth = canvasSection.offsetWidth-2;
@@ -144,19 +119,19 @@ imageFitLabel.addEventListener("click", e=>{
         glimgElementWidth = glimgElementHeight * imageAspect;
     }
     positionAndScaleGlimgElement(glimgElementWidth, glimgElementHeight);
-})
+}
 
-imageOriginalLabel.addEventListener("click", e=>{
+function originalImage() {
     positionAndScaleGlimgElement(glimgElement.width, glimgElement.height);
-})
+}
 
-imageZoominLabel.addEventListener("click", e=>{
+function zoominImage() {
     zoomGlimgElement(1.5);
-})
+}
 
-imageZoomoutLabel.addEventListener("click", e=>{
+function zoomoutImage() {
     zoomGlimgElement(1.0/1.5);
-})
+}
 
 function zoomGlimgElement(zoomFactor){
     const elWidth = glimgElement.width;
@@ -171,3 +146,22 @@ function zoomGlimgElement(zoomFactor){
 function updateGlimgElementSrc(img){
     glimgElement.src = img;
 }
+
+async function initImagesPanel() {
+    imagePanel = new GLImagelabImageListElement();
+    glimgService.subscribe(imagePanel);
+    settingPanel.appendChild(imagePanel);
+    createGlimgElement("./assets/images/canvas_init.jpg");
+}
+
+function createGlimgElement(imgSrc, filters=null) {
+    canvasSection.innerHTML = "";
+    glimgElement = new GLImageElement();
+    glimgElement.src = imgSrc;
+    glimgElement.id = "work-canvas";
+    glimgElement.onload = ()=>{fitImage();}
+    canvasSection.appendChild(glimgElement);
+    // fitImage();
+}
+
+initImagesPanel();

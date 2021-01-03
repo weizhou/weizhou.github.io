@@ -27,7 +27,7 @@ export class GLImageElement extends HTMLElement {
 
     this.glImage = new GLImage();
     const filterConfs = JSON.parse(this.getAttribute('filters'));
-    filterConfs.forEach( filterConf => {
+    filterConfs && filterConfs.forEach( filterConf => {
       let filtername = filterConf.name;
       let filter = GLImgFilterDef.getFilter(filtername);
       
@@ -36,27 +36,11 @@ export class GLImageElement extends HTMLElement {
       this.glImage.addFilter(filter);
     });
 
-    this.glImage.width = this.getAttribute('width');
-    this.glImage.height = this.getAttribute('height');
-
     this.glImage.onload = ()=> {
       const canvas = this.glImage.getCanvas();
-      // if (!glImage.width && !glImage.height){
-      //   glImage.width = canvas.width;
-      //   glImage.height = canvas.height;
-      // } else if(!glImage.width){
-      //   glImage.width = glImage.height * (canvas.width/canvas.height);
-      // } else {
-      //   glImage.height = glImage.width * (canvas.height/canvas.width);
-      // }
-      // canvas.style = `width: var(--width); height: var(--height); object-fit:var(--object-fit)`
-      // canvas.style = `width: ${this.glImage.width}; height: ${this.glImage.height}; object-fit: fit`;
-
-      this.updateCanvasStyle();
       shadow.appendChild(canvas);
+      this.onload();
     };
-
-    this.glImage.url = this.getAttribute('src');
   
   }
 
@@ -95,10 +79,8 @@ export class GLImageElement extends HTMLElement {
   set height(newValue) {
     this.setAttribute('height', newValue);
   }
-
-
 }
 
-
+// GLImageElement.prototype.onload = () => {};
 
 customElements.define('gl-img', GLImageElement);

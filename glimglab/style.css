@@ -76,20 +76,30 @@ body {
     justify-content: center;
 }
 
-.main-action__item a {
+.main-action__item span {
     display: flex;
-    color: var(--text-color);
+    color: rgb(200, 200, 200);
     /* font-size: 30px; */
     text-decoration-line: none;
     justify-content: center;
     align-content: center;
 }
 
-.main-action__item a svg{
-    fill: var(--text-color);
+.main-action__item span:hover {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}
+
+.main-action__item span:hover svg {
+    fill: rgb(255, 255, 255);
+}
+
+.main-action__item span svg{
+    fill: rgb(200, 200, 200);
     align-self: center;
     margin-left: 5px;
 }
+
 
 .middle-area {
     display: flex;
@@ -166,22 +176,6 @@ body {
     height: var(--image-info-height);
     margin-top: var(--image-info-margin-top);
     text-align: center;
-}
-
-.image-info-section label {
-    color: var(--image-info-text-color);
-    line-height: var(--image-info-height);
-    margin: 0 20px;
-}
-
-.image-info-section label svg{
-    width: 20px;
-    height: 20px;
-    fill: rgb(155, 155, 155);
-}
-
-.image-info-section .clickable {
-    cursor: pointer;
 }
 
 .canvas-section {

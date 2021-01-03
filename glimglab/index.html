@@ -4,8 +4,13 @@
   <head>
     <title>GLIMG LAB</title>
     <meta name="view-port" content="width=device-width, initial-scale=1.0" >   
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.1.0/rxjs.umd.js" defer></script> -->
+    <script src="./service/glimgService.js" defer></script>
     <script src="lib/glimg.bundle.js" defer></script>
     <script src="./elements/glimglabNav.js" defer></script>
+    <script src="./elements/glimglabImageList.js" defer></script>
+    <script src="./elements/glimglabSizing.js" defer></script>
+    <script src="./imgtool.js" defer></script>
     <link rel="stylesheet" href="./style.css">
   </head>
 
@@ -23,22 +28,22 @@
         <action class="main-action">
           <ul>
             <li class="main-action__item">
-              <a id="load-image-btn" href="#">
+              <span id="load-image-btn">
                 Upload<input type="file" id="fileupload-input" style="display: none">              
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="rgba(153, 153, 153, 1)">
                   <path d="M0 0h48v48H0z" fill="none"></path>
                   <path d="M38.71 20.07C37.35 13.19 31.28 8 24 8c-5.78 0-10.79 3.28-13.3 8.07C4.69 16.72 0 21.81 0 28c0 6.63 5.37 12 12 12h26c5.52 0 10-4.48 10-10 0-5.28-4.11-9.56-9.29-9.93zM28 26v8h-8v-8h-6l10-10 10 10h-6z"></path>
                 </svg>
-              </a>
+              </span>
             </li>
             <li class="main-action__item">
-              <a id="download-btn" href="#">
+              <span id="download-btn">
                 download
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="rgba(153, 153, 153, 1)">
                   <path d="M0 0h48v48H0z" fill="none"></path>
                   <path d="M38.71 20.07C37.35 13.19 31.28 8 24 8c-5.78 0-10.79 3.28-13.3 8.07C4.69 16.72 0 21.81 0 28c0 6.63 5.37 12 12 12h26c5.52 0 10-4.48 10-10 0-5.28-4.11-9.56-9.29-9.93zM34 26L24 36 14 26h6v-8h8v8h6z"></path>
                 </svg>
-              </a>
+              </span>
 
             </li>
           </ul>
@@ -47,82 +52,27 @@
 
       <section class="middle-area">
         <lab-nav></lab-nav>
-        <!-- <nav class="side-menu">
-          <ul>
-            <li class="side-menu__item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 48 48" fill="rgba(153, 153, 153, 1)">
-                <path fill="none" d="M0 0h48v48H0V0z"></path>
-                <path d="M2 10h4v28H2zm8 0h4v28h-4zm34 0H20c-1.1 0-2 .9-2 2v24c0 1.1.9 2 2 2h24c1.1 0 2-.9 2-2V12c0-1.1-.9-2-2-2zM22 34l5-6.3 3.57 4.3 5-6.44L42 34H22z"></path>
-              </svg>
-              <a href="#">images</a>
-            </li>
-            <li class="side-menu__item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 48 48" fill="rgba(116, 116, 116, 1)">
-                <path fill="none" d="M48 0H0v48h48V0zm0 0H0v48h48V0zM0 48h48V0H0v48z"></path>
-                <path d="M35.32 15.99L24 4.69l-11.32 11.3C9.56 19.11 8 23.27 8 27.27s1.56 8.22 4.68 11.34 7.22 4.7 11.32 4.7 8.2-1.58 11.32-4.7S40 31.27 40 27.27s-1.56-8.16-4.68-11.28zM12 28c.02-4 1.24-6.55 3.52-8.81L24 10.53l8.48 8.75C34.76 21.55 35.98 24 36 28H12z"></path>
-              </svg>
-              <a href="#">color ajustment</a>
-            </li>
-            <li class="side-menu__item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 48 48" fill="rgba(115, 115, 115, 1)">
-                <path d="M0 0h48v48H0z" fill="none"></path>
-                <path d="M18 14h-4v4h4v-4zm0 8h-4v4h4v-4zm0-16c-2.21 0-4 1.79-4 4h4V6zm8 24h-4v4h4v-4zM38 6v4h4c0-2.21-1.79-4-4-4zM26 6h-4v4h4V6zm-8 28v-4h-4c0 2.21 1.79 4 4 4zm20-8h4v-4h-4v4zm0-8h4v-4h-4v4zm0 16c2.21 0 4-1.79 4-4h-4v4zM10 14H6v24c0 2.21 1.79 4 4 4h24v-4H10V14zm20-4h4V6h-4v4zm0 24h4v-4h-4v4z"></path>
-              </svg>
-              <a href="#">image processing</a>
-            </li>
-            <li class="side-menu__item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 48 48" fill="rgba(115, 115, 115, 1)">
-                <path d="M0 0h48v48H0z" fill="none"></path>
-                <path d="M6 26h16V6H6v20zm0 16h16V30H6v12zm20 0h16V22H26v20zm0-36v12h16V6H26z"></path>
-              </svg>
-              <a href="#">visual effect</a>
-            </li>
-            <li class="side-menu__item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 48 48" fill="rgba(115, 115, 115, 1)">
-                <path d="M0 0h48v48H0z" fill="none"></path>
-                <path d="M4 12H0v10h.02L0 40c0 2.21 1.79 4 4 4h36v-4H4V12zm40-4H28l-4-4H12C9.79 4 8.02 5.79 8.02 8L8 32c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zM14 30l9-12 7 9.01L35 21l7 9H14z"></path>
-              </svg>
-              <a href="#">Image Blend</a>
-            </li>
-          </ul>
-        </nav> -->
+
         <setting class="setting" id="setting-panel">
-          <section class="setting-section" id="resize-setting-section">
+          <lab-img-list></lab-img-list>
+
+          <!-- <section class="setting-section" id="resize-setting-section">
             <label class="setting-label">width: </label><input class="setting-input" type="number" placeholder="512">
-          </section>
+          </section> -->
         </setting>
+
+
         <section class="work-area" id="work-area">
           <div class="canvas-section" id="canvas-section">
             <!-- <div id="work-canvas"> -->
-              <gl-img id="work-canvas" filters='[
+              <!-- <gl-img id="work-canvas" filters='[
                 ]' src="./assets/images/canvas_init.jpg"
                 >
-              </gl-img>
+              </gl-img> -->
             <!-- </div> -->
           </div>
           <div class="image-info-section">
-            <label id="image-orignal-size-label" class="clickable">
-              <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 48 48" fill="rgba(153, 153, 153, 1)">
-                <path d="M30 6l4.59 4.59-5.76 5.75 2.83 2.83 5.75-5.76L42 18V6zM6 18l4.59-4.59 5.75 5.76 2.83-2.83-5.76-5.75L18 6H6zm12 24l-4.59-4.59 5.76-5.75-2.83-2.83-5.75 5.76L6 30v12zm24-12l-4.59 4.59-5.75-5.76-2.83 2.83 5.76 5.75L30 42h12z"></path>
-                <path fill="none" d="M0 0h48v48H0z"></path>
-              </svg>
-            </label>
-            <label id="image-fit-size-lable" class="clickable" title="fit to the window">
-              <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 48 48" fill="rgba(255, 255, 255, 1)">
-                <path d="M0 0h48v48H0z" fill="none"></path>
-                <path d="M38 6H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zm0 32H10V10h28v28zM27.93 24.57l-5.5 7.08-3.93-4.72L13 34h22l-7.07-9.43z"></path>
-              </svg>
-            </label>
-            <label id="image-zoom-in-label" class="clickable">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M13 10h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
-              </svg>
-            </label>
-            <label id="image-zoom-out-label" class="clickable">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M13 10h-8v-2h8v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
-              </svg>
-            </label>
+            <lab-img-sizing id="img-sizing-bar"></lab-img-sizing>
           </div>
         </section>
       </section>    
@@ -132,8 +82,6 @@
       </footer>
 
     </div>
-
-    <script src="./imgtool.js"></script>
   </body>
 
 

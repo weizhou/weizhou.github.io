@@ -61,9 +61,9 @@ export class GLImage {
       get() {
         return this._url;
       },
-      set(url){
+      async set(url){
         this._url = url;
-        this.applyFilterToImage(url);
+        await this.applyFilterToImage(url);
       }
     });
   }

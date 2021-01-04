@@ -168,7 +168,7 @@ body {
 .work-area {
     background-color: var(--work-area-background);
     width: calc(100vw - var(--side-menu-width) - var(--setting-panel-width));
-    height: calc(100vh - - var(--header-height) - var(--footer-height));
+    height: calc(100vh - var(--header-height) - var(--footer-height));
     color: var(--main-header-background);
 }
 
@@ -196,10 +196,6 @@ body {
     justify-content: center;
     overflow: auto;
     position: relative;
-}
-
-#work-canvas {
-    position: absolute;
 }
 
 footer {

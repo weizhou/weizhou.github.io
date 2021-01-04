@@ -18,18 +18,6 @@ var canvasSection = document.getElementById("canvas-section");
 var settingPanelWidth = settingPanel.clientWidth;
 var displaySettingPanel = true;
 
-function hideSettingPanel() {
-    settingPanel.style.display = "none";
-    workArea.style.width = `${workArea.clientWidth + settingPanelWidth}px`;
-    displaySettingPanel = false;
-}
-
-function showSettingPanel() {
-    workArea.style.width = `${workArea.clientWidth - settingPanelWidth}px`;
-    settingPanel.style.display = "block";
-    displaySettingPanel = true;
-}
-
 // main action logic
 // --load image
 loadImagesBtn.addEventListener("click", e=>{
@@ -45,111 +33,50 @@ fileuploadInput.addEventListener("input", e => {
         let img = new Image();
         img.onload = e=>{
             glimgService.addImg(img);
-            createGlimgElement(img.src);
+            initCanvas(img.src);
         };
         img.src = reader.result;
     }
     reader.readAsDataURL(e.target.files[0]);    
 })
 
-function saveImageToLocalStorage(img){
-    let imgCount = 0;
-    if(localStorage.getItem('imgCount')) {
-        imgCount = parseInt(localStorage.getItem("imgCount"));
-    }
-
-    localStorage.setItem(`image${imgCount}`, img.src);
-    localStorage.setItem("imgCount", ++imgCount);
-}
-
-function getImageSrcFromLocalStorage() {
-    let imgCount = localStorage.getItem('imgCount');
-    return localStorage.getItem(`image${imgCount-1}`);
-}
-
 imageSizingBar.addEventListener("sizing-action", e=>{
+    const canvasElement = canvasSection.firstChild;
     switch (e.detail){
         case "fit":
-            fitImage();
+            canvasElement.fitSize(canvasSection.offsetWidth, canvasSection.offsetHeight);
             break;
         case "original":
-            originalImage();
+            canvasElement.originalSize();
             break;
         case "zoomin":
-            zoominImage();
+            canvasElement.zoomin();
             break;
         case "zoomout":
-            zoomoutImage();
+            canvasElement.zoomout();
             break;
     }
 });
 
 glimgService.subscribe(imageSizingBar);
 
-function positionAndScaleGlimgElement(width, height) {
-    glimgElement.width = `${width}px`;
-    glimgElement.height = `${height}px`;
-}
-
-function setglimgElementSize(width, height) {
-    glimgElement.width = width;
-    glimgElement.height = height;
-
-    positionAndScaleGlimgElement(width, height);
-}
-
-function drawImageToCanvas(image) {
-    setCanvasSize(image.width, image.height);
-    ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);    
-    imageSizeLabel.innerHTML = `size: ${image.width} x ${image.height}`;
-}
-
-function fitImage() {
-    let imageAspect = glimgElement.canvasWidth / glimgElement.canvasHeight;
-    let canvasSectionAspect = (canvasSection.offsetWidth-2) / (canvasSection.offsetHeight-2);
-    let glimgElementWidth = canvasSection.offsetWidth-2;
-    let glimgElementHeight = canvasSection.offsetHeight-2;
-    if(imageAspect >= canvasSectionAspect){
-        glimgElementHeight = glimgElementWidth / imageAspect;
-    }else{
-        glimgElementWidth = glimgElementHeight * imageAspect;
-    }
-    positionAndScaleGlimgElement(glimgElementWidth, glimgElementHeight);
-}
-
-function originalImage() {
-    positionAndScaleGlimgElement(glimgElement.width, glimgElement.height);
-}
-
-function zoominImage() {
-    zoomGlimgElement(1.5);
-}
-
-function zoomoutImage() {
-    zoomGlimgElement(1.0/1.5);
-}
-
-function zoomGlimgElement(zoomFactor){
-    const elWidth = glimgElement.width;
-    const elHeight = glimgElement.height;
-    let glimgElementWidth = parseInt(elWidth.substr(0, elWidth.length-2));
-    let glimgElementHeight = parseInt(elHeight.substr(0, elHeight.length -2));
-    glimgElementWidth *= zoomFactor;
-    glimgElementHeight *= zoomFactor;
-    positionAndScaleGlimgElement(glimgElementWidth, glimgElementHeight);
-}
-
 function updateGlimgElementSrc(img){
     glimgElement.src = img;
 }
 
-function createGlimgElement(imgSrc, filters=null) {
-    canvasSection.innerHTML = "";
-    glimgElement = new GLImageElement();
-    glimgElement.src = imgSrc;
-    glimgElement.id = "work-canvas";
-    glimgElement.onload = ()=>{fitImage();}
-    canvasSection.appendChild(glimgElement);
+function initCanvas(imgSrc, filters=null) {
+    while (canvasSection.firstChild) {
+        canvasSection.removeChild(canvasSection.firstChild);
+    }
+
+    const canvasElement = new GLImagelabCanvasElement();
+    canvasElement.onload = ()=>{
+        canvasElement.fitSize(canvasSection.offsetWidth, canvasSection.offsetHeight);
+    }
+    canvasElement.populateImages(imgSrc);
+    canvasElement.style = "width: 100%; height: 100%; display: flex; justify-content: center; align-items: center";
+
+    canvasSection.appendChild(canvasElement);
 }
 
 function initNavPanel() {
@@ -192,6 +119,6 @@ function initSettingPanel() {
 (() => {
     initNavPanel();
     initSettingPanel();
-    createGlimgElement("./assets/images/canvas_init.jpg");
+    initCanvas("./assets/images/canvas_init.jpg");
 })();
 

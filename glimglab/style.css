@@ -186,12 +186,6 @@ body {
     text-align: center;
 }
 
-.image-info-section span {
-    position: absolute;
-    left: 20px;
-    color: rgb(155, 155, 155);
-}
-
 .canvas-section {
     border-bottom: solid 1px;
     width: calc(100% - 40px);

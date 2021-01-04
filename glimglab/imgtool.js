@@ -18,14 +18,6 @@ var canvasSection = document.getElementById("canvas-section");
 var settingPanelWidth = settingPanel.clientWidth;
 var displaySettingPanel = true;
 
-// resizeBtn.addEventListener("click", e=>{
-//     if(displaySettingPanel){
-//         hideSettingPanel();
-//     }else {
-//         showSettingPanel();
-//     }
-// })
-
 function hideSettingPanel() {
     settingPanel.style.display = "none";
     workArea.style.width = `${workArea.clientWidth + settingPanelWidth}px`;
@@ -52,7 +44,7 @@ fileuploadInput.addEventListener("input", e => {
     reader.onload = function(){
         let img = new Image();
         img.onload = e=>{
-            glimgService.addImg(img.src);
+            glimgService.addImg(img);
             createGlimgElement(img.src);
         };
         img.src = reader.result;
@@ -91,6 +83,8 @@ imageSizingBar.addEventListener("sizing-action", e=>{
             break;
     }
 });
+
+glimgService.subscribe(imageSizingBar);
 
 function positionAndScaleGlimgElement(width, height) {
     glimgElement.width = `${width}px`;

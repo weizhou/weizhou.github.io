@@ -13,12 +13,12 @@ class GLImgService {
     this._subscribers.push(sub);
   }
 
-  addImg(imgSrc) {
+  addImg(img) {
     if(this._imgs.length >= this._maxImgs) {
       this._imgs.splice(-1,1);
     }
     this._imgs.forEach(el => el.active = false);
-    let imgItem = {id: Math.random().toString(16).substring(2), img: imgSrc, filters: [], active: true};
+    let imgItem = {id: Math.random().toString(16).substring(2), img: img.src, width: img.width, height: img.height, filters: [], active: true};
     this._imgs.unshift(imgItem);
     this.notifySubs();
   }

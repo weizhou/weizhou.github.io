@@ -6,6 +6,7 @@
     --side-menu-icon-width: 50px;
     --setting-panel-width: 280px;
     --main-action-margin-left: 100px;
+    --filter-bar-height: 30px;
     --image-info-height: 20px;
     --image-info-margin-top: 10px;
     --font-size: 1rem;
@@ -171,17 +172,30 @@ body {
     color: var(--main-header-background);
 }
 
+.filter-bar {
+    width: 100%;
+    height: var(--filter-bar-height);
+    background: rgb(4, 82, 4);
+}
+
 .image-info-section {
     width: 100%;
     height: var(--image-info-height);
     margin-top: var(--image-info-margin-top);
+    position: relative;
     text-align: center;
+}
+
+.image-info-section span {
+    position: absolute;
+    left: 20px;
+    color: rgb(155, 155, 155);
 }
 
 .canvas-section {
     border-bottom: solid 1px;
     width: calc(100% - 40px);
-    height: calc(100% - 40px - var(--image-info-height) - var(--image-info-margin-top));
+    height: calc(100% - 40px - var(--image-info-height) - var(--image-info-margin-top) - var(--filter-bar-height));
     margin: 10px 20px;
     display: flex;
     align-items: center;

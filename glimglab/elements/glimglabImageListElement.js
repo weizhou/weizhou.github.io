@@ -49,26 +49,6 @@ class GLImagelabImageListElement extends HTMLElement {
     shadow.appendChild(imgsDiv);
   }
 
-  // populateImages (imgsDiv, imgs) {
-  //   let innerHTML = `
-  //     <div class="img-list">
-  //       <ul>
-  //         imgcontent
-  //       </ul>
-  //     </div>
-  //   `
-  //   let imgContent = "";
-  //   imgs.forEach(item => {
-  //     if(item.img){
-  //       imgContent += `
-  //         <li class="img__item ${item.active ? "active": ""}" id="img${item.id}">
-  //           <img src=${item.img}>
-  //         </li>      
-  //       `;
-  //     }
-  //   });
-
-
   populateImages (imgsDiv, imgs) {
     
     while (imgsDiv.firstChild) {

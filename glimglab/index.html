@@ -8,10 +8,10 @@
     <script src="./service/glimgService.js" defer></script>
     <script src="./service/glimglabFilterService.js" defer></script>
     <script src="./service/glimglabNavService.js" defer></script>
-    <script src="./elements/glimglabNav.js" defer></script>
-    <script src="./elements/glimglabImageList.js" defer></script>
-    <script src="./elements/glimglabFilterList.js" defer></script>
-    <script src="./elements/glimglabSizing.js" defer></script>
+    <script src="./elements/glimglabNavElement.js" defer></script>
+    <script src="./elements/glimglabImageListElement.js" defer></script>
+    <script src="./elements/glimglabFilterListElement.js" defer></script>
+    <script src="./elements/glimglabSizingElement.js" defer></script>
     <script src="./imgtool.js" defer></script>
     <link rel="stylesheet" href="./style.css">
   </head>
@@ -61,9 +61,11 @@
         </setting>
 
         <section class="work-area" id="work-area">
+          <div class="filter-bar" id="filter-list-bar">hello</div>
           <div class="canvas-section" id="canvas-section">
           </div>
           <div class="image-info-section">
+            <span>1200x500</span>
             <lab-img-sizing id="img-sizing-bar"></lab-img-sizing>
           </div>
         </section>

@@ -1,4 +1,6 @@
 // element refrence section
+
+var navPanel = document.getElementById("nav-panel");
 var settingPanel = document.getElementById("setting-panel");
 
 //main action buttons
@@ -147,12 +149,6 @@ function updateGlimgElementSrc(img){
     glimgElement.src = img;
 }
 
-async function initImagesPanel() {
-    imagePanel = new GLImagelabImageListElement();
-    glimgService.subscribe(imagePanel);
-    settingPanel.appendChild(imagePanel);
-}
-
 function createGlimgElement(imgSrc, filters=null) {
     canvasSection.innerHTML = "";
     glimgElement = new GLImageElement();
@@ -162,18 +158,46 @@ function createGlimgElement(imgSrc, filters=null) {
     canvasSection.appendChild(glimgElement);
 }
 
+function initNavPanel() {
+    navElement = new GLImagelabNavElement();
+    navPanel.appendChild(navElement);
+
+}
+async function initImagesPanel() {
+    imagePanel = new GLImagelabImageListElement();
+    imagePanel.id = "setting-panel_image";
+    glimgService.subscribe(imagePanel);
+    settingPanel.appendChild(imagePanel);
+}
+
 function initFiltersPanel() {
     colorAdjustmentFilterPanel = new GLImagelabFilterListElement(glimglabFiltersService.colorAdjustFilters);
-    // colorAdjustmentFilterPanel.style = "display: none";
+    colorAdjustmentFilterPanel.id = "setting-panel_color_adjustment";
+    colorAdjustmentFilterPanel.style = "display: none";
     imageProcessingFilterPanel = new GLImagelabFilterListElement(glimglabFiltersService.imageProcessingFilters);
+    imageProcessingFilterPanel.id = "setting-panel_image_processing";
     imageProcessingFilterPanel.style = "display: none";
     settingPanel.appendChild(colorAdjustmentFilterPanel);
     settingPanel.appendChild(imageProcessingFilterPanel);
 }
 
-(() => {
+function initSettingPanel() {
     initImagesPanel();
     initFiltersPanel();
+    settingPanel.updateNav = (selectedItem) => {
+        selectedItem = selectedItem.replace(/side-menu/g, "setting-panel");
+        settingPanel.childNodes.forEach(node => {
+            node.style="display: none";
+        });
+        document.getElementById(selectedItem).style.display = "block";
+        
+    }
+    glimglabNavService.subscribe(settingPanel);
+}
+
+(() => {
+    initNavPanel();
+    initSettingPanel();
     createGlimgElement("./assets/images/canvas_init.jpg");
 })();
 

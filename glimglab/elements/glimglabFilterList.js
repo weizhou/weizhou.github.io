@@ -43,9 +43,6 @@ class GLImagelabFilterListElement extends HTMLElement {
         scrollbar-width: none;  /* Firefox */
       }
 
-
-
-
       .filter-list ul .filter__item {
         list-style-type: none;
         display: flex;

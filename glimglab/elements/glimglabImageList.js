@@ -49,30 +49,59 @@ class GLImagelabImageListElement extends HTMLElement {
     shadow.appendChild(imgsDiv);
   }
 
+  // populateImages (imgsDiv, imgs) {
+  //   let innerHTML = `
+  //     <div class="img-list">
+  //       <ul>
+  //         imgcontent
+  //       </ul>
+  //     </div>
+  //   `
+  //   let imgContent = "";
+  //   imgs.forEach(item => {
+  //     if(item.img){
+  //       imgContent += `
+  //         <li class="img__item ${item.active ? "active": ""}" id="img${item.id}">
+  //           <img src=${item.img}>
+  //         </li>      
+  //       `;
+  //     }
+  //   });
+
+
   populateImages (imgsDiv, imgs) {
-    let innerHTML = `
-      <div class="img-list">
-        <ul>
-          imgcontent
-        </ul>
-      </div>
-    `
-    let imgContent = "";
+    
+    while (imgsDiv.firstChild) {
+      imgsDiv.removeChild(imgsDiv.firstChild);
+    }
+
+    let imgListDiv = document.createElement('div');
+    imgListDiv.className = "img-list";
+    imgsDiv.appendChild(imgListDiv);
+
+    let ulElement = document.createElement('ul');
+    imgListDiv.appendChild(ulElement);
+
     imgs.forEach(item => {
       if(item.img){
-        imgContent += `
-          <li class="img__item ${item.active ? "active": ""}" id="img${item.id}">
-            <img src=${item.img}>
-          </li>      
-        `;
+        let liElement = document.createElement('li');
+        liElement.classList.add("img__item");
+        if (item.active) {
+          liElement.classList.add("active");
+        }
+        liElement.id = `img${item.id}`;
+
+        let imgElement = document.createElement('img');
+        imgElement.src = item.img;
+        imgElement.addEventListener("click", e=>{
+          glimgService.setActiveImg(e.target.parentElement.id.substring(3));
+        });
+        
+        liElement.appendChild(imgElement);
+        ulElement.appendChild(liElement);
       }
     });
-
-    innerHTML = innerHTML.replace(/imgcontent/g, imgContent);
-
-    imgsDiv.innerHTML = innerHTML;
   }
-
 
   update(imgs){
     let imgsDiv = this.shadowRoot.querySelector("#imgsDiv");

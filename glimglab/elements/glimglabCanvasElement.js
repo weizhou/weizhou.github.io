@@ -75,6 +75,13 @@ class GLImagelabCanvasElement extends HTMLElement {
 
 
   onload = ()=>{};
+
+  update(imgs) {
+    imgs.forEach(item => {
+      item.active && this.populateImages(item.img);
+    });
+
+  }
 }
 
 customElements.define('lab-canvas', GLImagelabCanvasElement);

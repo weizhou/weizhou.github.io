@@ -20,45 +20,48 @@ var displaySettingPanel = true;
 
 // main action logic
 // --load image
-loadImagesBtn.addEventListener("click", e=>{
-    fileuploadInput.click();
-})
+function initHeader() {
+    loadImagesBtn.addEventListener("click", e=>{
+        fileuploadInput.click();
+    })
+    
+    fileuploadInput.addEventListener("input", e => {
+        let uploadFilename = fileuploadInput.value;
+        uploadFilename = uploadFilename.substr(uploadFilename.lastIndexOf('\\') + 1).split('.')[0];
+    
+        let reader = new FileReader();
+        reader.onload = function(){
+            let img = new Image();
+            img.onload = e=>{
+                glimgService.addImg(img);
+            };
+            img.src = reader.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);    
+    })    
+}
 
-fileuploadInput.addEventListener("input", e => {
-    let uploadFilename = fileuploadInput.value;
-    uploadFilename = uploadFilename.substr(uploadFilename.lastIndexOf('\\') + 1).split('.')[0];
-
-    let reader = new FileReader();
-    reader.onload = function(){
-        let img = new Image();
-        img.onload = e=>{
-            glimgService.addImg(img);
-            initCanvas(img.src);
-        };
-        img.src = reader.result;
-    }
-    reader.readAsDataURL(e.target.files[0]);    
-})
-
-imageSizingBar.addEventListener("sizing-action", e=>{
-    const canvasElement = canvasSection.firstChild;
-    switch (e.detail){
-        case "fit":
-            canvasElement.fitSize(canvasSection.offsetWidth, canvasSection.offsetHeight);
-            break;
-        case "original":
-            canvasElement.originalSize();
-            break;
-        case "zoomin":
-            canvasElement.zoomin();
-            break;
-        case "zoomout":
-            canvasElement.zoomout();
-            break;
-    }
-});
-
-glimgService.subscribe(imageSizingBar);
+function initImageSizingBar() {
+    imageSizingBar.addEventListener("sizing-action", e=>{
+        const canvasElement = canvasSection.firstChild;
+        switch (e.detail){
+            case "fit":
+                canvasElement.fitSize(canvasSection.offsetWidth, canvasSection.offsetHeight);
+                break;
+            case "original":
+                canvasElement.originalSize();
+                break;
+            case "zoomin":
+                canvasElement.zoomin();
+                break;
+            case "zoomout":
+                canvasElement.zoomout();
+                break;
+        }
+    });
+    
+    glimgService.subscribe(imageSizingBar);    
+}
 
 function updateGlimgElementSrc(img){
     glimgElement.src = img;
@@ -77,6 +80,8 @@ function initCanvas(imgSrc, filters=null) {
     canvasElement.style = "width: 100%; height: 100%; display: flex; justify-content: center; align-items: center";
 
     canvasSection.appendChild(canvasElement);
+
+    glimgService.subscribe(canvasElement);
 }
 
 function initNavPanel() {
@@ -117,8 +122,10 @@ function initSettingPanel() {
 }
 
 (() => {
+    initHeader();
     initNavPanel();
     initSettingPanel();
     initCanvas("./assets/images/canvas_init.jpg");
+    initImageSizingBar();
 })();
 

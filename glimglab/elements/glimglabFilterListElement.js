@@ -27,6 +27,7 @@ class GLImagelabFilterListElement extends HTMLElement {
       .filter-list ul {
         padding: 0px;
         margin: 0px;
+        padding-top: 50px;
         height: 100%;
         overflow-x: hidden;
         overflow-y: scroll;
@@ -54,12 +55,14 @@ class GLImagelabFilterListElement extends HTMLElement {
       .filter-list ul .filter__item span {
         line-height: 50px;
         color: var(--filter-color);
+        pointer-events: none;
       }
 
       .filter-list ul .filter__item svg {
         float: right;
         fill: var(--filter-color-active);
         display: none;
+        pointer-events: none;
       }
 
       .filter-list ul .filter__item:hover {
@@ -81,27 +84,38 @@ class GLImagelabFilterListElement extends HTMLElement {
   }
 
   populateFilters (filtersDiv, filters) {
-    let innerHTML = `
-      <div class="filter-list">
-        <ul>
-          filtercontent
-        </ul>
-      </div>
-    `
-    let filterContent = "";
+
+    const filterListDiv = document.createElement('div');
+    filterListDiv.className = "filter-list";
+    filtersDiv.appendChild(filterListDiv);
+    const ulElement = document.createElement('ul');
+    filterListDiv.appendChild(ulElement);    
+    
     filters.forEach(filter => {
-        filterContent += `
-          <li class="filter__item" id="${filter}">
-            <span> ${filter} </span> 
-            <svg height="10pt" width="10pt" viewBox="0 0 448 448"  xmlns="http://www.w3.org/2000/svg"><path d="m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0"/></svg>
-          </li>      
-        `;
-      }
-    );
 
-    innerHTML = innerHTML.replace(/filtercontent/g, filterContent);
+      const filterItem = document.createElement('li');
+      filterItem.className = "filter__item";
+      filterItem.id = filter;
+      filterItem.addEventListener('click', e=>
+        alert(`clicked ${e.target.id}`)
+      );
 
-    filtersDiv.innerHTML = innerHTML;
+      const spanElement = document.createElement('span');
+      spanElement.innerText = filter;
+      spanElement.setPointerCapture
+      
+      const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svgElement.setAttribute('width', '10pt');
+      svgElement.setAttribute('height', '10pt');
+      svgElement.setAttribute('viewBox', '0 0 448 448');
+      svgElement.innerHTML = `<path d="m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0"/>`;
+
+      filterItem.appendChild(spanElement);
+      filterItem.appendChild(svgElement);
+
+      ulElement.appendChild(filterItem);
+
+    });
   }
 }
 

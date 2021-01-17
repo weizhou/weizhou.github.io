@@ -121,10 +121,17 @@ function initSettingPanel() {
     glimglabNavService.subscribe(settingPanel);
 }
 
+function initFilterBar() {
+    filterBar = new GLImagelabFilterBarElement();
+    document.getElementById('filter-list-bar').appendChild(filterBar);
+    glimgService.subscribe(filterBar);
+}
+
 (() => {
     initHeader();
     initNavPanel();
     initSettingPanel();
+    initFilterBar();
     initCanvas("./assets/images/canvas_init.jpg");
     initImageSizingBar();
 })();

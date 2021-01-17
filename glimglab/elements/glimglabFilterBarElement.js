@@ -93,12 +93,12 @@ class GLImagelabFilterBarElement extends HTMLElement {
     filterBarDiv.className = "filter-list";
     this.filtersBar.appendChild(filterBarDiv);
     
-    filters.forEach(filter => {
+    filters.forEach((filter, index) => {
 
       const filterItem = document.createElement('div');
       filterItem.className = "filter__item";
-      filterItem.id = filter;
-      // filterItem.addEventListener('click', e=>glimgService.addFilter(e.target.id));
+      filterItem.id = index;
+      filterItem.addEventListener('click', e=>glimgService.removeFilter(parseInt(e.target.id)));
 
       const spanElement = document.createElement('span');
       spanElement.innerText = filter;

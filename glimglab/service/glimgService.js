@@ -32,6 +32,15 @@ class GLImgService {
     this.notifySubs();
   }
 
+  removeFilter(index) {
+    this._imgs.forEach(el => {
+      if (el.active) {
+        el.filters.splice(index, 1);
+      }
+    });
+    this.notifySubs();
+  }
+
   setActiveImg(id) {
     this._imgs.forEach(el => {
       if (el.id === id){

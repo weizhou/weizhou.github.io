@@ -9,6 +9,8 @@ export class GLImageElement extends HTMLElement {
     switch (name) {
       case 'src':
         this.glImage.url = this.getAttribute('src');
+      case 'filters':
+        this.setupFilters(this.getAttribute('filters'));
       case 'width':
         console.log(`width changed from ${oldValue} to ${newValue}`);
         this.updateCanvasStyle();
@@ -44,6 +46,15 @@ export class GLImageElement extends HTMLElement {
   
   }
 
+  setupFilters(filters){
+    this.glImage.resetFilters();
+
+    if(filters){
+      let filterList = filters.split(",");
+      filterList.forEach(f=> this.glImage.addFilter(GLImgFilterDef.getFilter(f)));
+    } 
+  }
+
   updateCanvasStyle() {
     this.glImage.getCanvas().style = `width: ${this.getAttribute('width')}; height: ${this.getAttribute('height')}; object-fit: fit`;
   }
@@ -62,6 +73,14 @@ export class GLImageElement extends HTMLElement {
   
   set src(newValue) {
     this.setAttribute('src', newValue);
+  }
+
+  get filters() {
+    return this.getAttribute('filters');
+  }
+  
+  set filters(newValue) {
+    this.setAttribute('filters', newValue);
   }
 
   get width() {

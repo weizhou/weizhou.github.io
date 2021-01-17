@@ -75,6 +75,21 @@ GLImgFilterDef.filters = {
   "BlockblurFilter": new GLImgBlockblurFilter()
 }
 
+GLImgFilterDef.captionalize = (filtername) => {
+  const words = filtername.trim().split(" ");
+  return words.reduce((a, w)=>a + w[0].toUpperCase()+w.substr(1), "");
+}
+
+
+  // var captionalizedFiltername = "";
+
+  // for (let i = 0; i < words.length; i++) {
+  //     captionalizedFiltername += words[i][0].toUpperCase() + words[i].substr(1);
+  // }
+
+  // return captionalizedFiltername;
+
+
 GLImgFilterDef.getFilter = (filtername)=>{
-  return GLImgFilterDef.filters[filtername.trim()];
+  return GLImgFilterDef.filters[GLImgFilterDef.captionalize(filtername)];
 }

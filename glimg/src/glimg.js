@@ -15,6 +15,9 @@ export class GLImage {
     this.defineUrlProperty();
   }
 
+  resetFilters() {
+    this._filters = [];
+  }
 
   addFilter(filter){
     if(filter.isAssembeFilter){

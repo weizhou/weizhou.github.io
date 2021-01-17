@@ -19,14 +19,15 @@ class GLImagelabCanvasElement extends HTMLElement {
 
   }
 
-  populateImages (imgSrc) {
+  populateImages (img) {
     
     while (this._shadow.firstChild) {
       this._shadow.removeChild(this._shadow.firstChild);
     }
 
     this._glimgElement = new GLImageElement();
-    this._glimgElement.src = imgSrc;
+    this._glimgElement.filters = img.filters;
+    this._glimgElement.src = img.img;
     this._glimgElement.id = "work-canvas";
     this._glimgElement.onload = this.onload;
     this._shadow.appendChild(this._glimgElement);
@@ -77,8 +78,8 @@ class GLImagelabCanvasElement extends HTMLElement {
   onload = ()=>{};
 
   update(imgs) {
-    imgs.forEach(item => {
-      item.active && this.populateImages(item.img);
+    imgs.forEach(img => {
+      img.active && this.populateImages(img);
     });
 
   }

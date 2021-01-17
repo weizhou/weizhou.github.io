@@ -76,7 +76,7 @@ function initCanvas(imgSrc, filters=null) {
     canvasElement.onload = ()=>{
         canvasElement.fitSize(canvasSection.offsetWidth, canvasSection.offsetHeight);
     }
-    canvasElement.populateImages(imgSrc);
+    canvasElement.populateImages({img: imgSrc, filters: []});
     canvasElement.style = "width: 100%; height: 100%; display: flex; justify-content: center; align-items: center";
 
     canvasSection.appendChild(canvasElement);

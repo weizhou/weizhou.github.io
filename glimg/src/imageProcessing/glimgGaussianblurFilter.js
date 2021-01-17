@@ -32,8 +32,8 @@ export class GLImgGaussianblurFilter extends GLImgRadiusFilter {
 
   gaussianKernelSum(radius, sigma){
     let sum = 0;
-    for (i=-radius; i<=radius; ++i){
-      for(j=-radius; j<=radius; ++j){
+    for (let i=-radius; i<=radius; ++i){
+      for(let j=-radius; j<=radius; ++j){
         let hg = Math.exp(- (i*i+j*j) / (2*sigma*sigma));
         sum += hg;
       }

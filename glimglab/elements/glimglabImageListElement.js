@@ -83,9 +83,11 @@ class GLImagelabImageListElement extends HTMLElement {
     });
   }
 
-  update(imgs){
-    let imgsDiv = this.shadowRoot.querySelector("#imgsDiv");
-    this.populateImages(imgsDiv, imgs);
+  update(event, imgs){
+    if(event === "img") {
+      let imgsDiv = this.shadowRoot.querySelector("#imgsDiv");
+      this.populateImages(imgsDiv, imgs);  
+    }
   }
 }
 

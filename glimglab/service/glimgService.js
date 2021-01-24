@@ -18,9 +18,9 @@ class GLImgService {
       this._imgs.splice(-1,1);
     }
     this._imgs.forEach(el => el.active = false);
-    let imgItem = {id: Math.random().toString(16).substring(2), img: img.src, width: img.width, height: img.height, filters: [], active: true};
+    let imgItem = {id: Math.random().toString(16).substring(2), img: img.src, width: img.width, height: img.height, filters: [], selectedFilter: -1, active: true};
     this._imgs.unshift(imgItem);
-    this.notifySubs();
+    this.notifySubs("img");
   }
 
   addFilter(filter) {
@@ -29,7 +29,7 @@ class GLImgService {
         el.filters.push(filter);
       }
     });
-    this.notifySubs();
+    this.notifySubs("filterAdded");
   }
 
   removeFilter(index) {
@@ -38,7 +38,16 @@ class GLImgService {
         el.filters.splice(index, 1);
       }
     });
-    this.notifySubs();
+    this.notifySubs("filterRemoved");
+  }
+
+  selectFilter(index) {
+    this._imgs.filter(img => img.active).map(img => img.selectedFilter = index);
+    this.notifySubs("filterSelected");
+  }
+
+  updateFilter(filterConfig) {
+    this._imgs.filter(img => img.active).map(img => img.filters[img.selectFilter] = filterConfig)
   }
 
   setActiveImg(id) {
@@ -49,15 +58,15 @@ class GLImgService {
         el.active = false;
       }
     })
-    this.notifySubs();
+    this.notifySubs("img");
   }
 
   getImgs() {
     return this._imgs;
   }
 
-  notifySubs() {
-    this._subscribers.forEach(sub => sub.update(this._imgs));
+  notifySubs(event) {
+    this._subscribers.forEach(sub => sub.update(event, this._imgs));
   }
 }
 

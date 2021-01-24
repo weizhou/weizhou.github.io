@@ -83,7 +83,7 @@ class GLImagelabSizingElement extends HTMLElement {
         }));
   }
 
-  update(imgs) {
+  update(event, imgs) {
     imgs.forEach(img => img.active && (this.sizeSpanDiv.innerHTML=`${img.width} x ${img.height}`));
   }
 }

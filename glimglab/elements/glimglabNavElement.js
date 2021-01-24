@@ -1,22 +1,5 @@
 class GLImagelabNavElement extends HTMLElement {
 
-  // static get observedAttributes() { return ['src', 'filters', 'width', 'height']; }
-  
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   switch (name) {
-  //     case 'src':
-  //       this.glImage.url = this.getAttribute('src');
-  //     case 'width':
-  //       console.log(`width changed from ${oldValue} to ${newValue}`);
-  //       this.updateCanvasStyle();
-  //       break;
-  //     case 'height':
-  //       console.log(`height changed from ${oldValue} to ${newValue}`);
-  //       this.updateCanvasStyle();
-  //       break;
-  //   }
-  // }
-
   constructor() {
     super();
     
@@ -146,41 +129,6 @@ class GLImagelabNavElement extends HTMLElement {
         }));
   }
 
-  // updateCanvasStyle() {
-  //   this.glImage.getCanvas().style = `width: ${this.getAttribute('width')}; height: ${this.getAttribute('height')}; object-fit: fit`;
-  // }
-
-  // get canvasWidth() {
-  //   return this.glImage.getCanvas().width;
-  // }
-
-  // get canvasHeight() {
-  //   return this.glImage.getCanvas().height;
-  // }
-
-  // get src() {
-  //   return this.getAttribute('src');
-  // }
-  
-  // set src(newValue) {
-  //   this.setAttribute('src', newValue);
-  // }
-
-  // get width() {
-  //   return this.getAttribute('width');
-  // }
-  
-  // set width(newValue) {
-  //   this.setAttribute('width', newValue);
-  // }
-
-  // get height() {
-  //   return this.getAttribute('height');
-  // }
-
-  // set height(newValue) {
-  //   this.setAttribute('height', newValue);
-  // }
 }
 
 customElements.define('lab-nav', GLImagelabNavElement);

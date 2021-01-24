@@ -76,7 +76,7 @@ function initCanvas(imgSrc, filters=null) {
     canvasElement.onload = ()=>{
         canvasElement.fitSize(canvasSection.offsetWidth, canvasSection.offsetHeight);
     }
-    canvasElement.populateImages({img: imgSrc, filters: []});
+    canvasElement.populateImage({img: imgSrc, filters: []});
     canvasElement.style = "width: 100%; height: 100%; display: flex; justify-content: center; align-items: center";
 
     canvasSection.appendChild(canvasElement);
@@ -107,16 +107,37 @@ function initFiltersPanel() {
     settingPanel.appendChild(imageProcessingFilterPanel);
 }
 
+function initFilterConfigPanel() {
+    filterConfigPanel = new GLImagelabFilterConfigElement();
+    filterConfigPanel.style = "display: none";
+    settingPanel.appendChild(filterConfigPanel);
+    glimgService.subscribe(settingPanel);
+    settingPanel.update = (event, imgs) => {
+        if (event === "filterSelected"){
+            settingPanel.childNodes.forEach(node => {
+                node.style="display: none";
+            });
+            imgs.filter(img=>img.active).map(img => img.filters[img.selectedFilter]).map(filter => {
+                filterConfigPanel.filterName = filter;
+                filterConfigPanel.filterConfig = GLImgFilterDef.getFilterConfig(filter);
+                filterConfigPanel.populateConfig();
+                filterConfigPanel.style = "display: block";
+            });
+        }
+    }
+
+}
+
 function initSettingPanel() {
     initImagesPanel();
     initFiltersPanel();
+    initFilterConfigPanel();
     settingPanel.updateNav = (selectedItem) => {
-        selectedItem = selectedItem.replace(/side-menu/g, "setting-panel");
         settingPanel.childNodes.forEach(node => {
             node.style="display: none";
         });
-        document.getElementById(selectedItem).style.display = "block";
-        
+        selectedItem = selectedItem.replace(/side-menu/g, "setting-panel");
+        document.getElementById(selectedItem).style.display = "block";        
     }
     glimglabNavService.subscribe(settingPanel);
 }

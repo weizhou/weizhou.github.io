@@ -1,6 +1,6 @@
 class GLImagelabFilterConfigElement extends HTMLElement {
 
-  constructor(filterConfig) {
+  constructor() {
     super();
     
     const shadow = this.attachShadow({mode: 'open'}); 
@@ -16,7 +16,9 @@ class GLImagelabFilterConfigElement extends HTMLElement {
                           {"name": "intensity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.5"},
                           {"name": "intensity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.5"},
                         ];
-    this.populateConfig(this.filterName, this.filterConfig);
+    this.filterName = "";
+    this.filterConfig = [];
+    // this.populateConfig(this.filterName, this.filterConfig);
 
     const style = document.createElement('style');
     style.textContent = `
@@ -77,7 +79,7 @@ class GLImagelabFilterConfigElement extends HTMLElement {
     shadow.appendChild(this.filterConfigDiv);
   }
 
-  populateConfig (filterName, filterConfig) {
+  populateConfig () {
 
     //clean up filterConfigDiv
     while (this.filterConfigDiv.firstChild) {
@@ -88,10 +90,10 @@ class GLImagelabFilterConfigElement extends HTMLElement {
     filterConfigTitleDiv.className = "filter-config-title";
     this.filterConfigDiv.appendChild(filterConfigTitleDiv);
     const filterConfigTitleLable = document.createElement('label');
-    filterConfigTitleLable.textContent = filterName;
+    filterConfigTitleLable.textContent = this.filterName;
     filterConfigTitleDiv.appendChild(filterConfigTitleLable);
 
-    filterConfig.forEach(config => {
+    this.filterConfig.forEach(config => {
       const filterConfigItemdiv = document.createElement('div');
       filterConfigItemdiv.className = "filter-config-item";
       this.filterConfigDiv.appendChild(filterConfigItemdiv);

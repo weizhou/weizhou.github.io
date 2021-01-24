@@ -19,19 +19,15 @@ class GLImagelabCanvasElement extends HTMLElement {
 
   }
 
-  populateImages (img) {
-    
-    while (this._shadow.firstChild) {
-      this._shadow.removeChild(this._shadow.firstChild);
-    }
-
-    this._glimgElement = new GLImageElement();
+  populateImage (img) {
+    if(!this._glimgElement) {
+      this._glimgElement = new GLImageElement();
+      this._glimgElement.id = "work-canvas";
+      this._glimgElement.onload = this.onload;  
+      this._shadow.appendChild(this._glimgElement);
+    } 
     this._glimgElement.filters = img.filters;
     this._glimgElement.src = img.img;
-    this._glimgElement.id = "work-canvas";
-    this._glimgElement.onload = this.onload;
-    this._shadow.appendChild(this._glimgElement);
-
   }
 
   fitSize(width, height) {
@@ -77,11 +73,10 @@ class GLImagelabCanvasElement extends HTMLElement {
 
   onload = ()=>{};
 
-  update(imgs) {
-    imgs.forEach(img => {
-      img.active && this.populateImages(img);
-    });
-
+  update(event, imgs) {
+    if (event === "img" || event === "filterAdded" || event === "filterRemoved"){
+      imgs.filter(img => img.active).map(img => this.populateImage(img));
+    }
   }
 }
 

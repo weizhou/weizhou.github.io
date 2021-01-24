@@ -26,7 +26,7 @@ class GLImagelabCanvasElement extends HTMLElement {
       this._glimgElement.onload = this.onload;  
       this._shadow.appendChild(this._glimgElement);
     } 
-    this._glimgElement.filters = img.filters;
+    this._glimgElement.filters = JSON.stringify(img.filters);
     this._glimgElement.src = img.img;
   }
 
@@ -74,7 +74,7 @@ class GLImagelabCanvasElement extends HTMLElement {
   onload = ()=>{};
 
   update(event, imgs) {
-    if (event === "img" || event === "filterAdded" || event === "filterRemoved"){
+    if (event === "img" || event === "filterAdded" || event === "filterRemoved" || event === "filterUpdated"){
       imgs.filter(img => img.active).map(img => this.populateImage(img));
     }
   }

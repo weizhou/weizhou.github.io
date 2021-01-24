@@ -118,6 +118,9 @@ class GLImagelabFilterConfigElement extends HTMLElement {
       filterConfigItemdiv.appendChild(filterConfigItemInput);  
       filterConfigItemInput.addEventListener("input", e=> {
         filterConfigItemValueLabel.textContent = e.target.value;
+        let filterConfig = {};
+        filterConfig[config.name] = e.target.value;
+        glimgService.updateFilter(filterConfig);
       })
 
       if (config.type === 'range') {

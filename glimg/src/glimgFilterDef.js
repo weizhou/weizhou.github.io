@@ -38,7 +38,7 @@ import { GLImgBlockblurFilter } from './imageProcessing/glimgBlockblurFilter'
 export class GLImgFilterDef {}
   
 GLImgFilterDef.filters = {
-  "BrightnessFilter": {"instance": new GLImgBrightnessFilter(), "config": [{"name": "intensity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.5"}]},
+  "BrightnessFilter": {"instance": new GLImgBrightnessFilter(), "config": [{"name": "brightness", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.2"}]},
   "ContrastFilter": {"instance": new GLImgContrastFilter()},
   "ExposureFilter": {"instance": new GLImgExposureFilter()},
   "SaturationFilter": {"instance": new GLImgSaturationFilter()},

@@ -118,8 +118,8 @@ function initFilterConfigPanel() {
                 node.style="display: none";
             });
             imgs.filter(img=>img.active).map(img => img.filters[img.selectedFilter]).map(filter => {
-                filterConfigPanel.filterName = filter;
-                filterConfigPanel.filterConfig = GLImgFilterDef.getFilterConfig(filter);
+                filterConfigPanel.filterName = filter.name;
+                filterConfigPanel.filterConfig = GLImgFilterDef.getFilterConfig(filter.name);
                 filterConfigPanel.populateConfig();
                 filterConfigPanel.style = "display: block";
             });

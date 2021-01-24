@@ -115,7 +115,7 @@ class GLImagelabFilterBarElement extends HTMLElement {
       // filterItem.addEventListener('click', e=>glimgService.selectFilter(parseInt(e.target.id)));
 
       const spanElement = document.createElement('span');
-      spanElement.innerText = filter;
+      spanElement.innerText = filter.name;
       spanElement.setPointerCapture
       spanElement.addEventListener('click', e=>glimgService.selectFilter(parseInt(e.target.parentNode.id)));
       

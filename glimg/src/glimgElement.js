@@ -48,10 +48,16 @@ export class GLImageElement extends HTMLElement {
 
   setupFilters(filters){
     this.glImage.resetFilters();
+    // filters.forEach(f => this.glImage.addFilter(GLImgFilterDef.getFilter(f.name)));
 
     if(filters){
-      let filterList = filters.split(",");
-      filterList.forEach(f=> this.glImage.addFilter(GLImgFilterDef.getFilter(f)));
+      // let filterList = filters.split(",");
+      let filterList = JSON.parse(filters);
+      filterList.forEach(f=> {
+        let filter = GLImgFilterDef.getFilter(f.name);
+        Object.keys(f).forEach(propKey => propKey==="name" ? false : filter[propKey] = f[propKey]);
+        this.glImage.addFilter(filter);
+      });
     } 
   }
 

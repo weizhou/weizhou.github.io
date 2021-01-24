@@ -24,20 +24,17 @@ class GLImgService {
   }
 
   addFilter(filter) {
-    this._imgs.forEach(el => {
-      if (el.active) {
-        el.filters.push(filter);
-      }
-    });
+    this._imgs.filter(img => img.active).map(img => img.filters.push({"name": filter}));
+    // this._imgs.forEach(el => {
+    //   if (el.active) {
+    //     el.filters.push(filter);
+    //   }
+    // });
     this.notifySubs("filterAdded");
   }
 
   removeFilter(index) {
-    this._imgs.forEach(el => {
-      if (el.active) {
-        el.filters.splice(index, 1);
-      }
-    });
+    this._imgs.filter(img => img.active).map(img => img.filters.splice(index,1));
     this.notifySubs("filterRemoved");
   }
 
@@ -47,7 +44,10 @@ class GLImgService {
   }
 
   updateFilter(filterConfig) {
-    this._imgs.filter(img => img.active).map(img => img.filters[img.selectFilter] = filterConfig)
+    this._imgs.filter(img => img.active).map(img => {
+      Object.keys(filterConfig).forEach(propKey => img.filters[img.selectedFilter][propKey] = JSON.parse(filterConfig[propKey]));
+    });
+    this.notifySubs("filterUpdated");
   }
 
   setActiveImg(id) {

@@ -75,6 +75,10 @@ class GLImagelabFilterBarElement extends HTMLElement {
         cursor: pointer;
       }
 
+      .filter-list .filter__item .span-selected {
+        color: var(--filter-color-active);
+      }
+
       .filter-list .filter__item:hover span:hover {
         color: var(--filter-color-active);
         cursor: pointer;
@@ -96,7 +100,7 @@ class GLImagelabFilterBarElement extends HTMLElement {
     shadow.appendChild(this.filtersBar);
   }
 
-  populateFilters (filters) {
+  populateFilters (filters, selectedFilter) {
 
     //clean up filtersBar
     while (this.filtersBar.firstChild) {
@@ -112,9 +116,11 @@ class GLImagelabFilterBarElement extends HTMLElement {
       const filterItem = document.createElement('div');
       filterItem.className = "filter__item";
       filterItem.id = index;
-      // filterItem.addEventListener('click', e=>glimgService.selectFilter(parseInt(e.target.id)));
 
       const spanElement = document.createElement('span');
+      if(index === selectedFilter){
+        spanElement.classList.add('span-selected');
+      }
       spanElement.innerText = filter.name;
       spanElement.setPointerCapture
       spanElement.addEventListener('click', e=>glimgService.selectFilter(parseInt(e.target.parentNode.id)));
@@ -126,7 +132,10 @@ class GLImagelabFilterBarElement extends HTMLElement {
       svgElement.innerHTML = `<path d="M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774
       C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936
       C441.333,189.472,459.308,207.456,459.313,229.648z"/>`;
-      svgElement.addEventListener("click", e => glimgService.removeFilter(parseInt(e.target.parentNode.id)));
+      svgElement.addEventListener("click", e => {
+        glimgService.removeFilter(parseInt(e.target.parentNode.id));
+        // glimglabNavService.setSelectedNavItem("side-menu_image");
+      });
 
       filterItem.appendChild(spanElement);
       filterItem.appendChild(svgElement);
@@ -137,7 +146,7 @@ class GLImagelabFilterBarElement extends HTMLElement {
   }
 
   update (event, imgs) {
-    imgs.filter(img => img.active).map(img => this.populateFilters(img.filters));
+    imgs.filter(img => img.active).map(img => this.populateFilters(img.filters, img.selectedFilter));
   }
 }
 

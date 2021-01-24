@@ -129,6 +129,12 @@ class GLImagelabNavElement extends HTMLElement {
         }));
   }
 
+  update(event, imgs) {
+    if (event === "filterRemoved") {
+      this.shadowRoot.getElementById('side-menu_image').dispatchEvent(new Event('click'));
+    }
+  }
+
 }
 
 customElements.define('lab-nav', GLImagelabNavElement);

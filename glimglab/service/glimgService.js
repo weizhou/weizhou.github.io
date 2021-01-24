@@ -29,7 +29,10 @@ class GLImgService {
   }
 
   removeFilter(index) {
-    this._imgs.filter(img => img.active).map(img => img.filters.splice(index,1));
+    this._imgs.filter(img => img.active).map(img => {
+      img.filters.splice(index,1);
+      img.selectedFilter = -1;
+    });
     this.notifySubs("filterRemoved");
   }
 

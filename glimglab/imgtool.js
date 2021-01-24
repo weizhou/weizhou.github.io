@@ -87,6 +87,7 @@ function initCanvas(imgSrc, filters=null) {
 function initNavPanel() {
     navElement = new GLImagelabNavElement();
     navPanel.appendChild(navElement);
+    glimgService.subscribe(navElement);
 
 }
 async function initImagesPanel() {

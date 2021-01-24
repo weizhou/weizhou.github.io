@@ -25,11 +25,6 @@ class GLImgService {
 
   addFilter(filter) {
     this._imgs.filter(img => img.active).map(img => img.filters.push({"name": filter}));
-    // this._imgs.forEach(el => {
-    //   if (el.active) {
-    //     el.filters.push(filter);
-    //   }
-    // });
     this.notifySubs("filterAdded");
   }
 

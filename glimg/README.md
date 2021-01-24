@@ -15,7 +15,7 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
 - GLImgBrightnessFilter
   - brightness: The adjusted brightness (-1.0 to 1.0, default 0.2)
 - GLImgExposureFilter
-  - exposure: The adjusted exposure (-10.0 to 10.0, default 1.0)
+  - exposure: The adjusted exposure (-10.0 to 10.0, default 2.0)
 - GLImgContrastFilter: Adjusts the contrast of the image
   - contrast: The adjusted contrast (0.0 to 4.0, default 1.0) 
 - GLImgSaturationFilter: Adjusts the saturation of an image

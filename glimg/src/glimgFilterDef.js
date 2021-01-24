@@ -38,41 +38,45 @@ import { GLImgBlockblurFilter } from './imageProcessing/glimgBlockblurFilter'
 export class GLImgFilterDef {}
   
 GLImgFilterDef.filters = {
-  "BrightnessFilter": {"instance": new GLImgBrightnessFilter(), "config": [{"name": "brightness", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.2"}]},
-  "ContrastFilter": {"instance": new GLImgContrastFilter()},
-  "ExposureFilter": {"instance": new GLImgExposureFilter()},
-  "SaturationFilter": {"instance": new GLImgSaturationFilter()},
-  "GammaFilter": {"instance": new GLImgGammaFilter()},
-  "LevelsFilter": {"instance": new GLImgLevelsFilter()},
-  "RGBFilter": {"instance": new GLImgRGBFilter()},
-  "HueFilter": {"instance": new GLImgHueFilter()},
-  "TintFilter": {"instance": new GLImgTintFilter()},
-  "TemperatureFilter": {"instance": new GLImgTemperatureFilter()},
-  "HighlightShadowFilter": {"instance": new GLImgHighlightShadowFilter()},
-  "AmatorkaFilter": {"instance": new GLImgAmatorkaFilter()},
-  "ColorInversionFilter": {"instance": new GLImgColorInversionFilter()},
-  "MonochromeFilter": {"instance": new GLImgMonochromeFilter()},
-  "FalseColorFilter": {"instance": new GLImgFalseColorFilter()},
-  "HazeFilter": {"instance": new GLImgHazeFilter()},
-  "SepiaToneFilter": {"instance": new GLImgSepiaToneFilter()},
-  "OpacityFilter": {"instance": new GLImgOpacityFilter()},
-  "LuminanceThresholdFilter": {"instance": new GLImgLuminanceThresholdFilter()},
-  "ChromakeyingFilter": {"instance": new GLImgChromakeyingFilter()},
-  "VibranceFilter": {"instance": new GLImgVibranceFilter()},
-  "HighlightShadowTintFilter": {"instance": new GLImgHighlightShadowTintFilter()},
+  "BrightnessFilter": {"instance": ()=>new GLImgBrightnessFilter(),
+                       "config": [{"name": "brightness", "type": "range", "min": "-1.0", "max": "1.0", "step": "0.01", "value": "0.2"}]
+                      },
+  "ContrastFilter": {"instance": ()=>new GLImgContrastFilter(),
+                     "config": [{"name": "contrast", "type": "range", "min": "-10.0", "max": "10.0", "step": "0.01", "value": "2.0"}]
+                    },
+  "ExposureFilter": {"instance": ()=>new GLImgExposureFilter()},
+  "SaturationFilter": {"instance": ()=>new GLImgSaturationFilter()},
+  "GammaFilter": {"instance": ()=>new GLImgGammaFilter()},
+  "LevelsFilter": {"instance": ()=>new GLImgLevelsFilter()},
+  "RGBFilter": {"instance": ()=>new GLImgRGBFilter()},
+  "HueFilter": {"instance": ()=>new GLImgHueFilter()},
+  "TintFilter": {"instance": ()=>new GLImgTintFilter()},
+  "TemperatureFilter": {"instance": ()=>new GLImgTemperatureFilter()},
+  "HighlightShadowFilter": {"instance": ()=>new GLImgHighlightShadowFilter()},
+  "AmatorkaFilter": {"instance": ()=>new GLImgAmatorkaFilter()},
+  "ColorInversionFilter": {"instance": ()=>new GLImgColorInversionFilter()},
+  "MonochromeFilter": {"instance": ()=>new GLImgMonochromeFilter()},
+  "FalseColorFilter": {"instance": ()=>new GLImgFalseColorFilter()},
+  "HazeFilter": {"instance": ()=>new GLImgHazeFilter()},
+  "SepiaToneFilter": {"instance": ()=>new GLImgSepiaToneFilter()},
+  "OpacityFilter": {"instance": ()=>new GLImgOpacityFilter()},
+  "LuminanceThresholdFilter": {"instance": ()=>new GLImgLuminanceThresholdFilter()},
+  "ChromakeyingFilter": {"instance": ()=>new GLImgChromakeyingFilter()},
+  "VibranceFilter": {"instance": ()=>new GLImgVibranceFilter()},
+  "HighlightShadowTintFilter": {"instance": ()=>new GLImgHighlightShadowTintFilter()},
 
-  "GrayscaleFilter": {"instance": new GLImgGrayscaleFilter()},
-  "GradientXFilter": {"instance": new GLImgGradientXFilter()},
-  "GradientYFilter": {"instance": new GLImgGradientYFilter()},
-  "NormalFilter": {"instance": new GLImgNormalFilter()},
-  "SobelFilter": {"instance": new GLImgSobelEdgeFilter()},
-  "EmbossFilter": {"instance": new GLImgEmbossFilter()},
-  "AveragecolorFilter": {"instance": new GLImgAverageColorFilter()},
-  "MedianFilter": {"instance": new GLImgMedianFilter()},
-  "BoxblurFilter": {"instance": new GLImgBoxblurFilter()},
-  "GaussianblurFilter": {"instance": new GLImgGaussianblurFilter()},
-  "AdaptiveThresholdFilter": {"instance": new GLImgAdaptiveThresholdFilter()},
-  "BlockblurFilter": {"instance": new GLImgBlockblurFilter()}
+  "GrayscaleFilter": {"instance": ()=>new GLImgGrayscaleFilter()},
+  "GradientXFilter": {"instance": ()=>new GLImgGradientXFilter()},
+  "GradientYFilter": {"instance": ()=>new GLImgGradientYFilter()},
+  "NormalFilter": {"instance": ()=>new GLImgNormalFilter()},
+  "SobelFilter": {"instance": ()=>new GLImgSobelEdgeFilter()},
+  "EmbossFilter": {"instance": ()=>new GLImgEmbossFilter()},
+  "AveragecolorFilter": {"instance": ()=>new GLImgAverageColorFilter()},
+  "MedianFilter": {"instance": ()=>new GLImgMedianFilter()},
+  "BoxblurFilter": {"instance": ()=>new GLImgBoxblurFilter()},
+  "GaussianblurFilter": {"instance": ()=>new GLImgGaussianblurFilter()},
+  "AdaptiveThresholdFilter": {"instance": ()=>new GLImgAdaptiveThresholdFilter()},
+  "BlockblurFilter": {"instance": ()=>new GLImgBlockblurFilter()}
 }
 
 GLImgFilterDef.captionalize = (filtername) => {
@@ -81,7 +85,7 @@ GLImgFilterDef.captionalize = (filtername) => {
 }
 
 GLImgFilterDef.getFilter = (filtername)=>{
-  return GLImgFilterDef.filters[GLImgFilterDef.captionalize(filtername)].instance;
+  return GLImgFilterDef.filters[GLImgFilterDef.captionalize(filtername)].instance();
 }
 
 GLImgFilterDef.getFilterConfig = (filtername)=>{

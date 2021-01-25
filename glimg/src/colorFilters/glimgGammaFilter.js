@@ -18,7 +18,7 @@ export class GLImgGammaFilter extends GLImgFilter {
     `;
 
     this.flipY = -1.0;
-    this.gamma = 2.0;
+    this.gamma = 1.5;
   }
 
   bindShaderAttributes(gl, glProgram){  

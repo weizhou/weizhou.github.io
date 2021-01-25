@@ -42,11 +42,17 @@ GLImgFilterDef.filters = {
                        "config": [{"name": "brightness", "type": "range", "min": "-1.0", "max": "1.0", "step": "0.01", "value": "0.2"}]
                       },
   "ContrastFilter": {"instance": ()=>new GLImgContrastFilter(),
-                     "config": [{"name": "contrast", "type": "range", "min": "-10.0", "max": "10.0", "step": "0.01", "value": "2.0"}]
+                     "config": [{"name": "contrast", "type": "range", "min": "0.0", "max": "4.0", "step": "0.01", "value": "2.0"}]
                     },
-  "ExposureFilter": {"instance": ()=>new GLImgExposureFilter()},
-  "SaturationFilter": {"instance": ()=>new GLImgSaturationFilter()},
-  "GammaFilter": {"instance": ()=>new GLImgGammaFilter()},
+  "ExposureFilter": {"instance": ()=>new GLImgExposureFilter(),
+                     "config": [{"name": "exposure", "type": "range", "min": "-10.0", "max": "10.0", "step": "0.01", "value": "1.0"}]
+                    },
+  "SaturationFilter": {"instance": ()=>new GLImgSaturationFilter(),
+                       "config": [{"name": "saturation", "type": "range", "min": "0.0", "max": "2.0", "step": "0.01", "value": "1.5"}]
+                      },
+  "GammaFilter": {"instance": ()=>new GLImgGammaFilter(),
+                  "config": [{"name": "gamma", "type": "range", "min": "0.0", "max": "3.0", "step": "0.01", "value": "1.5"}]
+                 },
   "LevelsFilter": {"instance": ()=>new GLImgLevelsFilter()},
   "RGBFilter": {"instance": ()=>new GLImgRGBFilter()},
   "HueFilter": {"instance": ()=>new GLImgHueFilter()},
@@ -58,9 +64,15 @@ GLImgFilterDef.filters = {
   "MonochromeFilter": {"instance": ()=>new GLImgMonochromeFilter()},
   "FalseColorFilter": {"instance": ()=>new GLImgFalseColorFilter()},
   "HazeFilter": {"instance": ()=>new GLImgHazeFilter()},
-  "SepiaToneFilter": {"instance": ()=>new GLImgSepiaToneFilter()},
-  "OpacityFilter": {"instance": ()=>new GLImgOpacityFilter()},
-  "LuminanceThresholdFilter": {"instance": ()=>new GLImgLuminanceThresholdFilter()},
+  "SepiaToneFilter": {"instance": ()=>new GLImgSepiaToneFilter(),
+                      "config": [{"name": "intensity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "1.0"}]
+                     },
+  "OpacityFilter": {"instance": ()=>new GLImgOpacityFilter(),
+                    "config": [{"name": "opacity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "1.0"}]
+                   },
+  "LumiThresholdFilter": {"instance": ()=>new GLImgLuminanceThresholdFilter(),
+                               "config": [{"name": "threshold", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.5"}]
+                              },
   "ChromakeyingFilter": {"instance": ()=>new GLImgChromakeyingFilter()},
   "VibranceFilter": {"instance": ()=>new GLImgVibranceFilter()},
   "HighlightShadowTintFilter": {"instance": ()=>new GLImgHighlightShadowTintFilter()},

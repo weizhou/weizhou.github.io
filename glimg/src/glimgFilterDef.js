@@ -53,17 +53,52 @@ GLImgFilterDef.filters = {
   "GammaFilter": {"instance": ()=>new GLImgGammaFilter(),
                   "config": [{"name": "gamma", "type": "range", "min": "0.0", "max": "3.0", "step": "0.01", "value": "1.5"}]
                  },
-  "LevelsFilter": {"instance": ()=>new GLImgLevelsFilter()},
-  "RGBFilter": {"instance": ()=>new GLImgRGBFilter()},
-  "HueFilter": {"instance": ()=>new GLImgHueFilter()},
-  "TintFilter": {"instance": ()=>new GLImgTintFilter()},
-  "TemperatureFilter": {"instance": ()=>new GLImgTemperatureFilter()},
-  "HighlightShadowFilter": {"instance": ()=>new GLImgHighlightShadowFilter()},
+  "LevelsFilter": {"instance": ()=>new GLImgLevelsFilter(),
+                   "config": [{"name": "levelMinimum", "type": "color", "value": "#1A1A1A"},
+                              {"name": "levelMiddle", "type": "color", "value": "#4D4D4D"},
+                              {"name": "levelMaximum", "type": "color", "value": "#E6E6E6"},
+                              {"name": "minOutput", "type": "color", "value": "#4D4D4D"},
+                              {"name": "maxOutput", "type": "color", "value": "#CCCCCC"},
+                             ] 
+                 },
+  "RGBFilter": {"instance": ()=>new GLImgRGBFilter(), 
+                "config": [{"name": "redAdjustment", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "1.0"},
+                           {"name": "greenAdjustment", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "1.0"},
+                           {"name": "blueAdjustment", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "1.0"},
+                          ]
+               },
+  "HueFilter": {"instance": ()=>new GLImgHueFilter(),
+                // "config": [{"name": "hueAdjust", "type": "range", "min": "0.0", "max": "2\u03C0", "step": "0.01", "value": "1.57"}]
+                "config": [{"name": "hueAdjust", "type": "range", "min": "0.0", "max": "6.28", "step": "0.01", "value": "1.57"}]
+               },
+  "TintFilter": {"instance": ()=>new GLImgTintFilter(),
+                "config": [{"name": "tint", "type": "range", "min": "-200", "max": "200", "step": "1", "value": "0"}]
+               },
+  "TemperatureFilter": {"instance": ()=>new GLImgTemperatureFilter(),
+                "config": [{"name": "temperature", "type": "range", "min": "4000", "max": "7000", "step": "100", "value": "5000"}]
+                       },
+  "HighlightShadowFilter": {"instance": ()=>new GLImgHighlightShadowFilter(),
+                            "config": [{"name": "shadows", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.0"},
+                                       {"name": "highlights", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "1.0"},
+                                      ]
+                           },
   "AmatorkaFilter": {"instance": ()=>new GLImgAmatorkaFilter()},
   "ColorInversionFilter": {"instance": ()=>new GLImgColorInversionFilter()},
-  "MonochromeFilter": {"instance": ()=>new GLImgMonochromeFilter()},
-  "FalseColorFilter": {"instance": ()=>new GLImgFalseColorFilter()},
-  "HazeFilter": {"instance": ()=>new GLImgHazeFilter()},
+  "MonochromeFilter": {"instance": ()=>new GLImgMonochromeFilter(),
+                       "config": [{"name": "intensity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "1.0"},
+                                  {"name": "filterColor", "type": "color", "value": "#99734D"}, 
+                                 ]
+                      },
+  "FalseColorFilter": {"instance": ()=>new GLImgFalseColorFilter(),
+                       "config": [{"name": "firstColor", "type": "color", "value": "#00007F"},
+                                  {"name": "secondColor", "type": "color", "value": "#FF0000"},
+                                 ] 
+                      },
+  "HazeFilter": {"instance": ()=>new GLImgHazeFilter(),
+                 "config": [{"name": "hazeDistance", "type": "range", "min": "-0.3", "max": "0.3", "step": "0.01", "value": "-0.1"},
+                            {"name": "slope", "type": "range", "min": "-0.3", "max": "0.3", "step": "0.01", "value": "0.3"},
+                           ]
+                },
   "SepiaToneFilter": {"instance": ()=>new GLImgSepiaToneFilter(),
                       "config": [{"name": "intensity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "1.0"}]
                      },
@@ -73,9 +108,22 @@ GLImgFilterDef.filters = {
   "LumiThresholdFilter": {"instance": ()=>new GLImgLuminanceThresholdFilter(),
                                "config": [{"name": "threshold", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.5"}]
                               },
-  "ChromakeyingFilter": {"instance": ()=>new GLImgChromakeyingFilter()},
-  "VibranceFilter": {"instance": ()=>new GLImgVibranceFilter()},
-  "HighlightShadowTintFilter": {"instance": ()=>new GLImgHighlightShadowTintFilter()},
+  "ChromakeyingFilter": {"instance": ()=>new GLImgChromakeyingFilter(),
+                         "config": [{"name": "thresholdSensitivity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.1"},
+                                    {"name": "smoothing", "type": "range", "min": "0.00", "max": "0.10", "step": "0.001", "value": "0.05"},           
+                                    {"name": "colorToReplace", "type": "color", "value": "#333333"}, 
+                                   ]
+                        },
+  "VibranceFilter": {"instance": ()=>new GLImgVibranceFilter(),
+                     "config": [{"name": "vibrance", "type": "range", "min": "-1.2", "max": "1.2", "step": "0.01", "value": "1.0"}]
+                    },
+  "HighlightShadowTintFilter": {"instance": ()=>new GLImgHighlightShadowTintFilter(),
+                                "config": [{"name": "shadowTintIntensity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.01", "value": "0.5"},
+                                           {"name": "highlightTintIntensity", "type": "range", "min": "0.0", "max": "1.0", "step": "0.001", "value": "0.5"},           
+                                           {"name": "shadowTintColor", "type": "color", "value": "#FF0000"}, 
+                                           {"name": "highlightTintColor", "type": "color", "value": "#0000FF"}, 
+                                          ]
+                               },
 
   "GrayscaleFilter": {"instance": ()=>new GLImgGrayscaleFilter()},
   "GradientXFilter": {"instance": ()=>new GLImgGradientXFilter()},

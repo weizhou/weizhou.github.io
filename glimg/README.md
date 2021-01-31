@@ -24,8 +24,6 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
   - gamma: The gamma adjustment to apply (0.0 - 3.0, with 2.0 as the default)
 - GLImgLevelsFilter: levels adjustment. 
   - The min, max, minOut and maxOut parameters are floats in the range [0, 1]. 
-  - The gamma/mid parameter is a float >= 0. 
-  - If you want to apply levels to RGB as well as individual channels you need to use this filter twice - first for the individual channels and then for all channels.
 - GLImgColorMatrixFilter: Transforms the colors of an image by applying a matrix to them
   - colorMatrix: A 4x4 matrix used to transform each color in an image
   - intensity: The degree to which the new transformed color replaces the original color for each pixel
@@ -43,7 +41,7 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
 - GLImgColorInversionFilter: Inverts the colors of an image
 - GLImgMonochromeFilter: Converts the image to a single-color version, based on the luminance of each pixel
   - intensity: The degree to which the specific color replaces the normal image color (0.0 - 1.0, with 1.0 as the default)
-  - color: The color to use as the basis for the effect, with (0.6, 0.45, 0.3, 1.0) as the default.
+  - color: The color to use as the basis for the effect, with (0.6, 0.45, 0.3) as the default.
 - GLImgFalseColorFilter: Uses the luminance of the image to mix between two user-specified colors
   - firstColor, secondColor: The first and second colors specify what colors replace the dark and light areas of the image, respectively. The defaults are (0.0, 0.0, 0.5) and (1.0, 0.0, 0.0).
 - GLImgHazeFilter: Used to add or remove haze (similar to a UV filter)
@@ -62,8 +60,8 @@ The framework also supports blendmode with BlendGLImage which takes two or more 
 - GLImgVibranceFilter: Adjusts the vibrance of an image
   - vibrance: The vibrance adjustment to apply, using 1.0 as the default, and a suggested min/max of around -1.2 and 1.2, respectively.
 - GLImgHighlightShadowTintFilter: Allows you to tint the shadows and highlights of an image independently using a color and intensity
-  - shadowTintColor: Shadow tint RGB color (GPUVector4). Default: {1.0f, 0.0f, 0.0f, 1.0f} (red).
-  - highlightTintColor: Highlight tint RGB color (GPUVector4). Default: {0.0f, 0.0f, 1.0f, 1.0f} (blue).
+  - shadowTintColor: Shadow tint RGB color (GPUVector4). Default: [1.0f, 0.0f, 0.0f] (red).
+  - highlightTintColor: Highlight tint RGB color (GPUVector4). Default: [0.0f, 0.0f, 1.0f] (blue).
   - shadowTintIntensity: Shadow tint intensity, from 0.0 to 1.0. Default: 0.0
   - highlightTintIntensity: Highlight tint intensity, from 0.0 to 1.0, with 0.0 as the default.
 

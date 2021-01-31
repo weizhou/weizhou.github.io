@@ -119,7 +119,11 @@ class GLImagelabFilterConfigElement extends HTMLElement {
       filterConfigItemInput.addEventListener("input", e=> {
         filterConfigItemValueLabel.textContent = e.target.value;
         let filterConfig = {};
-        filterConfig[config.name] = e.target.value;
+        if(config.type === "color") {
+          filterConfig[config.name] = this.hexToRGB(e.target.value);  
+        }else {
+          filterConfig[config.name] = e.target.value;
+        }
         glimgService.updateFilter(filterConfig);
       })
 
@@ -151,6 +155,15 @@ class GLImagelabFilterConfigElement extends HTMLElement {
       
     })
   
+  }
+
+  hexToRGB(h) {
+    let r = 0, g = 0, b = 0;
+    r = "0x" + h[1] + h[2];
+    g = "0x" + h[3] + h[4];
+    b = "0x" + h[5] + h[6];
+    
+    return "["+ +r/255.0 + "," + +g/255.0 + "," + +b/255.0 + "]";
   }
 
   // update (imgs) {

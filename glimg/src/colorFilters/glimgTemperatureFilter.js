@@ -27,7 +27,7 @@ export class GLImgTemperatureFilter extends GLImgFilter {
     `;
 
     this.flipY = -1.0;
-    this.temperature = 4000;
+    this.temperature = 5000;
   }
 
   bindShaderAttributes(gl, glProgram){  

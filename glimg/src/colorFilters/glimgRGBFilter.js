@@ -20,9 +20,9 @@ export class GLImgRGBFilter extends GLImgFilter {
     `;
 
     this.flipY = -1.0;
-    this.redAdjustment = 0.9;
-    this.greenAdjustment = 0.1;
-    this.blueAdjustment = 0.1;
+    this.redAdjustment = 1.0;
+    this.greenAdjustment = 1.0;
+    this.blueAdjustment = 1.0;
   }
 
   bindShaderAttributes(gl, glProgram){  

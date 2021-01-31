@@ -29,7 +29,7 @@ export class GLImgTintFilter extends GLImgFilter {
     `;
 
     this.flipY = -1.0;
-    this.tint = 200;
+    this.tint = 0;
   }
 
   bindShaderAttributes(gl, glProgram){  

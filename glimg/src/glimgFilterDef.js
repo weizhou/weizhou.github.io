@@ -132,11 +132,26 @@ GLImgFilterDef.filters = {
   "SobelFilter": {"instance": ()=>new GLImgSobelEdgeFilter()},
   "EmbossFilter": {"instance": ()=>new GLImgEmbossFilter()},
   "AveragecolorFilter": {"instance": ()=>new GLImgAverageColorFilter()},
-  "MedianFilter": {"instance": ()=>new GLImgMedianFilter()},
-  "BoxblurFilter": {"instance": ()=>new GLImgBoxblurFilter()},
-  "GaussianblurFilter": {"instance": ()=>new GLImgGaussianblurFilter()},
-  "AdaptiveThresholdFilter": {"instance": ()=>new GLImgAdaptiveThresholdFilter()},
-  "BlockblurFilter": {"instance": ()=>new GLImgBlockblurFilter()}
+  "MedianFilter": {"instance": ()=>new GLImgMedianFilter(),
+                  //  "config": [{"name": "iteration", "type": "range", "min": "1", "max": "10", "step": "1", "value": "1"},
+                  //            ]
+                  },
+  "BoxblurFilter": {"instance": ()=>new GLImgBoxblurFilter(),
+                    "config": [{"name": "radius", "type": "range", "min": "1", "max": "10", "step": "1", "value": "2"},
+                              ]
+                   },
+  "GaussianblurFilter": {"instance": ()=>new GLImgGaussianblurFilter(),
+                         "config": [{"name": "radius", "type": "range", "min": "1", "max": "10", "step": "1", "value": "2"},
+                                   ]
+                        },
+  "AdaptiveThresholdFilter": {"instance": ()=>new GLImgAdaptiveThresholdFilter(),
+                              "config": [{"name": "radius", "type": "range", "min": "1", "max": "10", "step": "1", "value": "2"},
+                                        ]
+                             },
+  "BlockblurFilter": {"instance": ()=>new GLImgBlockblurFilter(),
+                      "config": [{"name": "radius", "type": "range", "min": "1", "max": "10", "step": "1", "value": "2"},
+                                ]
+                     },
 }
 
 GLImgFilterDef.captionalize = (filtername) => {

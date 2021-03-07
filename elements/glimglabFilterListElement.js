@@ -17,7 +17,7 @@ class GLImagelabFilterListElement extends HTMLElement {
       }
 
       #filtersDiv {
-        height: calc(100vh - var(--header-height) - var(--footer-height) - 20px);
+        height: calc(100vh - var(--header-height) - var(--footer-height));
       }
 
       .filter-list {
@@ -28,7 +28,7 @@ class GLImagelabFilterListElement extends HTMLElement {
         padding: 0px;
         margin: 0px;
         padding-top: 50px;
-        height: 100%;
+        height: calc(100% - 50px);
         overflow-x: hidden;
         overflow-y: scroll;
       }

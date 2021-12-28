@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="./elements/p5imgSidebar.js" defer></script>
+    <script src="./main.js" defer></script>
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./sidebars.css" >
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+      <div class="container-fluid">
+        <nav class="navbar navbar-light navbar-expand-sm" style="background-color: #e3f2fd;">
+            <a class="navbar-brand" href="#">P5-Image</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" id="homeBtn">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="downloadsBtn">Downloads</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="documentBtn">Document</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="content-area">
+            <div class="jumbotron jumbotron-fluid" id="homeContent">
+                <h1 class="display-4">About P5-Image</h1>
+                <p class="lead">
+                    P5-Image is a javascript library build on top of p5.js and webGL. It was inspired by the project of                     
+                    <a href=https://github.com/BradLarson/GPUImage/blob/master/framework/Source/GPUImageSolarizeFilter.m>
+                        GPUImage by Brad Larson
+                    </a>
+                    which provides a suite of image processing functionalities on iOS platform. It implements the complex image
+                    processing algorithms 
+                    using openGL shading language (GLSL), so the power of GPU can be leveraged to process all image pixels
+                    in parallel. <br/><br/>
+
+                    P5-Image project ports all the openGL shaders from GPUImage to the javascript framework. It uses 
+                    p5.js to manage the webGL canvas, and feeds the shaders to p5.js for rendering. The goal of the project
+                     is to provide web developers an easy-to-use
+                    library to process images right in the web pages using out of box algorithms, also preserving the capabilities
+                    to add
+                    custom defined algorithms using custom shaders.
+
+                </p>
+                <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button" id="learnmoreBtn">Learn more</a>
+                </p>
+            </div>
+
+            <div class="jumbotron jumbotron-fluid" id="downloadsContent" style="display: none">
+                go to here to download the p5-image library!!!
+            </div>
+
+            <div class="document-content" id="documentContent" style="display: none">
+                <p5img-sidebar class="document-content-sidebar"></p5img-sidebar>
+                <div class="document-content-left-container">
+                    <div>welcome to the docment, my dear!!!</div>
+                </div>
+            </div>
+
+
+        </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

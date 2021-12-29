@@ -36,12 +36,14 @@ class P5imgDemoElement extends HTMLElement {
 </code></pre>
         </div>
   
-        <div class="">
-        textarea for filter parameters
+        <div class="demo-filter-param">
+          <label class="demo-filter-param-label">filter settings: </label>
+          <textarea class="demo-filter-param-textarea">{"threshold": 0.5}</textarea>
         </div>
 
-        <div class="">
-          run button, reset button
+        <div class="demo-buttons">
+          <button class="btn btn-primary">run </button>
+          <button class="btn btn-primary">reset </button>
         </div>
 
       </div>

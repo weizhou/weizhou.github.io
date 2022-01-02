@@ -6,143 +6,65 @@ class P5imgSideBarElement extends HTMLElement {
       this.sideBar = document.createElement('div');
       this.sideBar.id = "sidebarDiv";
 
-      this.filters = {
-        "Color Filters": [
-            {"BrightnessFilter": {}},
-            {"ChromakeyingFilter": {}},
-            {"ColorInversionFilter": {}},
-            {"ColormatrixFilter": {}},
-            {"ContrastFilter": {}},
-            {"ExposureFilter": {}},
-            {"FalseColorFilter": {}},
-            {"p5GammaFilter": {}},
-            {"p5GrayscaleFilter": {}},
-            {"p5HazeFilter": {}},
-            {"p5HighlightShadowFilter": {}},
-            {"p5HighlightShadowTintFilter": {}},
-            {"p5HueFilter": {}},
-            {"p5LevelsFilter": {}},
-            {"p5LuminanceThresholdFilter": {}},
-            {"p5MonochromeFilter": {}},
-            {"p5OpacityFilter": {}},
-            {"p5RGBFilter": {}},
-            {"p5SaturationFilter": {}},
-            {"p5SepiaToneFilter": {}},
-            {"p5TemperatureFilter": {}},
-            {"p5TintFilter": {}},
-            {"p5VibranceFilter": {}}
-        ],
-        "Image Processing": [
-            {"AdaptiveThresholdFilter": {}},
-            {"AverageColorFilter": {}},
-            {"BilateralBlurFilter": {}},
-            {"BlockBlurFilter": {}},
-            {"BlockFilter": {}},
-            {"BoxBlurFilter": {}},
-            {"CannyEdgeFilter": {}},
-            {"ClosingFilter": {}},
-            {"ColorLocalBinaryPatternFilter": {}},
-            {"ColourFASTSamplingFilter": {}},
-            {"ConvFilter": {}},
-            {"CropFilter": {}},
-            {"DilationFilter": {}},
-            {"EmbossFilter": {}},
-            {"ErosionFilter": {}},
-            {"GaussianBlurFilter": {}},
-            {"HarrisCornerDetectionFilter": {}},
-            {"LanczosResamplingFilter": {}},
-            {"LocalBinaryPatternFilter": {}},
-            {"MedianFilter": {}},
-            {"MotionBlurFilter": {}},
-            {"NobleCornerDetectionFilter": {}},
-            {"NonMaximumSuppressionFilter": {}},
-            {"OpeningFilter": {}},
-            {"PrewittEdgeFilter": {}},
-            {"RadiusFilter": {}},
-            {"SharpenFilter": {}},
-            {"ShiTomasiFeatureDetectionFilter": {}},
-            {"SobelEdgeFilter": {}},
-            {"TiltShiftFilter": {}},
-            {"WeakPixelInclusionFilter": {}},
-            {"XYDerivativeFilter": {}},
-            {"ZoomBlurFilter": {}}
-        ],
-        "Visual Effects": [
-            {"BulgeFilter": {}},
-            {"CGAColorSpaceFilter": {}},
-            {"CrosshatchFilter": {}},
-            {"GlassSphereRefractionFilter": {}},
-            {"HalftoneFilter": {}},
-            {"KuwaharaFilter": {}},
-            {"PixellationFilter": {}},
-            {"PolarPixellateFilter": {}},
-            {"PolkaDotFilter": {}},
-            {"PosterizeFilter": {}},
-            {"SketchFilter": {}},
-            {"SmoothToonFilter": {}},
-            {"SolarizeFilter": {}},
-            {"SphereRefractionFilter": {}},
-            {"StretchFilter": {}},
-            {"SwirlFilter": {}},
-            {"ThresholdSketchFilter": {}},
-            {"ToonFilter": {}},
-            {"VignetteFilter": {}}
-        ]
-      };
 
-      this.filtersTemplate =      
+      this.sidebarTemplate =      
       `
       <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
       <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-        <span class="fs-5 fw-semibold">Filters</span>
+        <span class="fs-5 fw-semibold"><<nav type>></span>
       </a>
       <ul class="list-unstyled ps-0">
-        <<filter catagory>>
+        <<nav category list>>
       </ul>
     </div>
       `;
 
-      this.filterCatagoryTemplate = `
+      this.navCategoryTemplate = `
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#<<filter catagory id>>-collapse" aria-expanded="true">
-            <<filter catagory>>
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#<<nav category id>>-collapse" aria-expanded="true">
+            <<nav category>>
         </button>
-        <div class="collapse show" id="<<filter catagory id>>-collapse">
+        <div class="collapse show" id="<<nav category id>>-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <<filters>>
+                <<nav items>>
             </ul>
         </div>
       </li>      
       `;
 
-      const style = document.createElement('style');
-      style.textContent = `
+      this.style1 = document.createElement('style');
+      this.style1.textContent = ``;
 
-      `
-      ;
+      this.update("Filter");
+    }
 
-      let sideBarHTML = "";
-      let filterCatagoryHTML = "";
-      for(const [filterCatagory, filterList] of Object.entries(this.filters)){
-        let filterListHTML = "";
-        for (const filter of filterList){
-            let filterHTML = `
-            <li><a href="#" class="link-dark rounded">${Object.keys(filter)[0]}</a></li>
-            `
-            filterListHTML = filterListHTML + filterHTML;
+    update(navType) {
+        let service = new P5ImgService();
+        let navContent = service.getNavContent(navType);
+
+        let sidebarHTML = "";
+        let navCategoryListHTML = "";
+        for(const [navCategory, navItemObjects] of Object.entries(navContent)){
+          let navItemListHTML = "";
+          for (const [navItemName, navItemParam] of Object.entries(navItemObjects)){
+              let navItemHTML = `
+              <li><a href="#" class="link-dark rounded" id="${navItemName}" onclick="choose${navType}('${navItemName}')">${navItemName}</a></li>
+              `            
+              navItemListHTML = navItemListHTML + navItemHTML;
+          }
+          let navCategoryHTML = "";
+          navCategoryHTML = this.navCategoryTemplate.replace("<<nav category>>", navCategory)
+                                                    .replace(/<<nav category id>>/g, navCategory.replace(" ", "-"))          
+                                                    .replace("<<nav items>>", navItemListHTML);
+          navCategoryListHTML = navCategoryListHTML + navCategoryHTML;
         }
-        let filterHTML = "";
-        filterHTML = this.filterCatagoryTemplate.replace("<<filter catagory>>", filterCatagory);
-        filterHTML = filterHTML.replace(/<<filter catagory id>>/g, filterCatagory.replace(" ", "-"));
-        filterHTML = filterHTML.replace("<<filters>>", filterListHTML);
-        filterCatagoryHTML = filterCatagoryHTML + filterHTML;
-      }
+  
+        sidebarHTML = this.sidebarTemplate.replace("<<nav type>>", navType)
+                                      .replace("<<nav category list>>", navCategoryListHTML);
+        this.sideBar.innerHTML = sidebarHTML;
 
-      sideBarHTML = this.filtersTemplate.replace("<<filter catagory>>", filterCatagoryHTML);
-      this.sideBar.innerHTML = sideBarHTML;
-
-      this.appendChild(style);
-      this.appendChild(this.sideBar);
+        this.appendChild(this.style1);
+        this.appendChild(this.sideBar);
     }
 }
 

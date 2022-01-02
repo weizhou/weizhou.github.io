@@ -23,48 +23,59 @@ body {
 
 .document-content {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 60px 300px 1fr;
     height: 100%;
 }
 
-.document-content-sidebar {
+.document-content-first-level-sidebar {
     grid-column-start: 1;
     grid-column-end: 2;
     overflow-y: auto;
     height: 100%;
 }
+.document-content-sidebar {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    overflow-y: auto;
+    height: 100%;
+}
 
 .document-content-right-container {
-    grid-column-start: 2;
+    grid-column-start: 3;
     height: 100%;
 }
 
 .demo-container {
     display: grid;
-    grid-template-columns: 250px 1fr 1fr 250px;
+    grid-template-columns: 1fr;
     height: 100%;
     align-items: center;
     justify-content: center;
     margin-top: 30px;
 }
 
+.demo-img-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
 .demo-original-img {
     display: flex;
-    grid-column-start: 1;
-    grid-column-end: 3;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .demo-processed-img {
     display: flex;
-    grid-column-start: 3;
-    grid-column-end: 5;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.demo-original-img-caption {
+/* .demo-original-img-caption {
     display: flex;
     grid-column-start: 1;
     grid-column-end: 3;
@@ -78,7 +89,7 @@ body {
     grid-column-end: 5;
     align-items: center;
     justify-content: center;
-}
+} */
 
 .demo-code-block {
     display: flex;
@@ -88,25 +99,28 @@ body {
     justify-content: center;
     background-color:powderblue;
     margin: 50px;
+    padding-top: 20px;
 }
 
-.demo-filter-param {
+.demo-item-param-container {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+}
+
+.demo-item-param {
     display: flex;
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 2;
     align-items: center;
-    /*justify-content: center; */
-    /* background-color:rgb(37, 105, 114); */
-    /* margin: 50px; */
 }
 
-.demo-filter-param-label {
+.demo-item-param-label {
     margin-left: 50px;
     margin-right: 20px;
     float: left;
 }
 
-.demo-filter-param-textarea {
+.demo-item-param-textarea {
     margin-right: 20px;
     float: left;
     height: 100px;
@@ -115,11 +129,7 @@ body {
 
 .demo-buttons {
     display: flex;
-    grid-column-start: 4;
-    grid-column-end: 5;
-    /* align-items: center;
-    justify-content: center; */
-    /* background-color:powderblue; */
+    grid-column-start: 2;
     flex-direction: column;
 }
 

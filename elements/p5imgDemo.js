@@ -1,61 +1,225 @@
 class P5imgDemoElement extends HTMLElement {
 
-    constructor() {
-      super();
-      
-      this.demo = document.createElement('div');
-      this.demo.id = "demoDiv";
+  static get observedAttributes() { return ['itemType', 'itemName', 'itemSetting']; }
   
-      this.demo.innerHTML =       
-      `
-      <div class="demo-container">
-
-        <div class="demo-original-img">
-          <p5-img src="./images/lenna.png" height="350"> </p5-img>
-        </div>
-
-        <div class="demo-processed-img">
-          <p5-img src="./images/lenna.png" height="350"
-            filters='{"SolarizeFilter": {"threshold": 0.5}}'> 
-          </p5-img>
-        </div>
-
-        <div class="demo-original-img-caption">
-           Original image
-        </div>
-
-        <div class="demo-processed-img-caption">
-           Applied Solarized filter
-        </div>
-
-        <div class="demo-code-block">
-<pre><code>
-&lt;p5-img src="./lenna.png" height="350"
-  filters='{"SolarizeFilter": {"threshold": 0.5}}'&gt; 
-&lt;/p5-img&gt;
-</code></pre>
-        </div>
-  
-        <div class="demo-filter-param">
-          <label class="demo-filter-param-label">filter settings: </label>
-          <textarea class="demo-filter-param-textarea">{"threshold": 0.5}</textarea>
-        </div>
-
-        <div class="demo-buttons">
-          <button class="btn btn-primary">run </button>
-          <button class="btn btn-primary">reset </button>
-        </div>
-
-      </div>
-      `;
-
-      const style = document.createElement('style');
-      style.textContent = `
-      `
-      ;
-      this.appendChild(style);
-      this.appendChild(this.demo);
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'itemType':
+        break;
+      case 'itemName':
+        break;
+      case 'itemSetting':
+        break;
     }
+  }
+
+  get itemType() {
+    return this.getAttribute('itemType');
+  }
+  
+  set itemType(newValue) {
+    this.setAttribute('itemType', newValue);
+  }
+
+  get itemName() {
+    return this.getAttribute('itemName');
+  }
+  
+  set itemName(newValue) {
+    this.setAttribute('itemName', newValue);
+  }
+
+  get itemSetting() {
+    return this.getAttribute('itemSetting');
+  }
+  
+  set itemSetting(newValue) {
+    this.setAttribute('itemSetting', newValue);
+  }
+
+  constructor() {
+    super();
+    
+    this.init();
+
+    this.demo = document.createElement('div');
+    this.demo.id = "demoDiv";
+
+    this.demo.innerHTML =  this.createDemoHTML();
+
+    const style = document.createElement('style');
+    style.textContent = `
+    `
+    ;
+    this.appendChild(style);
+    this.appendChild(this.demo);
+
+    this.addEventHandlers();
+  }
+
+  init(){
+    this.htmlTemplate = `
+    <div class="demo-container">
+  
+    <div class="demo-img-container">
+      <div class="demo-original-img">
+        <div>
+          <img src="./images/lenna.png" style="height: 300px"> </img>
+        </div>
+        <div class="demo-original-img-caption">
+          image
+        </div>
+      </div>
+
+      <div class="demo-original-img" id="demo-overlay-image" style="display:none"}>
+        <div>
+          <img src="./images/arrow.png" style="height: 300px"> </img>
+        </div>
+        <div class="demo-original-img-caption">
+          overlay image
+        </div>
+      </div>
+
+      <div class="demo-processed-img">
+        <div id="demo-processed-img">
+          <<processed image>>
+        </div>
+        <div class="demo-processed-img-caption" id="demo-processed-img-caption">
+          <<processed image caption>>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-code-block" >
+<pre><code id="demo-code-block"><<code block>></code></pre>
+    </div>
+
+    <div class="demo-item-param-container">
+      <div class="demo-item-param">
+        <label class="demo-item-param-label">Settings: </label>
+        <<demo-item-param-textarea>>
+      </div>
+
+      <div class="demo-buttons">
+        <button class="btn btn-primary" id="runBtn">run</button>
+        <button class="btn btn-primary" id="resetBtn">reset</button>
+      </div>
+    </div>
+
+  </div>
+  `;
+  }
+
+
+  get filteredImageHTML() {
+    return `
+    <p5-img src="./images/lenna.png" height="300"
+      filters='{"${p5ImageState.filterName}": ${p5ImageState.filterSetting}}'> 
+    </p5-img>
+    `;
+  }
+
+  get blenderedImageHTML() {
+    return `
+    <p5-img-blend src1="./images/lenna.png" src2="./images/arrow.png" height="300"
+     mode="${p5ImageState.blenderName}" param='${p5ImageState.blenderSetting}'>
+    </p5-img-blend>
+    `;
+  }
+
+  get processedImageHTML() {
+    switch (p5ImageState.navType) {
+      case "Filter":
+        return this.filteredImageHTML;
+      case "Blender":
+        return this.blenderedImageHTML;
+    }
+  }
+
+  get processedImgCaptionHTML() {
+    return `Applied ${this.itemName}`;
+  } 
+
+  get codeBlockHTML() {
+
+return `&lt;p5-img src="./lenna.png" height="300"
+filters='{"${this.itemName}": ${this.itemSetting}}'&gt; 
+&lt;/p5-img&gt;`;
+  } 
+
+  get paramTextareaHTML() { 
+    return `<textarea class="demo-item-param-textarea" id="demo-item-param-textarea">${this.itemSetting}</textarea>`;
+  }
+
+
+
+  createDemoHTML(){
+    return this.htmlTemplate.replace("<<processed image>>", this.processedImageHTML)
+                            .replace("<<processed image caption>>", this.processedImgCaptionHTML)
+                            .replace("<<code block>>", this.codeBlockHTML)
+                            .replace("<<demo-item-param-textarea>>",  this.paramTextareaHTML);
+  }
+
+  addEventHandlers() {
+    document.getElementById("runBtn").addEventListener("click", ()=>{
+      let itemSetting = document.getElementById("demo-item-param-textarea").value;     
+      switch (p5ImageState.navType) {
+        case "Filter":
+          p5ImageState.filterSetting = itemSetting;
+          break;
+        case "Blender":
+          p5ImageState.blenderSetting = itemSetting;
+          break;
+      }
+      this.update();
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", ()=>{
+      let navType = p5ImageState.navType;      
+      let service = new P5ImgService();
+      switch (navType) {
+        case "Filter":
+          let expandedFilters = service.getExpandedFilters();
+          this.itemSetting = JSON.stringify(expandedFilters[this.itemName]);
+          p5ImageState.filterSetting = this.itemSetting;
+          break;
+        case "Blender":
+          let expandedBlenders = service.getExpandedBlenders();
+          this.itemSetting = JSON.stringify(expandedBlenders[this.itemName]);
+          p5ImageState.blenderSetting = this.itemSetting;
+          break;
+      }
+
+      this.update(navType, this.itemName, this.itemSetting);
+    });
+  }
+
+  updateTextArea(html) {
+    let textArea = document.getElementById("demo-item-param-textarea");
+    textArea.value =html;
+  }
+
+  update() {    
+    let processedImg = document.getElementById("demo-processed-img");
+    let codeBlock = document.getElementById("demo-code-block");
+    let processedImgCaption = document.getElementById("demo-processed-img-caption");
+    let overlayImage = document.getElementById("demo-overlay-image");
+
+    if(p5ImageState.navType === "Filter") {
+      overlayImage.style.display = "none";
+      this.itemName = p5ImageState.filterName;
+      this.itemSetting = p5ImageState.filterSetting;
+    }else {
+      overlayImage.style.display = "flex";
+      this.itemName = p5ImageState.blenderName;
+      this.itemSetting = p5ImageState.blenderSetting;
+    }
+    processedImg.innerHTML =  this.processedImageHTML;
+    codeBlock.innerHTML = this.codeBlockHTML;
+    processedImgCaption.innerHTML = this.processedImgCaptionHTML;
+    this.updateTextArea(this.itemSetting);
+  }
+
 }
 
 customElements.define('p5img-demo', P5imgDemoElement);

@@ -73,7 +73,7 @@ class P5imgDemoElement extends HTMLElement {
 
       <div class="demo-original-img" id="demo-overlay-image" style="display:none"}>
         <div>
-          <img src="./images/arrow.png" style="height: 300px"> </img>
+          <img src="./images/dog.jpg" style="height: 300px"> </img>
         </div>
         <div class="demo-original-img-caption">
           overlay image
@@ -121,7 +121,7 @@ class P5imgDemoElement extends HTMLElement {
 
   get blenderedImageHTML() {
     return `
-    <p5-img-blend src1="./images/lenna.png" src2="./images/arrow.png" height="300"
+    <p5-img-blend src1="./images/mushroom.jpg" src2="./images/dog.jpg" height="300"
      mode="${p5ImageState.blenderName}" param='${p5ImageState.blenderSetting}'>
     </p5-img-blend>
     `;

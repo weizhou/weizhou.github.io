@@ -97,7 +97,7 @@ class P5ImgService {
                 "SubtractBlender": {}                
             },
             "Visual Effects": {
-                "ChromaKeyBlender": {"thresholdSensitivity": 0.1, "smoothing":0.01, "colorToReplace": [0.8,0.2,0.2]},
+                "ChromaKeyBlender": {"thresholdSensitivity":0.3,"smoothing":0.001,"colorToReplace":[0.1,1.0,0.1]},
                 "ColorBurnBlender": {},
                 "ColorDodgeBlender": {},
                 "DarkenBlender": {},

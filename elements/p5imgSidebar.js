@@ -48,7 +48,7 @@ class P5imgSideBarElement extends HTMLElement {
           let navItemListHTML = "";
           for (const [navItemName, navItemParam] of Object.entries(navItemObjects)){
               let navItemHTML = `
-              <li><a href="#" class="link-dark rounded" id="${navItemName}" onclick="choose${navType}('${navItemName}')">${navItemName}</a></li>
+              <li><a href="#" class="link-dark rounded " id="${navItemName}" onclick="choose${navType}('${navItemName}')">${navItemName}</a></li>
               `            
               navItemListHTML = navItemListHTML + navItemHTML;
           }

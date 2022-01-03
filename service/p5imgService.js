@@ -86,7 +86,7 @@ class P5ImgService {
         this.blenders = {
             "Simple Blend": {
                 "AddBlender": {},
-                "AlphaBlender": {},
+                "AlphaBlender": {"mixturePercent": 0.5},
                 "ColorBlender": {},
                 "DifferenceBlender": {},
                 "DivideBlender": {},
@@ -97,7 +97,7 @@ class P5ImgService {
                 "SubtractBlender": {}                
             },
             "Visual Effects": {
-                "ChromaKeyBlender": {},
+                "ChromaKeyBlender": {"thresholdSensitivity": 0.1, "smoothing":0.01, "colorToReplace": [0.8,0.2,0.2]},
                 "ColorBurnBlender": {},
                 "ColorDodgeBlender": {},
                 "DarkenBlender": {},

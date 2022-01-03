@@ -36,11 +36,13 @@ class P5imgFirstLevelSideBarElement extends HTMLElement {
               <svg class="bi" width="24" height="24" role="img" aria-label="image blender"><use xlink:href="#imageBlender"/></svg>
             </a>
           </li>
+<!--
           <li>
             <a id="first-level-sidebar-video" onclick="chooseNavType('Video')" href="#" class="nav-link py-3 border-bottom" title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
               <svg class="bi" width="24" height="24" role="img" aria-label="video"><use xlink:href="#video"/></svg>
             </a>
           </li>
+-->          
         </ul>
     </div>
   

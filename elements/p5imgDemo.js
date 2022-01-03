@@ -140,12 +140,28 @@ class P5imgDemoElement extends HTMLElement {
     return `Applied ${this.itemName}`;
   } 
 
-  get codeBlockHTML() {
-
+  get filterCodeBlockHTML() {
 return `&lt;p5-img src="./lenna.png" height="300"
 filters='{"${this.itemName}": ${this.itemSetting}}'&gt; 
 &lt;/p5-img&gt;`;
   } 
+
+
+  get blenderCodeBlockHTML() {
+return `&lt;p5-img-blend src1="./images/lenna.png" src2="./images/arrow.png" height="300"
+  mode="${p5ImageState.blenderName}" param='${p5ImageState.blenderSetting}'&gt;
+&lt;/p5-img-blend&gt;`;
+  } 
+
+  get codeBlockHTML() {
+    switch (p5ImageState.navType) {
+      case "Filter":
+        return this.filterCodeBlockHTML;
+      case "Blender":
+        return this.blenderCodeBlockHTML;
+    }
+  }
+    
 
   get paramTextareaHTML() { 
     return `<textarea class="demo-item-param-textarea" id="demo-item-param-textarea">${this.itemSetting}</textarea>`;

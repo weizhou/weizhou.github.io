@@ -63,8 +63,8 @@ class P5imgDemoElement extends HTMLElement {
   
     <div class="demo-img-container">
       <div class="demo-original-img">
-        <div>
-          <img src="./images/lenna.png" style="height: 300px"> </img>
+        <div id="demo-original-img">
+          <<original image>>
         </div>
         <div class="demo-original-img-caption">
           image
@@ -110,10 +110,33 @@ class P5imgDemoElement extends HTMLElement {
   `;
   }
 
+  get filterOriginalImageHTML() {
+    return `
+  <div>
+    <img src="./images/mushroom.png" style="height: 300px"> </img>
+  </div>`;
+  }
+
+  get blenderOriginalImageHTML() {
+    return `
+  <div>
+    <img src="./images/mushroom.png" style="height: 300px"> </img>
+  </div>`;
+  }
+
+  get originalImageHTML() {
+    switch (p5ImageState.navType) {
+      case "Filter":
+        return this.filterOriginalImageHTML;
+      case "Blender":
+        return this.blenderOriginalImageHTML;
+    }   
+  }
+
 
   get filteredImageHTML() {
     return `
-    <p5-img src="./images/lenna.png" height="300"
+    <p5-img src="./images/mushroom.png" height="300"
       filters='{"${p5ImageState.filterName}": ${p5ImageState.filterSetting}}'> 
     </p5-img>
     `;
@@ -121,7 +144,7 @@ class P5imgDemoElement extends HTMLElement {
 
   get blenderedImageHTML() {
     return `
-    <p5-img-blend src1="./images/mushroom.jpg" src2="./images/dog.jpg" height="300"
+    <p5-img-blend src1="./images/mushroom.png" src2="./images/dog.jpg" height="300"
      mode="${p5ImageState.blenderName}" param='${p5ImageState.blenderSetting}'>
     </p5-img-blend>
     `;
@@ -141,14 +164,14 @@ class P5imgDemoElement extends HTMLElement {
   } 
 
   get filterCodeBlockHTML() {
-return `&lt;p5-img src="./lenna.png" height="300"
+return `&lt;p5-img src="./mushroom.png" height="300"
 filters='{"${this.itemName}": ${this.itemSetting}}'&gt; 
 &lt;/p5-img&gt;`;
   } 
 
 
   get blenderCodeBlockHTML() {
-return `&lt;p5-img-blend src1="./images/lenna.png" src2="./images/arrow.png" height="300"
+return `&lt;p5-img-blend src1="./images/mushroom.png" src2="./images/dog.png" height="300"
   mode="${p5ImageState.blenderName}" param='${p5ImageState.blenderSetting}'&gt;
 &lt;/p5-img-blend&gt;`;
   } 
@@ -170,7 +193,8 @@ return `&lt;p5-img-blend src1="./images/lenna.png" src2="./images/arrow.png" hei
 
 
   createDemoHTML(){
-    return this.htmlTemplate.replace("<<processed image>>", this.processedImageHTML)
+    return this.htmlTemplate.replace("<<original image>>", this.originalImageHTML)
+                            .replace("<<processed image>>", this.processedImageHTML)
                             .replace("<<processed image caption>>", this.processedImgCaptionHTML)
                             .replace("<<code block>>", this.codeBlockHTML)
                             .replace("<<demo-item-param-textarea>>",  this.paramTextareaHTML);
@@ -216,6 +240,7 @@ return `&lt;p5-img-blend src1="./images/lenna.png" src2="./images/arrow.png" hei
   }
 
   update() {    
+    let originalImage = document.getElementById("demo-original-img");
     let processedImg = document.getElementById("demo-processed-img");
     let codeBlock = document.getElementById("demo-code-block");
     let processedImgCaption = document.getElementById("demo-processed-img-caption");
@@ -230,6 +255,7 @@ return `&lt;p5-img-blend src1="./images/lenna.png" src2="./images/arrow.png" hei
       this.itemName = p5ImageState.blenderName;
       this.itemSetting = p5ImageState.blenderSetting;
     }
+    originalImage.innerHTML = this.originalImageHTML;
     processedImg.innerHTML =  this.processedImageHTML;
     codeBlock.innerHTML = this.codeBlockHTML;
     processedImgCaption.innerHTML = this.processedImgCaptionHTML;
